@@ -11,12 +11,16 @@ app = Sanic()
 jinja = SanicJinja2(app)
 
 @app.route("/")
-async def test(request):
-    return json({"hello": "world"})
+async def root(request):
+    return jinja.render('index.html', request)
+
+@app.route("/load_info")
+async def root(request):
+    return json({})
 
 @app.exception(NotFound)
 def ignore_404s(request, exception):
-    return jinja.render('index.html', request, url=request.url)
+    return jinja.render('404.html', request, url=request.url)
 
 if __name__ == "__main__":
     setup_db()

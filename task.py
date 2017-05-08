@@ -13,7 +13,7 @@ async def crawl():
     names = repos('h3.mb-1 a span').text()
     names = (s.strip() for s in names.split('/'))
     stars = repos('.f6.text-gray.mt-2 a.muted-link.mr-3:first').text()
-    stars = (s.strip() for s in stars.split(' '))
+    stars = (int(s.strip().replace(',', '')) for s in stars.split(' '))
     urls = (s.get('href') for s in repos('h3.mb-1 a'))
     await store_info(zip(names, urls, stars))
 
