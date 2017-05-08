@@ -1,5 +1,6 @@
-sanic=0.5.2
-sanic-jinja2=0.5.1
-aiopg=0.13.0
-aiohttp=2.0.7
-pyquery=1.2.17
+sanic==0.5.2
+sanic-jinja2==0.5.1
+aiopg==0.13.0
+aiohttp==2.0.7
+pyquery==1.2.17
+sqlalchemy==1.1.9

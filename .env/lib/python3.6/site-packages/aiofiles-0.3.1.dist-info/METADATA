@@ -1,0 +1,152 @@
+Metadata-Version: 2.0
+Name: aiofiles
+Version: 0.3.1
+Summary: File support for asyncio.
+Home-page: https://github.com/Tinche/aiofiles
+Author: Tin Tvrtkovic
+Author-email: tinchester@gmail.com
+License: Apache 2.0
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Topic :: System :: Filesystems
+Requires-Dist: asyncio; python_version == "3.3"
+Requires-Dist: singledispatch; python_version == "3.3"
+
+aiofiles: file support for asyncio
+==================================
+
+.. image:: https://img.shields.io/pypi/v/aiofiles.svg
+    :target: https://pypi.python.org/pypi/aiofiles
+.. image:: https://travis-ci.org/Tinche/aiofiles.svg?branch=master
+    :target: https://travis-ci.org/Tinche/aiofiles
+.. image:: https://coveralls.io/repos/Tinche/aiofiles/badge.svg?branch=master
+    :target: https://coveralls.io/r/Tinche/aiofiles?branch=master
+
+aiofiles is an Apache2 licensed library, written in Python, for handling local
+disk files in asyncio applications.
+
+Ordinary local file IO is blocking, and cannot easily and portably made
+asynchronous. This means doing file IO may interfere with asyncio applications,
+which shouldn't block the executing thread. aiofiles helps with this by
+introducing asynchronous versions of files that support delegating operations to
+a separate thread pool.
+
+.. code-block:: python
+
+    async with aiofiles.open('filename', mode='r') as f:
+        contents = await f.read()
+    print(contents)
+    'My file contents'
+
+Or, using the old syntax:
+
+.. code-block:: python
+
+    f = yield from aiofiles.open('filename', mode='r')
+    try:
+        contents = yield from f.read()
+    finally:
+        yield from f.close()
+    print(contents)
+    'My file contents'
+
+Features
+--------
+
+- a file API very similar to Python's standard, blocking API
+- support for buffered and unbuffered binary files, and buffered text files
+- support for async/await (PEP 492) constructs
+
+
+Installation
+------------
+
+To install aiofiles, simply:
+
+.. code-block:: bash
+
+    $ pip install aiofiles
+
+Usage
+-----
+
+Files are opened using the ``aiofiles.open()`` coroutine, which in addition to
+mirroring the builtin ``open`` accepts optional ``loop`` and ``executor``
+arguments. If ``loop`` is absent, the default loop will be used, as per the
+set asyncio policy. If ``executor`` is not specified, the default event loop
+executor will be used.
+
+In case of success, an asynchronous file object is returned with an
+API identical to an ordinary file, except the following methods are coroutines
+and delegate to an executor:
+
+* ``close``
+* ``flush``
+* ``isatty``
+* ``read``
+* ``readall``
+* ``read1``
+* ``readinto``
+* ``readline``
+* ``readlines``
+* ``seek``
+* ``seekable``
+* ``tell``
+* ``truncate``
+* ``writable``
+* ``write``
+* ``writelines``
+
+In case of failure, one of the usual exceptions will be raised.
+
+The ``aiofiles.os`` module contains executor-enabled coroutine versions of
+several useful ``os`` functions that deal with files:
+
+* ``stat``
+* ``sendfile``
+
+Limitations and Differences from the Builtin File API
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When using Python 3.5 or greater, aiofiles file objects can be used as
+asynchronous context managers. Asynchronous iteration is also supported.
+
+.. code-block:: python
+
+    async with aiofiles.open('filename') as f:
+        async for line in f:
+            ...
+
+When using Python 3.3 or 3.4, be aware that the closing of a file may block,
+and yielding from a coroutine while exiting from a context manager isn't
+possible, so aiofiles file objects can't be used as (ordinary, non-async)
+context managers. Use the ``try/finally`` construct from the introductory
+section to ensure files are closed.
+
+When using Python 3.3 or 3.4, iteration is also unsupported. To iterate over a
+file, call ``readline`` repeatedly until an empty result is returned. Keep in
+mind ``readline`` doesn't strip newline characters.
+
+.. code-block:: python
+
+    f = yield from aiofiles.open('filename')
+    try:
+        while True:
+            line = yield from f.readline()
+            if not line:
+                break
+            line = line.strip()
+            ...
+    finally:
+        yield from f.close()
+
+Contributing
+~~~~~~~~~~~~
+Contributions are very welcome. Tests can be run with ``tox``, please ensure
+the coverage at least stays the same before you submit a pull request.
+
+

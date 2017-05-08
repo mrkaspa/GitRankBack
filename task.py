@@ -17,7 +17,6 @@ async def crawl():
     urls = (s.get('href') for s in repos('h3.mb-1 a'))
     await store_info(zip(names, urls, stars))
 
-
 async def curl(url):
     async with aiohttp.ClientSession() as session:
         async with session.request('GET', url) as response:
