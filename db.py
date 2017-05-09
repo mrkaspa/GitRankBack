@@ -28,7 +28,11 @@ async def get_langs_data():
     async with engine:
         async with engine.acquire() as conn:
             join = sa.join(langs, stats, langs.c.id == stats.c.lang_id)
-            query = sa.select([langs, stats], use_labels=True).select_from(join)
+            query = sa.select([langs, stats], use_labels=True) \
+                .select_from(join) \
+                .order_by(langs.c.name) \
+                .order_by(stats.c.year) \
+                .order_by(stats.c.month)
             rs = await conn.execute(query)
             return [(dict(row.items())) for row in rs]
 

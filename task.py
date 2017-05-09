@@ -10,11 +10,10 @@ async def crawl():
     page = await curl(showcase)
     select = pq(page)
     repos = select('.repo-list-item')
-    names = repos('h3.mb-1 a span').text()
-    names = (s.strip() for s in names.split('/'))
     stars = repos('.f6.text-gray.mt-2 a.muted-link.mr-3:first').text()
-    stars = (int(s.strip().replace(',', '')) for s in stars.split(' '))
-    urls = (s.get('href') for s in repos('h3.mb-1 a'))
+    stars = [int(s.strip().replace(',', '')) for s in stars.split(' ')]
+    urls = [s.get('href') for s in repos('h3.mb-1 a')]
+    names = [u.split('/')[2] for u in urls]
     await store_info(zip(names, urls, stars))
 
 async def curl(url):
