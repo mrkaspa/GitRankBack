@@ -5,7 +5,7 @@ from sanic import Sanic
 from sanic.response import html, json
 from sanic.exceptions import NotFound
 from sanic_jinja2 import SanicJinja2
-from db import setup_db
+import db
 
 app = Sanic()
 jinja = SanicJinja2(app)
@@ -16,12 +16,13 @@ async def root(request):
 
 @app.route("/load_info")
 async def root(request):
-    return json({})
+    res = await db.get_langs_data()
+    return json(res)
 
 @app.exception(NotFound)
 def ignore_404s(request, exception):
     return jinja.render('404.html', request, url=request.url)
 
 if __name__ == "__main__":
-    setup_db()
+    db.setup_db()
     app.run(host="0.0.0.0", port=8000, workers=os.cpu_count())

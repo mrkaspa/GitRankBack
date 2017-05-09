@@ -24,7 +24,13 @@ def setup_db():
     metadata.create_all(engine)
 
 async def get_langs_data():
-    pass
+    engine = await init_db()
+    async with engine:
+        async with engine.acquire() as conn:
+            join = sa.join(langs, stats, langs.c.id == stats.c.lang_id)
+            query = sa.select([langs, stats], use_labels=True).select_from(join)
+            rs = await conn.execute(query)
+            return [(dict(row.items())) for row in rs]
 
 async def store_info(info):
     engine = await init_db()
