@@ -23,27 +23,31 @@ def setup_db():
     engine = sa.create_engine(uri)
     metadata.create_all(engine)
 
-async def get_langs_data():
+async def with_conn(do):
     engine = await init_db()
     async with engine:
         async with engine.acquire() as conn:
-            join = sa.join(langs, stats, langs.c.id == stats.c.lang_id)
-            query = sa.select([langs, stats], use_labels=True) \
-                .select_from(join) \
-                .order_by(langs.c.name) \
-                .order_by(stats.c.year) \
-                .order_by(stats.c.month)
-            rs = await conn.execute(query)
-            return [(dict(row.items())) for row in rs]
+            return await do(conn)
+
+async def get_langs_data():
+    async def do_conn(conn):
+        join = sa.join(langs, stats, langs.c.id == stats.c.lang_id)
+        query = sa.select([langs, stats], use_labels=True) \
+            .select_from(join) \
+            .order_by(langs.c.name) \
+            .order_by(stats.c.year) \
+            .order_by(stats.c.month)
+        rs = await conn.execute(query)
+        return [(dict(row.items())) for row in rs]
+    return await with_conn(do_conn)
 
 async def store_info(info):
-    engine = await init_db()
-    async with engine:
-        async with engine.acquire() as conn:
-            async with conn.begin():
-                info = list(info)
-                ids = await insert_langs(conn, info)
-                await insert_stats(conn, info, ids)
+    async def do_conn(conn):
+        async with conn.begin():
+            info_list = list(info)
+            ids = await insert_langs(conn, info_list)
+            await insert_stats(conn, info_list, ids)
+    await with_conn(do_conn)
 
 async def insert_langs(conn, info):
     ids = {}
