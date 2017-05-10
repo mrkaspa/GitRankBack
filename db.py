@@ -34,9 +34,7 @@ async def get_langs_data():
         join = sa.join(langs, stats, langs.c.id == stats.c.lang_id)
         query = sa.select([langs, stats], use_labels=True) \
             .select_from(join) \
-            .order_by(langs.c.name) \
-            .order_by(stats.c.year) \
-            .order_by(stats.c.month)
+            .order_by(sa.func.lower(langs.c.name), stats.c.year, stats.c.month)
         rs = await conn.execute(query)
         return [(dict(row.items())) for row in rs]
     return await with_conn(do_conn)

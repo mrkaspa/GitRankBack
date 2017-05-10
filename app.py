@@ -2,8 +2,8 @@ import os
 import asyncio
 import uvloop
 from sanic import Sanic
-from sanic.response import html, json
-from sanic.exceptions import NotFound
+from sanic.response import text, json
+from sanic.exceptions import NotFound, RequestTimeout
 from sanic_jinja2 import SanicJinja2
 import db
 
@@ -20,9 +20,13 @@ async def root(request):
     return json(res)
 
 @app.exception(NotFound)
-def ignore_404s(request, exception):
-    return jinja.render('404.html', request, url=request.url)
+def not_found(request, exception):
+    return text("Not found")
+
+@app.exception(RequestTimeout)
+def not_found(request, exception):
+    return text("")
 
 if __name__ == "__main__":
     db.setup_db()
-    app.run(host="0.0.0.0", port=8000, workers=os.cpu_count())
+    app.run(host="0.0.0.0", port=5000, workers=os.cpu_count())
