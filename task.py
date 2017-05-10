@@ -6,6 +6,7 @@ from pyquery import PyQuery as pq
 
 showcase = 'https://github.com/showcases/programming-languages'
 
+
 async def crawl():
     page = await curl(showcase)
     select = pq(page)
@@ -16,10 +17,12 @@ async def crawl():
     names = [u.split('/')[2] for u in urls]
     await store_info(zip(names, urls, stars))
 
+
 async def curl(url):
     async with aiohttp.ClientSession() as session:
         async with session.request('GET', url) as response:
             return await response.content.read()
+
 
 if __name__ == "__main__":
     asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
