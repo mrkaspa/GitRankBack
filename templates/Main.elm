@@ -54,9 +54,21 @@ view model =
             List.take 5 langs
     in
         div []
-            [ ul [] (List.map makeListItem topGrouped)
-            , LineChart.view LineChart.defaults (sampleDataset topGrouped)
-            ]
+            ([ ul [] (List.map makeListItem topGrouped)
+             ]
+                ++ (viewCharts langs)
+            )
+
+
+viewCharts : LangGrouped -> List (Html Msg)
+viewCharts langs =
+    let
+        renderChart langList =
+            LineChart.view LineChart.defaults (sampleDataset langList)
+    in
+        langs
+            |> groupEach 5
+            |> List.map renderChart
 
 
 makeListItem : ( String, List Lang ) -> Html Msg
@@ -129,3 +141,23 @@ mapLang ( name, stats ) =
     { label = name
     , data = List.map (\lang -> ( toFloat (lang.year + lang.month), toFloat (lang.stars) )) stats
     }
+
+
+{-| Groups the elements of a list each times.
+
+  groupEach 3 [3,4,5,7,8,9] == [[3,4,5],[7,8,9]]
+  groupEach 3 [3,4,5,7,8] == [[3,4,5],[7,8]]
+-}
+groupEach : Int -> List a -> List (List a)
+groupEach times list =
+  let
+    f a ( cont, elems, group, listIter ) =
+      if cont == times || elems == 1 then
+        ( 1, elems - 1, [], List.reverse (a :: group) :: listIter )
+      else
+        ( cont + 1, elems - 1, a :: group, listIter )
+
+    ( _, _, _, grouped ) =
+      List.foldl f ( 1, List.length list, [], [] ) list
+  in
+    List.reverse grouped

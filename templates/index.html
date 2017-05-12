@@ -10322,10 +10322,52 @@ var _juanedi$charty$Charty_LineChart$DatasetBounds = F4(
 	function (a, b, c, d) {
 		return {xMin: a, xMax: b, yMin: c, yMax: d};
 	});
-var _user$project$Hello$mapLang = function (_p0) {
-	var _p1 = _p0;
+var _user$project$Hello$groupEach = F2(
+	function (times, list) {
+		var f = F2(
+			function (a, _p0) {
+				var _p1 = _p0;
+				var _p5 = _p1._3;
+				var _p4 = _p1._2;
+				var _p3 = _p1._1;
+				var _p2 = _p1._0;
+				return (_elm_lang$core$Native_Utils.eq(_p2, times) || _elm_lang$core$Native_Utils.eq(_p3, 1)) ? {
+					ctor: '_Tuple4',
+					_0: 1,
+					_1: _p3 - 1,
+					_2: {ctor: '[]'},
+					_3: {
+						ctor: '::',
+						_0: _elm_lang$core$List$reverse(
+							{ctor: '::', _0: a, _1: _p4}),
+						_1: _p5
+					}
+				} : {
+					ctor: '_Tuple4',
+					_0: _p2 + 1,
+					_1: _p3 - 1,
+					_2: {ctor: '::', _0: a, _1: _p4},
+					_3: _p5
+				};
+			});
+		var _p6 = A3(
+			_elm_lang$core$List$foldl,
+			f,
+			{
+				ctor: '_Tuple4',
+				_0: 1,
+				_1: _elm_lang$core$List$length(list),
+				_2: {ctor: '[]'},
+				_3: {ctor: '[]'}
+			},
+			list);
+		var grouped = _p6._3;
+		return _elm_lang$core$List$reverse(grouped);
+	});
+var _user$project$Hello$mapLang = function (_p7) {
+	var _p8 = _p7;
 	return {
-		label: _p1._0,
+		label: _p8._0,
 		data: A2(
 			_elm_lang$core$List$map,
 			function (lang) {
@@ -10335,7 +10377,7 @@ var _user$project$Hello$mapLang = function (_p0) {
 					_1: _elm_lang$core$Basics$toFloat(lang.stars)
 				};
 			},
-			_p1._1)
+			_p8._1)
 	};
 };
 var _user$project$Hello$sampleDataset = function (model) {
@@ -10343,9 +10385,9 @@ var _user$project$Hello$sampleDataset = function (model) {
 };
 var _user$project$Hello$update = F2(
 	function (msg, model) {
-		var _p2 = msg;
-		if (_p2._0.ctor === 'Ok') {
-			return {ctor: '_Tuple2', _0: _p2._0._0, _1: _elm_lang$core$Platform_Cmd$none};
+		var _p9 = msg;
+		if (_p9._0.ctor === 'Ok') {
+			return {ctor: '_Tuple2', _0: _p9._0._0, _1: _elm_lang$core$Platform_Cmd$none};
 		} else {
 			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		}
@@ -10361,13 +10403,13 @@ var _user$project$Hello$getFirstStars = function (stats) {
 			},
 			_elm_lang$core$List$head(stats)));
 };
-var _user$project$Hello$mapModel = function (model) {
+var _user$project$Hello$mapModelToLangGrouped = function (model) {
 	return _elm_lang$core$List$reverse(
 		A2(
 			_elm_lang$core$List$sortBy,
-			function (_p3) {
-				var _p4 = _p3;
-				return _user$project$Hello$getFirstStars(_p4._1);
+			function (_p10) {
+				var _p11 = _p10;
+				return _user$project$Hello$getFirstStars(_p11._1);
 			},
 			_elm_lang$core$Dict$toList(
 				A2(
@@ -10377,9 +10419,9 @@ var _user$project$Hello$mapModel = function (model) {
 					},
 					model))));
 };
-var _user$project$Hello$makeListItem = function (_p5) {
-	var _p6 = _p5;
-	var stars = _user$project$Hello$getFirstStars(_p6._1);
+var _user$project$Hello$makeListItem = function (_p12) {
+	var _p13 = _p12;
+	var stars = _user$project$Hello$getFirstStars(_p13._1);
 	return A2(
 		_elm_lang$html$Html$li,
 		{ctor: '[]'},
@@ -10388,7 +10430,7 @@ var _user$project$Hello$makeListItem = function (_p5) {
 			_0: _elm_lang$html$Html$text(
 				A2(
 					_elm_lang$core$Basics_ops['++'],
-					_p6._0,
+					_p13._0,
 					A2(
 						_elm_lang$core$Basics_ops['++'],
 						' - ',
@@ -10396,27 +10438,35 @@ var _user$project$Hello$makeListItem = function (_p5) {
 			_1: {ctor: '[]'}
 		});
 };
+var _user$project$Hello$viewCharts = function (langs) {
+	var renderChart = function (langList) {
+		return A2(
+			_juanedi$charty$Charty_LineChart$view,
+			_juanedi$charty$Charty_LineChart$defaults,
+			_user$project$Hello$sampleDataset(langList));
+	};
+	return A2(
+		_elm_lang$core$List$map,
+		renderChart,
+		A2(_user$project$Hello$groupEach, 5, langs));
+};
 var _user$project$Hello$view = function (model) {
-	var langs = _user$project$Hello$mapModel(model);
+	var langs = _user$project$Hello$mapModelToLangGrouped(model);
 	var topGrouped = A2(_elm_lang$core$List$take, 5, langs);
 	return A2(
 		_elm_lang$html$Html$div,
 		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$ul,
-				{ctor: '[]'},
-				A2(_elm_lang$core$List$map, _user$project$Hello$makeListItem, topGrouped)),
-			_1: {
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			{
 				ctor: '::',
 				_0: A2(
-					_juanedi$charty$Charty_LineChart$view,
-					_juanedi$charty$Charty_LineChart$defaults,
-					_user$project$Hello$sampleDataset(topGrouped)),
+					_elm_lang$html$Html$ul,
+					{ctor: '[]'},
+					A2(_elm_lang$core$List$map, _user$project$Hello$makeListItem, topGrouped)),
 				_1: {ctor: '[]'}
-			}
-		});
+			},
+			_user$project$Hello$viewCharts(langs)));
 };
 var _user$project$Hello$Lang = F5(
 	function (a, b, c, d, e) {
@@ -10464,7 +10514,7 @@ var _user$project$Hello$main = _elm_lang$html$Html$program(
 		init: _user$project$Hello$init,
 		view: _user$project$Hello$view,
 		update: _user$project$Hello$update,
-		subscriptions: function (_p7) {
+		subscriptions: function (_p14) {
 			return _elm_lang$core$Platform_Sub$none;
 		}
 	})();
