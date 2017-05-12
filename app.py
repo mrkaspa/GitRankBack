@@ -34,4 +34,5 @@ def not_found(request, exception):
 
 if __name__ == "__main__":
     db.setup_db()
+    app.config.LOGO = None
     app.run(host="0.0.0.0", port=5000, workers=os.cpu_count())
