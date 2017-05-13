@@ -1,8 +1,9 @@
 import sqlalchemy as sa
 import datetime
+import os
 from aiopg.sa import create_engine
 
-uri = 'postgresql://mrkaspa:@localhost/langs'
+uri = os.environ.get('DATABASE_URL', 'postgresql://mrkaspa:@localhost/langs')
 metadata = sa.MetaData()
 langs = sa.Table(
     'langs', metadata,
