@@ -10497,10 +10497,21 @@ var _user$project$Hello$view = function (model) {
 			{
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$ul,
+					_elm_lang$html$Html$h1,
 					{ctor: '[]'},
-					A2(_elm_lang$core$List$map, _user$project$Views$makeListItem, topGrouped)),
-				_1: {ctor: '[]'}
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('Welcome to gitrank'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$ul,
+						{ctor: '[]'},
+						A2(_elm_lang$core$List$map, _user$project$Views$makeListItem, topGrouped)),
+					_1: {ctor: '[]'}
+				}
 			},
 			_user$project$Views$viewCharts(langs)));
 };

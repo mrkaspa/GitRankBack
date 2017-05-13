@@ -1,6 +1,6 @@
 module Hello exposing (..)
 
-import Html exposing (Html, div, text, ul, li)
+import Html exposing (Html, div, text, ul, li, h1)
 import Http
 import Json.Decode exposing (int, string, list, Decoder)
 import Json.Decode.Pipeline exposing (decode, required)
@@ -32,7 +32,8 @@ view model =
             List.take 5 langs
     in
         div []
-            ([ ul [] (List.map makeListItem topGrouped)
+            ([ h1 [] [ text "Welcome to gitrank" ]
+             , ul [] (List.map makeListItem topGrouped)
              ]
                 ++ (viewCharts langs)
             )
