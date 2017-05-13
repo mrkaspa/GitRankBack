@@ -4,7 +4,7 @@ import aiohttp
 from db import store_info
 from pyquery import PyQuery as pq
 
-showcase = 'https://github.com/showcases/prog ramming-languages'
+showcase = 'https://github.com/showcases/programming-languages'
 
 
 async def crawl():
