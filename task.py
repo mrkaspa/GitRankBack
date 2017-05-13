@@ -1,6 +1,7 @@
 import asyncio
 import uvloop
 import aiohttp
+import datetime
 from db import store_info
 from pyquery import PyQuery as pq
 
@@ -25,6 +26,9 @@ async def curl(url):
 
 
 if __name__ == "__main__":
-    asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(crawl())
+    # fix for heroku due it run daily
+    now = datetime.datetime.now()
+    if now.day == 1:
+        asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(crawl())
