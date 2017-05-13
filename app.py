@@ -9,6 +9,7 @@ import db
 
 app = Sanic()
 jinja = SanicJinja2(app)
+port = os.environ.get('port', 5000)
 
 
 @app.route("/")
@@ -35,4 +36,4 @@ def not_found(request, exception):
 if __name__ == "__main__":
     db.setup_db()
     app.config.LOGO = None
-    app.run(host="0.0.0.0", port=5000, workers=os.cpu_count())
+    app.run(host="0.0.0.0", port=port, workers=os.cpu_count())
