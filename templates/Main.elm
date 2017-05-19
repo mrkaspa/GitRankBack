@@ -1,4 +1,4 @@
-module Hello exposing (..)
+module Main exposing (..)
 
 import Html exposing (Html, div, text, ul, li, h1)
 import Http

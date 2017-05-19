@@ -2,7 +2,7 @@ import os
 import asyncio
 import uvloop
 from sanic import Sanic
-from sanic.response import text, json
+from sanic.response import text, json, file
 from sanic.exceptions import NotFound, RequestTimeout
 from sanic_jinja2 import SanicJinja2
 import db
@@ -15,6 +15,11 @@ port = int(os.environ.get('PORT', '5000'))
 @app.route("/")
 async def root(request):
     return jinja.render('index.html', request)
+
+
+@app.route("/main.js")
+async def root(request):
+    return await file('./templates/main.js', request)
 
 
 @app.route("/load_info")
