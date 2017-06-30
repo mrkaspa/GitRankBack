@@ -5837,6 +5837,135 @@ var _NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required = F3(
 			decoder);
 	});
 
+var _debois$elm_dom$DOM$className = A2(
+	_elm_lang$core$Json_Decode$at,
+	{
+		ctor: '::',
+		_0: 'className',
+		_1: {ctor: '[]'}
+	},
+	_elm_lang$core$Json_Decode$string);
+var _debois$elm_dom$DOM$scrollTop = A2(_elm_lang$core$Json_Decode$field, 'scrollTop', _elm_lang$core$Json_Decode$float);
+var _debois$elm_dom$DOM$scrollLeft = A2(_elm_lang$core$Json_Decode$field, 'scrollLeft', _elm_lang$core$Json_Decode$float);
+var _debois$elm_dom$DOM$offsetTop = A2(_elm_lang$core$Json_Decode$field, 'offsetTop', _elm_lang$core$Json_Decode$float);
+var _debois$elm_dom$DOM$offsetLeft = A2(_elm_lang$core$Json_Decode$field, 'offsetLeft', _elm_lang$core$Json_Decode$float);
+var _debois$elm_dom$DOM$offsetHeight = A2(_elm_lang$core$Json_Decode$field, 'offsetHeight', _elm_lang$core$Json_Decode$float);
+var _debois$elm_dom$DOM$offsetWidth = A2(_elm_lang$core$Json_Decode$field, 'offsetWidth', _elm_lang$core$Json_Decode$float);
+var _debois$elm_dom$DOM$childNodes = function (decoder) {
+	var loop = F2(
+		function (idx, xs) {
+			return A2(
+				_elm_lang$core$Json_Decode$andThen,
+				function (_p0) {
+					return A2(
+						_elm_lang$core$Maybe$withDefault,
+						_elm_lang$core$Json_Decode$succeed(xs),
+						A2(
+							_elm_lang$core$Maybe$map,
+							function (x) {
+								return A2(
+									loop,
+									idx + 1,
+									{ctor: '::', _0: x, _1: xs});
+							},
+							_p0));
+				},
+				_elm_lang$core$Json_Decode$maybe(
+					A2(
+						_elm_lang$core$Json_Decode$field,
+						_elm_lang$core$Basics$toString(idx),
+						decoder)));
+		});
+	return A2(
+		_elm_lang$core$Json_Decode$map,
+		_elm_lang$core$List$reverse,
+		A2(
+			_elm_lang$core$Json_Decode$field,
+			'childNodes',
+			A2(
+				loop,
+				0,
+				{ctor: '[]'})));
+};
+var _debois$elm_dom$DOM$childNode = function (idx) {
+	return _elm_lang$core$Json_Decode$at(
+		{
+			ctor: '::',
+			_0: 'childNodes',
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$core$Basics$toString(idx),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _debois$elm_dom$DOM$parentElement = function (decoder) {
+	return A2(_elm_lang$core$Json_Decode$field, 'parentElement', decoder);
+};
+var _debois$elm_dom$DOM$previousSibling = function (decoder) {
+	return A2(_elm_lang$core$Json_Decode$field, 'previousSibling', decoder);
+};
+var _debois$elm_dom$DOM$nextSibling = function (decoder) {
+	return A2(_elm_lang$core$Json_Decode$field, 'nextSibling', decoder);
+};
+var _debois$elm_dom$DOM$offsetParent = F2(
+	function (x, decoder) {
+		return _elm_lang$core$Json_Decode$oneOf(
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$core$Json_Decode$field,
+					'offsetParent',
+					_elm_lang$core$Json_Decode$null(x)),
+				_1: {
+					ctor: '::',
+					_0: A2(_elm_lang$core$Json_Decode$field, 'offsetParent', decoder),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _debois$elm_dom$DOM$position = F2(
+	function (x, y) {
+		return A2(
+			_elm_lang$core$Json_Decode$andThen,
+			function (_p1) {
+				var _p2 = _p1;
+				var _p4 = _p2._1;
+				var _p3 = _p2._0;
+				return A2(
+					_debois$elm_dom$DOM$offsetParent,
+					{ctor: '_Tuple2', _0: _p3, _1: _p4},
+					A2(_debois$elm_dom$DOM$position, _p3, _p4));
+			},
+			A5(
+				_elm_lang$core$Json_Decode$map4,
+				F4(
+					function (scrollLeft, scrollTop, offsetLeft, offsetTop) {
+						return {ctor: '_Tuple2', _0: (x + offsetLeft) - scrollLeft, _1: (y + offsetTop) - scrollTop};
+					}),
+				_debois$elm_dom$DOM$scrollLeft,
+				_debois$elm_dom$DOM$scrollTop,
+				_debois$elm_dom$DOM$offsetLeft,
+				_debois$elm_dom$DOM$offsetTop));
+	});
+var _debois$elm_dom$DOM$boundingClientRect = A4(
+	_elm_lang$core$Json_Decode$map3,
+	F3(
+		function (_p5, width, height) {
+			var _p6 = _p5;
+			return {top: _p6._1, left: _p6._0, width: width, height: height};
+		}),
+	A2(_debois$elm_dom$DOM$position, 0, 0),
+	_debois$elm_dom$DOM$offsetWidth,
+	_debois$elm_dom$DOM$offsetHeight);
+var _debois$elm_dom$DOM$target = function (decoder) {
+	return A2(_elm_lang$core$Json_Decode$field, 'target', decoder);
+};
+var _debois$elm_dom$DOM$Rectangle = F4(
+	function (a, b, c, d) {
+		return {top: a, left: b, width: c, height: d};
+	});
+
 var _elm_lang$core$Set$foldr = F3(
 	function (f, b, _p0) {
 		var _p1 = _p0;
@@ -9942,6 +10071,471 @@ var _elm_lang$html$Html$summary = _elm_lang$html$Html$node('summary');
 var _elm_lang$html$Html$menuitem = _elm_lang$html$Html$node('menuitem');
 var _elm_lang$html$Html$menu = _elm_lang$html$Html$node('menu');
 
+var _elm_lang$html$Html_Attributes$map = _elm_lang$virtual_dom$VirtualDom$mapProperty;
+var _elm_lang$html$Html_Attributes$attribute = _elm_lang$virtual_dom$VirtualDom$attribute;
+var _elm_lang$html$Html_Attributes$contextmenu = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'contextmenu', value);
+};
+var _elm_lang$html$Html_Attributes$draggable = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'draggable', value);
+};
+var _elm_lang$html$Html_Attributes$itemprop = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'itemprop', value);
+};
+var _elm_lang$html$Html_Attributes$tabindex = function (n) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		'tabIndex',
+		_elm_lang$core$Basics$toString(n));
+};
+var _elm_lang$html$Html_Attributes$charset = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'charset', value);
+};
+var _elm_lang$html$Html_Attributes$height = function (value) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		'height',
+		_elm_lang$core$Basics$toString(value));
+};
+var _elm_lang$html$Html_Attributes$width = function (value) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		'width',
+		_elm_lang$core$Basics$toString(value));
+};
+var _elm_lang$html$Html_Attributes$formaction = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'formAction', value);
+};
+var _elm_lang$html$Html_Attributes$list = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'list', value);
+};
+var _elm_lang$html$Html_Attributes$minlength = function (n) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		'minLength',
+		_elm_lang$core$Basics$toString(n));
+};
+var _elm_lang$html$Html_Attributes$maxlength = function (n) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		'maxlength',
+		_elm_lang$core$Basics$toString(n));
+};
+var _elm_lang$html$Html_Attributes$size = function (n) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		'size',
+		_elm_lang$core$Basics$toString(n));
+};
+var _elm_lang$html$Html_Attributes$form = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'form', value);
+};
+var _elm_lang$html$Html_Attributes$cols = function (n) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		'cols',
+		_elm_lang$core$Basics$toString(n));
+};
+var _elm_lang$html$Html_Attributes$rows = function (n) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		'rows',
+		_elm_lang$core$Basics$toString(n));
+};
+var _elm_lang$html$Html_Attributes$challenge = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'challenge', value);
+};
+var _elm_lang$html$Html_Attributes$media = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'media', value);
+};
+var _elm_lang$html$Html_Attributes$rel = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'rel', value);
+};
+var _elm_lang$html$Html_Attributes$datetime = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'datetime', value);
+};
+var _elm_lang$html$Html_Attributes$pubdate = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'pubdate', value);
+};
+var _elm_lang$html$Html_Attributes$colspan = function (n) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		'colspan',
+		_elm_lang$core$Basics$toString(n));
+};
+var _elm_lang$html$Html_Attributes$rowspan = function (n) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		'rowspan',
+		_elm_lang$core$Basics$toString(n));
+};
+var _elm_lang$html$Html_Attributes$manifest = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'manifest', value);
+};
+var _elm_lang$html$Html_Attributes$property = _elm_lang$virtual_dom$VirtualDom$property;
+var _elm_lang$html$Html_Attributes$stringProperty = F2(
+	function (name, string) {
+		return A2(
+			_elm_lang$html$Html_Attributes$property,
+			name,
+			_elm_lang$core$Json_Encode$string(string));
+	});
+var _elm_lang$html$Html_Attributes$class = function (name) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'className', name);
+};
+var _elm_lang$html$Html_Attributes$id = function (name) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'id', name);
+};
+var _elm_lang$html$Html_Attributes$title = function (name) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'title', name);
+};
+var _elm_lang$html$Html_Attributes$accesskey = function ($char) {
+	return A2(
+		_elm_lang$html$Html_Attributes$stringProperty,
+		'accessKey',
+		_elm_lang$core$String$fromChar($char));
+};
+var _elm_lang$html$Html_Attributes$dir = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'dir', value);
+};
+var _elm_lang$html$Html_Attributes$dropzone = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'dropzone', value);
+};
+var _elm_lang$html$Html_Attributes$lang = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'lang', value);
+};
+var _elm_lang$html$Html_Attributes$content = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'content', value);
+};
+var _elm_lang$html$Html_Attributes$httpEquiv = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'httpEquiv', value);
+};
+var _elm_lang$html$Html_Attributes$language = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'language', value);
+};
+var _elm_lang$html$Html_Attributes$src = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'src', value);
+};
+var _elm_lang$html$Html_Attributes$alt = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'alt', value);
+};
+var _elm_lang$html$Html_Attributes$preload = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'preload', value);
+};
+var _elm_lang$html$Html_Attributes$poster = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'poster', value);
+};
+var _elm_lang$html$Html_Attributes$kind = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'kind', value);
+};
+var _elm_lang$html$Html_Attributes$srclang = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'srclang', value);
+};
+var _elm_lang$html$Html_Attributes$sandbox = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'sandbox', value);
+};
+var _elm_lang$html$Html_Attributes$srcdoc = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'srcdoc', value);
+};
+var _elm_lang$html$Html_Attributes$type_ = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'type', value);
+};
+var _elm_lang$html$Html_Attributes$value = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'value', value);
+};
+var _elm_lang$html$Html_Attributes$defaultValue = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'defaultValue', value);
+};
+var _elm_lang$html$Html_Attributes$placeholder = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'placeholder', value);
+};
+var _elm_lang$html$Html_Attributes$accept = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'accept', value);
+};
+var _elm_lang$html$Html_Attributes$acceptCharset = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'acceptCharset', value);
+};
+var _elm_lang$html$Html_Attributes$action = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'action', value);
+};
+var _elm_lang$html$Html_Attributes$autocomplete = function (bool) {
+	return A2(
+		_elm_lang$html$Html_Attributes$stringProperty,
+		'autocomplete',
+		bool ? 'on' : 'off');
+};
+var _elm_lang$html$Html_Attributes$enctype = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'enctype', value);
+};
+var _elm_lang$html$Html_Attributes$method = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'method', value);
+};
+var _elm_lang$html$Html_Attributes$name = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'name', value);
+};
+var _elm_lang$html$Html_Attributes$pattern = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'pattern', value);
+};
+var _elm_lang$html$Html_Attributes$for = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'htmlFor', value);
+};
+var _elm_lang$html$Html_Attributes$max = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'max', value);
+};
+var _elm_lang$html$Html_Attributes$min = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'min', value);
+};
+var _elm_lang$html$Html_Attributes$step = function (n) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'step', n);
+};
+var _elm_lang$html$Html_Attributes$wrap = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'wrap', value);
+};
+var _elm_lang$html$Html_Attributes$usemap = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'useMap', value);
+};
+var _elm_lang$html$Html_Attributes$shape = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'shape', value);
+};
+var _elm_lang$html$Html_Attributes$coords = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'coords', value);
+};
+var _elm_lang$html$Html_Attributes$keytype = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'keytype', value);
+};
+var _elm_lang$html$Html_Attributes$align = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'align', value);
+};
+var _elm_lang$html$Html_Attributes$cite = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'cite', value);
+};
+var _elm_lang$html$Html_Attributes$href = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'href', value);
+};
+var _elm_lang$html$Html_Attributes$target = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'target', value);
+};
+var _elm_lang$html$Html_Attributes$downloadAs = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'download', value);
+};
+var _elm_lang$html$Html_Attributes$hreflang = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'hreflang', value);
+};
+var _elm_lang$html$Html_Attributes$ping = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'ping', value);
+};
+var _elm_lang$html$Html_Attributes$start = function (n) {
+	return A2(
+		_elm_lang$html$Html_Attributes$stringProperty,
+		'start',
+		_elm_lang$core$Basics$toString(n));
+};
+var _elm_lang$html$Html_Attributes$headers = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'headers', value);
+};
+var _elm_lang$html$Html_Attributes$scope = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'scope', value);
+};
+var _elm_lang$html$Html_Attributes$boolProperty = F2(
+	function (name, bool) {
+		return A2(
+			_elm_lang$html$Html_Attributes$property,
+			name,
+			_elm_lang$core$Json_Encode$bool(bool));
+	});
+var _elm_lang$html$Html_Attributes$hidden = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'hidden', bool);
+};
+var _elm_lang$html$Html_Attributes$contenteditable = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'contentEditable', bool);
+};
+var _elm_lang$html$Html_Attributes$spellcheck = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'spellcheck', bool);
+};
+var _elm_lang$html$Html_Attributes$async = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'async', bool);
+};
+var _elm_lang$html$Html_Attributes$defer = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'defer', bool);
+};
+var _elm_lang$html$Html_Attributes$scoped = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'scoped', bool);
+};
+var _elm_lang$html$Html_Attributes$autoplay = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'autoplay', bool);
+};
+var _elm_lang$html$Html_Attributes$controls = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'controls', bool);
+};
+var _elm_lang$html$Html_Attributes$loop = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'loop', bool);
+};
+var _elm_lang$html$Html_Attributes$default = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'default', bool);
+};
+var _elm_lang$html$Html_Attributes$seamless = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'seamless', bool);
+};
+var _elm_lang$html$Html_Attributes$checked = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'checked', bool);
+};
+var _elm_lang$html$Html_Attributes$selected = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'selected', bool);
+};
+var _elm_lang$html$Html_Attributes$autofocus = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'autofocus', bool);
+};
+var _elm_lang$html$Html_Attributes$disabled = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'disabled', bool);
+};
+var _elm_lang$html$Html_Attributes$multiple = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'multiple', bool);
+};
+var _elm_lang$html$Html_Attributes$novalidate = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'noValidate', bool);
+};
+var _elm_lang$html$Html_Attributes$readonly = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'readOnly', bool);
+};
+var _elm_lang$html$Html_Attributes$required = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'required', bool);
+};
+var _elm_lang$html$Html_Attributes$ismap = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'isMap', value);
+};
+var _elm_lang$html$Html_Attributes$download = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'download', bool);
+};
+var _elm_lang$html$Html_Attributes$reversed = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'reversed', bool);
+};
+var _elm_lang$html$Html_Attributes$classList = function (list) {
+	return _elm_lang$html$Html_Attributes$class(
+		A2(
+			_elm_lang$core$String$join,
+			' ',
+			A2(
+				_elm_lang$core$List$map,
+				_elm_lang$core$Tuple$first,
+				A2(_elm_lang$core$List$filter, _elm_lang$core$Tuple$second, list))));
+};
+var _elm_lang$html$Html_Attributes$style = _elm_lang$virtual_dom$VirtualDom$style;
+
+var _elm_lang$html$Html_Events$keyCode = A2(_elm_lang$core$Json_Decode$field, 'keyCode', _elm_lang$core$Json_Decode$int);
+var _elm_lang$html$Html_Events$targetChecked = A2(
+	_elm_lang$core$Json_Decode$at,
+	{
+		ctor: '::',
+		_0: 'target',
+		_1: {
+			ctor: '::',
+			_0: 'checked',
+			_1: {ctor: '[]'}
+		}
+	},
+	_elm_lang$core$Json_Decode$bool);
+var _elm_lang$html$Html_Events$targetValue = A2(
+	_elm_lang$core$Json_Decode$at,
+	{
+		ctor: '::',
+		_0: 'target',
+		_1: {
+			ctor: '::',
+			_0: 'value',
+			_1: {ctor: '[]'}
+		}
+	},
+	_elm_lang$core$Json_Decode$string);
+var _elm_lang$html$Html_Events$defaultOptions = _elm_lang$virtual_dom$VirtualDom$defaultOptions;
+var _elm_lang$html$Html_Events$onWithOptions = _elm_lang$virtual_dom$VirtualDom$onWithOptions;
+var _elm_lang$html$Html_Events$on = _elm_lang$virtual_dom$VirtualDom$on;
+var _elm_lang$html$Html_Events$onFocus = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'focus',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onBlur = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'blur',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onSubmitOptions = _elm_lang$core$Native_Utils.update(
+	_elm_lang$html$Html_Events$defaultOptions,
+	{preventDefault: true});
+var _elm_lang$html$Html_Events$onSubmit = function (msg) {
+	return A3(
+		_elm_lang$html$Html_Events$onWithOptions,
+		'submit',
+		_elm_lang$html$Html_Events$onSubmitOptions,
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onCheck = function (tagger) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'change',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetChecked));
+};
+var _elm_lang$html$Html_Events$onInput = function (tagger) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'input',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetValue));
+};
+var _elm_lang$html$Html_Events$onMouseOut = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseout',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseOver = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseover',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseLeave = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseleave',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseEnter = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseenter',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseUp = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseup',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseDown = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mousedown',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onDoubleClick = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'dblclick',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onClick = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'click',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$Options = F2(
+	function (a, b) {
+		return {stopPropagation: a, preventDefault: b};
+	});
+
 var _elm_lang$http$Native_Http = function() {
 
 
@@ -10644,285 +11238,33 @@ var _elm_lang$svg$Svg_Attributes$accumulate = _elm_lang$virtual_dom$VirtualDom$a
 var _elm_lang$svg$Svg_Attributes$accelerate = _elm_lang$virtual_dom$VirtualDom$attribute('accelerate');
 var _elm_lang$svg$Svg_Attributes$accentHeight = _elm_lang$virtual_dom$VirtualDom$attribute('accent-height');
 
-var _juanedi$charty$Charty_ArrayUtil$maximum = function () {
-	var combine = F2(
-		function (x, r) {
-			return _elm_lang$core$Maybe$Just(
-				A2(
-					_elm_lang$core$Basics$max,
-					x,
-					A2(_elm_lang$core$Maybe$withDefault, x, r)));
-		});
-	return A2(_elm_lang$core$Array$foldr, combine, _elm_lang$core$Maybe$Nothing);
-}();
-var _juanedi$charty$Charty_ArrayUtil$unsafeMaximum = function (a) {
-	var _p0 = _juanedi$charty$Charty_ArrayUtil$maximum(a);
-	if (_p0.ctor === 'Nothing') {
-		return _elm_lang$core$Native_Utils.crashCase(
-			'Charty.ArrayUtil',
-			{
-				start: {line: 48, column: 5},
-				end: {line: 53, column: 14}
-			},
-			_p0)('invalid state');
-	} else {
-		return _p0._0;
-	}
-};
-var _juanedi$charty$Charty_ArrayUtil$unsafeGet = F2(
-	function (i, array) {
-		var _p2 = A2(_elm_lang$core$Array$get, i, array);
-		if (_p2.ctor === 'Nothing') {
-			return _elm_lang$core$Native_Utils.crashCase(
-				'Charty.ArrayUtil',
-				{
-					start: {line: 23, column: 5},
-					end: {line: 28, column: 14}
-				},
-				_p2)('invalid state');
-		} else {
-			return _p2._0;
-		}
-	});
-var _juanedi$charty$Charty_ArrayUtil$unsafeFirst = function (array) {
-	return A2(_juanedi$charty$Charty_ArrayUtil$unsafeGet, 0, array);
-};
-var _juanedi$charty$Charty_ArrayUtil$unsafeLast = function (array) {
-	return A2(
-		_juanedi$charty$Charty_ArrayUtil$unsafeGet,
-		_elm_lang$core$Array$length(array) - 1,
-		array);
-};
-
-var _juanedi$charty$Charty_Color$defaultPalette = _elm_lang$core$Array$fromList(
-	{
-		ctor: '::',
-		_0: '#4D4D4D',
-		_1: {
-			ctor: '::',
-			_0: '#5DA5DA',
-			_1: {
-				ctor: '::',
-				_0: '#FAA43A',
-				_1: {
-					ctor: '::',
-					_0: '#60BD68',
-					_1: {
-						ctor: '::',
-						_0: '#F17CB0',
-						_1: {
-							ctor: '::',
-							_0: '#B2912F',
-							_1: {
-								ctor: '::',
-								_0: '#B276B2',
-								_1: {
-									ctor: '::',
-									_0: '#DECF3F',
-									_1: {
-										ctor: '::',
-										_0: '#F15854',
-										_1: {ctor: '[]'}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	});
-var _juanedi$charty$Charty_Color$assignDefaults = function (dataset) {
-	var colorCount = _elm_lang$core$Array$length(_juanedi$charty$Charty_Color$defaultPalette);
-	var color = function (index) {
+var _elm_lang$svg$Svg_Events$on = _elm_lang$virtual_dom$VirtualDom$on;
+var _elm_lang$svg$Svg_Events$simpleOn = F2(
+	function (name, msg) {
 		return A2(
-			_juanedi$charty$Charty_ArrayUtil$unsafeGet,
-			A2(_elm_lang$core$Basics_ops['%'], index, colorCount),
-			_juanedi$charty$Charty_Color$defaultPalette);
-	};
-	return A2(
-		_elm_lang$core$List$indexedMap,
-		F2(
-			function (i, series) {
-				return {
-					ctor: '_Tuple2',
-					_0: color(i),
-					_1: series
-				};
-			}),
-		dataset);
-};
-
-var _juanedi$charty$Charty_Labels$labelRow = F3(
-	function (config, index, _p0) {
-		var _p1 = _p0;
-		var _p2 = _p1._1;
-		var displayText = (_elm_lang$core$Native_Utils.cmp(
-			_elm_lang$core$String$length(_p2),
-			30) > 0) ? A2(
-			_elm_lang$core$Basics_ops['++'],
-			A2(_elm_lang$core$String$left, 27, _p2),
-			'...') : _p2;
-		var colorDimensions = 30;
-		var paddingTop = 100 + (index * 70);
-		var xBase = 1000 + 50;
-		return A2(
-			_elm_lang$svg$Svg$g,
-			{ctor: '[]'},
-			{
-				ctor: '::',
-				_0: A2(
-					_elm_lang$svg$Svg$rect,
-					{
-						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$x(
-							_elm_lang$core$Basics$toString(xBase)),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$y(
-								_elm_lang$core$Basics$toString(
-									paddingTop - _elm_lang$core$Basics$floor(colorDimensions / 2))),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$width(
-									_elm_lang$core$Basics$toString(colorDimensions)),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$height(
-										_elm_lang$core$Basics$toString(colorDimensions)),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$fill(_p1._0),
-										_1: {ctor: '[]'}
-									}
-								}
-							}
-						}
-					},
-					{ctor: '[]'}),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$svg$Svg$text_,
-						{
-							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$x(
-								_elm_lang$core$Basics$toString((xBase + colorDimensions) + 20)),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$y(
-									_elm_lang$core$Basics$toString(paddingTop)),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$fill(config.labelsColor),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$fontFamily('sans-serif'),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$svg$Svg_Attributes$fontSize('25px'),
-											_1: {
-												ctor: '::',
-												_0: _elm_lang$svg$Svg_Attributes$alignmentBaseline('middle'),
-												_1: {ctor: '[]'}
-											}
-										}
-									}
-								}
-							}
-						},
-						{
-							ctor: '::',
-							_0: _elm_lang$svg$Svg$text(displayText),
-							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
-				}
-			});
+			_elm_lang$svg$Svg_Events$on,
+			name,
+			_elm_lang$core$Json_Decode$succeed(msg));
 	});
-var _juanedi$charty$Charty_Labels$drawLabels = F2(
-	function (config, slices) {
-		var labels = function (slices) {
-			return A2(
-				_elm_lang$core$List$indexedMap,
-				_juanedi$charty$Charty_Labels$labelRow(config),
-				slices);
-		};
-		return A2(
-			_elm_lang$svg$Svg$g,
-			{ctor: '[]'},
-			labels(slices));
-	});
-var _juanedi$charty$Charty_Labels$withLabels = F3(
-	function (config, labels, chart) {
-		var background = A2(
-			_elm_lang$svg$Svg$rect,
-			{
-				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$width('1450'),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$height('1000'),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$fill(config.background),
-						_1: {ctor: '[]'}
-					}
-				}
-			},
-			{ctor: '[]'});
-		return A2(
-			_elm_lang$svg$Svg$svg,
-			{
-				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$viewBox('0 0 1450 1000'),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$style('width: 100%; height:auto;'),
-					_1: {ctor: '[]'}
-				}
-			},
-			{
-				ctor: '::',
-				_0: background,
-				_1: {
-					ctor: '::',
-					_0: chart,
-					_1: {
-						ctor: '::',
-						_0: A2(_juanedi$charty$Charty_Labels$drawLabels, config, labels),
-						_1: {ctor: '[]'}
-					}
-				}
-			});
-	});
-var _juanedi$charty$Charty_Labels$Config = F2(
-	function (a, b) {
-		return {background: a, labelsColor: b};
-	});
-
-var _juanedi$charty$Charty_SelectList$include = _elm_lang$core$Maybe$Just;
-var _juanedi$charty$Charty_SelectList$maybe = _elm_lang$core$Basics$identity;
-var _juanedi$charty$Charty_SelectList$iff = F2(
-	function (include, x) {
-		return include ? _elm_lang$core$Maybe$Just(x) : _elm_lang$core$Maybe$Nothing;
-	});
-var _juanedi$charty$Charty_SelectList$unless = F2(
-	function (exclude, x) {
-		return A2(_juanedi$charty$Charty_SelectList$iff, !exclude, x);
-	});
-var _juanedi$charty$Charty_SelectList$select = A2(
-	_elm_lang$core$List$foldr,
-	F2(
-		function (item, rec) {
-			var _p0 = item;
-			if (_p0.ctor === 'Just') {
-				return {ctor: '::', _0: _p0._0, _1: rec};
-			} else {
-				return rec;
-			}
-		}),
-	{ctor: '[]'});
+var _elm_lang$svg$Svg_Events$onBegin = _elm_lang$svg$Svg_Events$simpleOn('begin');
+var _elm_lang$svg$Svg_Events$onEnd = _elm_lang$svg$Svg_Events$simpleOn('end');
+var _elm_lang$svg$Svg_Events$onRepeat = _elm_lang$svg$Svg_Events$simpleOn('repeat');
+var _elm_lang$svg$Svg_Events$onAbort = _elm_lang$svg$Svg_Events$simpleOn('abort');
+var _elm_lang$svg$Svg_Events$onError = _elm_lang$svg$Svg_Events$simpleOn('error');
+var _elm_lang$svg$Svg_Events$onResize = _elm_lang$svg$Svg_Events$simpleOn('resize');
+var _elm_lang$svg$Svg_Events$onScroll = _elm_lang$svg$Svg_Events$simpleOn('scroll');
+var _elm_lang$svg$Svg_Events$onLoad = _elm_lang$svg$Svg_Events$simpleOn('load');
+var _elm_lang$svg$Svg_Events$onUnload = _elm_lang$svg$Svg_Events$simpleOn('unload');
+var _elm_lang$svg$Svg_Events$onZoom = _elm_lang$svg$Svg_Events$simpleOn('zoom');
+var _elm_lang$svg$Svg_Events$onActivate = _elm_lang$svg$Svg_Events$simpleOn('activate');
+var _elm_lang$svg$Svg_Events$onClick = _elm_lang$svg$Svg_Events$simpleOn('click');
+var _elm_lang$svg$Svg_Events$onFocusIn = _elm_lang$svg$Svg_Events$simpleOn('focusin');
+var _elm_lang$svg$Svg_Events$onFocusOut = _elm_lang$svg$Svg_Events$simpleOn('focusout');
+var _elm_lang$svg$Svg_Events$onMouseDown = _elm_lang$svg$Svg_Events$simpleOn('mousedown');
+var _elm_lang$svg$Svg_Events$onMouseMove = _elm_lang$svg$Svg_Events$simpleOn('mousemove');
+var _elm_lang$svg$Svg_Events$onMouseOut = _elm_lang$svg$Svg_Events$simpleOn('mouseout');
+var _elm_lang$svg$Svg_Events$onMouseOver = _elm_lang$svg$Svg_Events$simpleOn('mouseover');
+var _elm_lang$svg$Svg_Events$onMouseUp = _elm_lang$svg$Svg_Events$simpleOn('mouseup');
 
 var _myrho$elm_round$Round$funNum = F3(
 	function (fun, s, fl) {
@@ -11133,518 +11475,3045 @@ var _myrho$elm_round$Round$roundCom = _myrho$elm_round$Round$roundFun(
 	});
 var _myrho$elm_round$Round$roundNumCom = _myrho$elm_round$Round$funNum(_myrho$elm_round$Round$roundCom);
 
-var _juanedi$charty$Charty_LineChart$drawPoint = F3(
-	function (transform, color, point) {
-		var handle = F2(
-			function (event, setting) {
-				return A2(
-					_elm_lang$core$Maybe$map,
-					function (f) {
-						return event(
-							f(point));
-					},
-					setting);
-			});
-		var _p0 = transform(point);
-		var x = _p0._0;
-		var y = _p0._1;
-		return A2(
-			_elm_lang$svg$Svg$circle,
-			_juanedi$charty$Charty_SelectList$select(
-				{
-					ctor: '::',
-					_0: _juanedi$charty$Charty_SelectList$include(
-						_elm_lang$svg$Svg_Attributes$cx(
-							_elm_lang$core$Basics$toString(x))),
-					_1: {
+var _terezka$elm_plot$Internal_Colors$darkGrey = '#a3a3a3';
+var _terezka$elm_plot$Internal_Colors$grey = '#e3e3e3';
+var _terezka$elm_plot$Internal_Colors$transparent = 'transparent';
+var _terezka$elm_plot$Internal_Colors$blueStroke = '#cfd8ea';
+var _terezka$elm_plot$Internal_Colors$blueFill = '#e4eeff';
+var _terezka$elm_plot$Internal_Colors$pinkStroke = '#ff9edf';
+var _terezka$elm_plot$Internal_Colors$pinkFill = 'rgba(253, 185, 231, 0.5)';
+
+var _terezka$elm_plot$Internal_Draw$sign = function (x) {
+	return (_elm_lang$core$Native_Utils.cmp(x, 0) < 0) ? -1 : 1;
+};
+var _terezka$elm_plot$Internal_Draw$slope2 = F3(
+	function (point0, point1, t) {
+		var h = point1.x - point0.x;
+		return (!_elm_lang$core$Native_Utils.eq(h, 0)) ? ((((3 * (point1.y - point0.y)) / h) - t) / 2) : t;
+	});
+var _terezka$elm_plot$Internal_Draw$toH = F2(
+	function (h0, h1) {
+		return _elm_lang$core$Native_Utils.eq(h0, 0) ? ((_elm_lang$core$Native_Utils.cmp(h1, 0) < 0) ? (0 * -1) : h1) : h0;
+	});
+var _terezka$elm_plot$Internal_Draw$slope3 = F3(
+	function (point0, point1, point2) {
+		var h1 = point2.x - point1.x;
+		var h0 = point1.x - point0.x;
+		var s0h = A2(_terezka$elm_plot$Internal_Draw$toH, h0, h1);
+		var s0 = (point1.y - point0.y) / s0h;
+		var s1h = A2(_terezka$elm_plot$Internal_Draw$toH, h1, h0);
+		var s1 = (point2.y - point1.y) / s1h;
+		var p = ((s0 * h1) + (s1 * h0)) / (h0 + h1);
+		var slope = (_terezka$elm_plot$Internal_Draw$sign(s0) + _terezka$elm_plot$Internal_Draw$sign(s1)) * A2(
+			_elm_lang$core$Basics$min,
+			A2(
+				_elm_lang$core$Basics$min,
+				_elm_lang$core$Basics$abs(s0),
+				_elm_lang$core$Basics$abs(s1)),
+			0.5 * _elm_lang$core$Basics$abs(p));
+		return _elm_lang$core$Basics$isNaN(slope) ? 0 : slope;
+	});
+var _terezka$elm_plot$Internal_Draw$boolToString = function (bool) {
+	return bool ? '0' : '1';
+};
+var _terezka$elm_plot$Internal_Draw$pointToString = function (_p0) {
+	var _p1 = _p0;
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		_elm_lang$core$Basics$toString(_p1.x),
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			' ',
+			_elm_lang$core$Basics$toString(_p1.y)));
+};
+var _terezka$elm_plot$Internal_Draw$pointsToString = function (points) {
+	return A2(
+		_elm_lang$core$String$join,
+		',',
+		A2(_elm_lang$core$List$map, _terezka$elm_plot$Internal_Draw$pointToString, points));
+};
+var _terezka$elm_plot$Internal_Draw$joinCommands = function (commands) {
+	return A2(_elm_lang$core$String$join, ' ', commands);
+};
+var _terezka$elm_plot$Internal_Draw$yClosestToZero = function (_p2) {
+	var _p3 = _p2;
+	var _p4 = _p3.y;
+	return A3(_elm_lang$core$Basics$clamp, _p4.min, _p4.max, 0);
+};
+var _terezka$elm_plot$Internal_Draw$length = function (axis) {
+	return (axis.length - axis.marginLower) - axis.marginUpper;
+};
+var _terezka$elm_plot$Internal_Draw$range = function (axis) {
+	return (!_elm_lang$core$Native_Utils.eq(axis.max - axis.min, 0)) ? (axis.max - axis.min) : 1;
+};
+var _terezka$elm_plot$Internal_Draw$scaleValue = F2(
+	function (axis, value) {
+		return (value * _terezka$elm_plot$Internal_Draw$length(axis)) / _terezka$elm_plot$Internal_Draw$range(axis);
+	});
+var _terezka$elm_plot$Internal_Draw$toSVGX = F2(
+	function (_p5, value) {
+		var _p6 = _p5;
+		var _p7 = _p6.x;
+		return A2(_terezka$elm_plot$Internal_Draw$scaleValue, _p7, value - _p7.min) + _p7.marginLower;
+	});
+var _terezka$elm_plot$Internal_Draw$toSVGY = F2(
+	function (_p8, value) {
+		var _p9 = _p8;
+		var _p10 = _p9.y;
+		return A2(_terezka$elm_plot$Internal_Draw$scaleValue, _p10, _p10.max - value) + _p10.marginLower;
+	});
+var _terezka$elm_plot$Internal_Draw$place = F4(
+	function (plot, _p11, offsetX, offsetY) {
+		var _p12 = _p11;
+		return _elm_lang$svg$Svg_Attributes$transform(
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'translate(',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString(
+						A2(_terezka$elm_plot$Internal_Draw$toSVGX, plot, _p12.x) + offsetX),
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						',',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_elm_lang$core$Basics$toString(
+								A2(_terezka$elm_plot$Internal_Draw$toSVGY, plot, _p12.y) + offsetY),
+							')')))));
+	});
+var _terezka$elm_plot$Internal_Draw$unScaleValue = F2(
+	function (axis, v) {
+		return (v * _terezka$elm_plot$Internal_Draw$range(axis)) / _terezka$elm_plot$Internal_Draw$length(axis);
+	});
+var _terezka$elm_plot$Internal_Draw$toUnSVGX = F2(
+	function (_p13, value) {
+		var _p14 = _p13;
+		var _p15 = _p14.x;
+		return A2(_terezka$elm_plot$Internal_Draw$unScaleValue, _p15, value - _p15.marginLower) + _p15.min;
+	});
+var _terezka$elm_plot$Internal_Draw$toUnSVGY = F2(
+	function (_p16, value) {
+		var _p17 = _p16;
+		var _p18 = _p17.y;
+		return (_terezka$elm_plot$Internal_Draw$range(_p18) - A2(_terezka$elm_plot$Internal_Draw$unScaleValue, _p18, value - _p18.marginLower)) + _p18.min;
+	});
+var _terezka$elm_plot$Internal_Draw$Point = F2(
+	function (a, b) {
+		return {x: a, y: b};
+	});
+var _terezka$elm_plot$Internal_Draw$stringifyCommand = function (command) {
+	var _p19 = command;
+	switch (_p19.ctor) {
+		case 'Move':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				'M',
+				_terezka$elm_plot$Internal_Draw$pointToString(
+					A2(_terezka$elm_plot$Internal_Draw$Point, _p19._0, _p19._1)));
+		case 'Line':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				'L',
+				_terezka$elm_plot$Internal_Draw$pointToString(
+					A2(_terezka$elm_plot$Internal_Draw$Point, _p19._0, _p19._1)));
+		case 'HorizontalLine':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				'H',
+				_elm_lang$core$Basics$toString(_p19._0));
+		case 'VerticalLine':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				'V',
+				_elm_lang$core$Basics$toString(_p19._0));
+		case 'CubicBeziers':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				'C',
+				_terezka$elm_plot$Internal_Draw$pointsToString(
+					{
 						ctor: '::',
-						_0: _juanedi$charty$Charty_SelectList$include(
-							_elm_lang$svg$Svg_Attributes$cy(
-								_elm_lang$core$Basics$toString(y))),
+						_0: A2(_terezka$elm_plot$Internal_Draw$Point, _p19._0, _p19._1),
 						_1: {
 							ctor: '::',
-							_0: _juanedi$charty$Charty_SelectList$include(
-								_elm_lang$svg$Svg_Attributes$r('10')),
+							_0: A2(_terezka$elm_plot$Internal_Draw$Point, _p19._2, _p19._3),
 							_1: {
 								ctor: '::',
-								_0: _juanedi$charty$Charty_SelectList$include(
-									_elm_lang$svg$Svg_Attributes$fill(color)),
+								_0: A2(_terezka$elm_plot$Internal_Draw$Point, _p19._4, _p19._5),
 								_1: {ctor: '[]'}
 							}
 						}
-					}
-				}),
-			{ctor: '[]'});
-	});
-var _juanedi$charty$Charty_LineChart$drawPoints = F2(
-	function (transform, _p1) {
-		var _p2 = _p1;
-		return A2(
-			_elm_lang$svg$Svg$g,
-			{ctor: '[]'},
-			A2(
-				_elm_lang$core$List$map,
-				A2(_juanedi$charty$Charty_LineChart$drawPoint, transform, _p2._0),
-				_p2._1.data));
-	});
-var _juanedi$charty$Charty_LineChart$drawLine = F2(
-	function (transform, _p3) {
-		var _p4 = _p3;
-		var pointString = function (_p5) {
-			var _p6 = _p5;
+					}));
+		case 'CubicBeziersShort':
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
-				_elm_lang$core$Basics$toString(_p6._0),
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					' ',
-					_elm_lang$core$Basics$toString(_p6._1)));
-		};
-		var attr = A2(
-			_elm_lang$core$String$join,
-			', ',
-			A2(
-				_elm_lang$core$List$map,
-				function (_p7) {
-					return pointString(
-						transform(_p7));
-				},
-				_p4._1.data));
+				'Q',
+				_terezka$elm_plot$Internal_Draw$pointsToString(
+					{
+						ctor: '::',
+						_0: A2(_terezka$elm_plot$Internal_Draw$Point, _p19._0, _p19._1),
+						_1: {
+							ctor: '::',
+							_0: A2(_terezka$elm_plot$Internal_Draw$Point, _p19._2, _p19._3),
+							_1: {ctor: '[]'}
+						}
+					}));
+		case 'QuadraticBeziers':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				'Q',
+				_terezka$elm_plot$Internal_Draw$pointsToString(
+					{
+						ctor: '::',
+						_0: A2(_terezka$elm_plot$Internal_Draw$Point, _p19._0, _p19._1),
+						_1: {
+							ctor: '::',
+							_0: A2(_terezka$elm_plot$Internal_Draw$Point, _p19._2, _p19._3),
+							_1: {ctor: '[]'}
+						}
+					}));
+		case 'QuadraticBeziersShort':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				'T',
+				_terezka$elm_plot$Internal_Draw$pointToString(
+					A2(_terezka$elm_plot$Internal_Draw$Point, _p19._0, _p19._1)));
+		case 'Arc':
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				'A',
+				_terezka$elm_plot$Internal_Draw$joinCommands(
+					{
+						ctor: '::',
+						_0: _terezka$elm_plot$Internal_Draw$pointToString(
+							A2(_terezka$elm_plot$Internal_Draw$Point, _p19._0, _p19._1)),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$core$Basics$toString(_p19._2),
+							_1: {
+								ctor: '::',
+								_0: _terezka$elm_plot$Internal_Draw$boolToString(_p19._3),
+								_1: {
+									ctor: '::',
+									_0: _terezka$elm_plot$Internal_Draw$boolToString(_p19._4),
+									_1: {
+										ctor: '::',
+										_0: _terezka$elm_plot$Internal_Draw$pointToString(
+											A2(_terezka$elm_plot$Internal_Draw$Point, _p19._5, _p19._6)),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}));
+		default:
+			return 'Z';
+	}
+};
+var _terezka$elm_plot$Internal_Draw$draw = F2(
+	function (attributes, commands) {
 		return A2(
-			_elm_lang$svg$Svg$polyline,
+			_elm_lang$svg$Svg$path,
 			{
 				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$points(attr),
+				_0: _elm_lang$svg$Svg_Attributes$d(
+					_terezka$elm_plot$Internal_Draw$joinCommands(
+						A2(_elm_lang$core$List$map, _terezka$elm_plot$Internal_Draw$stringifyCommand, commands))),
+				_1: attributes
+			},
+			{ctor: '[]'});
+	});
+var _terezka$elm_plot$Internal_Draw$AxisSummary = F8(
+	function (a, b, c, d, e, f, g, h) {
+		return {min: a, max: b, dataMin: c, dataMax: d, marginLower: e, marginUpper: f, length: g, all: h};
+	});
+var _terezka$elm_plot$Internal_Draw$PlotSummary = F2(
+	function (a, b) {
+		return {x: a, y: b};
+	});
+var _terezka$elm_plot$Internal_Draw$Close = {ctor: 'Close'};
+var _terezka$elm_plot$Internal_Draw$Arc = F7(
+	function (a, b, c, d, e, f, g) {
+		return {ctor: 'Arc', _0: a, _1: b, _2: c, _3: d, _4: e, _5: f, _6: g};
+	});
+var _terezka$elm_plot$Internal_Draw$QuadraticBeziersShort = F2(
+	function (a, b) {
+		return {ctor: 'QuadraticBeziersShort', _0: a, _1: b};
+	});
+var _terezka$elm_plot$Internal_Draw$QuadraticBeziers = F4(
+	function (a, b, c, d) {
+		return {ctor: 'QuadraticBeziers', _0: a, _1: b, _2: c, _3: d};
+	});
+var _terezka$elm_plot$Internal_Draw$CubicBeziersShort = F4(
+	function (a, b, c, d) {
+		return {ctor: 'CubicBeziersShort', _0: a, _1: b, _2: c, _3: d};
+	});
+var _terezka$elm_plot$Internal_Draw$CubicBeziers = F6(
+	function (a, b, c, d, e, f) {
+		return {ctor: 'CubicBeziers', _0: a, _1: b, _2: c, _3: d, _4: e, _5: f};
+	});
+var _terezka$elm_plot$Internal_Draw$monotoneXCurve = F4(
+	function (point0, point1, tangent0, tangent1) {
+		var dx = (point1.x - point0.x) / 3;
+		return {
+			ctor: '::',
+			_0: A6(_terezka$elm_plot$Internal_Draw$CubicBeziers, point0.x + dx, point0.y + (dx * tangent0), point1.x - dx, point1.y - (dx * tangent1), point1.x, point1.y),
+			_1: {ctor: '[]'}
+		};
+	});
+var _terezka$elm_plot$Internal_Draw$monotoneXNext = F3(
+	function (points, tangent0, commands) {
+		monotoneXNext:
+		while (true) {
+			var _p20 = points;
+			if ((_p20.ctor === '::') && (_p20._1.ctor === '::')) {
+				if (_p20._1._1.ctor === '::') {
+					var _p23 = _p20._1._1._0;
+					var _p22 = _p20._1._0;
+					var _p21 = _p20._0;
+					var tangent1 = A3(_terezka$elm_plot$Internal_Draw$slope3, _p21, _p22, _p23);
+					var nextCommands = A2(
+						_elm_lang$core$Basics_ops['++'],
+						commands,
+						A4(_terezka$elm_plot$Internal_Draw$monotoneXCurve, _p21, _p22, tangent0, tangent1));
+					var _v9 = {
+						ctor: '::',
+						_0: _p22,
+						_1: {ctor: '::', _0: _p23, _1: _p20._1._1._1}
+					},
+						_v10 = tangent1,
+						_v11 = nextCommands;
+					points = _v9;
+					tangent0 = _v10;
+					commands = _v11;
+					continue monotoneXNext;
+				} else {
+					var _p25 = _p20._1._0;
+					var _p24 = _p20._0;
+					var tangent1 = A3(_terezka$elm_plot$Internal_Draw$slope3, _p24, _p25, _p25);
+					return A2(
+						_elm_lang$core$Basics_ops['++'],
+						commands,
+						A4(_terezka$elm_plot$Internal_Draw$monotoneXCurve, _p24, _p25, tangent0, tangent1));
+				}
+			} else {
+				return commands;
+			}
+		}
+	});
+var _terezka$elm_plot$Internal_Draw$monotoneXBegin = function (points) {
+	var _p26 = points;
+	if (((_p26.ctor === '::') && (_p26._1.ctor === '::')) && (_p26._1._1.ctor === '::')) {
+		var _p29 = _p26._1._1._0;
+		var _p28 = _p26._1._0;
+		var _p27 = _p26._0;
+		var tangent1 = A3(_terezka$elm_plot$Internal_Draw$slope3, _p27, _p28, _p29);
+		var tangent0 = A3(_terezka$elm_plot$Internal_Draw$slope2, _p27, _p28, tangent1);
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			A4(_terezka$elm_plot$Internal_Draw$monotoneXCurve, _p27, _p28, tangent0, tangent1),
+			A3(
+				_terezka$elm_plot$Internal_Draw$monotoneXNext,
+				{
+					ctor: '::',
+					_0: _p28,
+					_1: {ctor: '::', _0: _p29, _1: _p26._1._1._1}
+				},
+				tangent1,
+				{ctor: '[]'}));
+	} else {
+		return {ctor: '[]'};
+	}
+};
+var _terezka$elm_plot$Internal_Draw$VerticalLine = function (a) {
+	return {ctor: 'VerticalLine', _0: a};
+};
+var _terezka$elm_plot$Internal_Draw$HorizontalLine = function (a) {
+	return {ctor: 'HorizontalLine', _0: a};
+};
+var _terezka$elm_plot$Internal_Draw$Line = F2(
+	function (a, b) {
+		return {ctor: 'Line', _0: a, _1: b};
+	});
+var _terezka$elm_plot$Internal_Draw$lineCommand = function (_p30) {
+	var _p31 = _p30;
+	return A2(_terezka$elm_plot$Internal_Draw$Line, _p31.x, _p31.y);
+};
+var _terezka$elm_plot$Internal_Draw$areaEnd = F2(
+	function (plot, points) {
+		var _p32 = _elm_lang$core$List$head(
+			_elm_lang$core$List$reverse(points));
+		if (_p32.ctor === 'Just') {
+			return {
+				ctor: '::',
+				_0: A2(
+					_terezka$elm_plot$Internal_Draw$Line,
+					_p32._0.x,
+					_terezka$elm_plot$Internal_Draw$yClosestToZero(plot)),
+				_1: {ctor: '[]'}
+			};
+		} else {
+			return {ctor: '[]'};
+		}
+	});
+var _terezka$elm_plot$Internal_Draw$Move = F2(
+	function (a, b) {
+		return {ctor: 'Move', _0: a, _1: b};
+	});
+var _terezka$elm_plot$Internal_Draw$lineBegin = F2(
+	function (plot, points) {
+		var _p33 = points;
+		if (_p33.ctor === '::') {
+			return {
+				ctor: '::',
+				_0: A2(_terezka$elm_plot$Internal_Draw$Move, _p33._0.x, _p33._0.y),
+				_1: {ctor: '[]'}
+			};
+		} else {
+			return {ctor: '[]'};
+		}
+	});
+var _terezka$elm_plot$Internal_Draw$areaBegin = F2(
+	function (plot, points) {
+		var _p34 = points;
+		if (_p34.ctor === '::') {
+			var _p35 = _p34._0.x;
+			return {
+				ctor: '::',
+				_0: A2(
+					_terezka$elm_plot$Internal_Draw$Move,
+					_p35,
+					_terezka$elm_plot$Internal_Draw$yClosestToZero(plot)),
 				_1: {
 					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$stroke(_p4._0),
+					_0: A2(_terezka$elm_plot$Internal_Draw$Line, _p35, _p34._0.y),
+					_1: {ctor: '[]'}
+				}
+			};
+		} else {
+			return {ctor: '[]'};
+		}
+	});
+var _terezka$elm_plot$Internal_Draw$translateCommand = F2(
+	function (plot, command) {
+		var _p36 = command;
+		switch (_p36.ctor) {
+			case 'Move':
+				return A2(
+					_terezka$elm_plot$Internal_Draw$Move,
+					A2(_terezka$elm_plot$Internal_Draw$toSVGX, plot, _p36._0),
+					A2(_terezka$elm_plot$Internal_Draw$toSVGY, plot, _p36._1));
+			case 'Line':
+				return A2(
+					_terezka$elm_plot$Internal_Draw$Line,
+					A2(_terezka$elm_plot$Internal_Draw$toSVGX, plot, _p36._0),
+					A2(_terezka$elm_plot$Internal_Draw$toSVGY, plot, _p36._1));
+			case 'HorizontalLine':
+				return _terezka$elm_plot$Internal_Draw$HorizontalLine(
+					A2(_terezka$elm_plot$Internal_Draw$toSVGX, plot, _p36._0));
+			case 'VerticalLine':
+				return _terezka$elm_plot$Internal_Draw$VerticalLine(
+					A2(_terezka$elm_plot$Internal_Draw$toSVGY, plot, _p36._0));
+			case 'CubicBeziers':
+				return A6(
+					_terezka$elm_plot$Internal_Draw$CubicBeziers,
+					A2(_terezka$elm_plot$Internal_Draw$toSVGX, plot, _p36._0),
+					A2(_terezka$elm_plot$Internal_Draw$toSVGY, plot, _p36._1),
+					A2(_terezka$elm_plot$Internal_Draw$toSVGX, plot, _p36._2),
+					A2(_terezka$elm_plot$Internal_Draw$toSVGY, plot, _p36._3),
+					A2(_terezka$elm_plot$Internal_Draw$toSVGX, plot, _p36._4),
+					A2(_terezka$elm_plot$Internal_Draw$toSVGY, plot, _p36._5));
+			case 'CubicBeziersShort':
+				return A4(
+					_terezka$elm_plot$Internal_Draw$CubicBeziersShort,
+					A2(_terezka$elm_plot$Internal_Draw$toSVGX, plot, _p36._0),
+					A2(_terezka$elm_plot$Internal_Draw$toSVGY, plot, _p36._1),
+					A2(_terezka$elm_plot$Internal_Draw$toSVGX, plot, _p36._2),
+					A2(_terezka$elm_plot$Internal_Draw$toSVGY, plot, _p36._3));
+			case 'QuadraticBeziers':
+				return A4(
+					_terezka$elm_plot$Internal_Draw$QuadraticBeziers,
+					A2(_terezka$elm_plot$Internal_Draw$toSVGX, plot, _p36._0),
+					A2(_terezka$elm_plot$Internal_Draw$toSVGY, plot, _p36._1),
+					A2(_terezka$elm_plot$Internal_Draw$toSVGX, plot, _p36._2),
+					A2(_terezka$elm_plot$Internal_Draw$toSVGY, plot, _p36._3));
+			case 'QuadraticBeziersShort':
+				return A2(
+					_terezka$elm_plot$Internal_Draw$QuadraticBeziersShort,
+					A2(_terezka$elm_plot$Internal_Draw$toSVGX, plot, _p36._0),
+					A2(_terezka$elm_plot$Internal_Draw$toSVGY, plot, _p36._1));
+			case 'Arc':
+				return A7(
+					_terezka$elm_plot$Internal_Draw$Arc,
+					A2(_terezka$elm_plot$Internal_Draw$toSVGX, plot, _p36._0),
+					A2(_terezka$elm_plot$Internal_Draw$toSVGY, plot, _p36._1),
+					_p36._2,
+					_p36._3,
+					_p36._4,
+					A2(_terezka$elm_plot$Internal_Draw$toSVGX, plot, _p36._5),
+					A2(_terezka$elm_plot$Internal_Draw$toSVGY, plot, _p36._6));
+			default:
+				return _terezka$elm_plot$Internal_Draw$Close;
+		}
+	});
+var _terezka$elm_plot$Internal_Draw$linear = F2(
+	function (plot, points) {
+		return A2(
+			_elm_lang$core$List$map,
+			_terezka$elm_plot$Internal_Draw$translateCommand(plot),
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				A2(_terezka$elm_plot$Internal_Draw$lineBegin, plot, points),
+				A2(_elm_lang$core$List$map, _terezka$elm_plot$Internal_Draw$lineCommand, points)));
+	});
+var _terezka$elm_plot$Internal_Draw$linearArea = F2(
+	function (plot, points) {
+		return A2(
+			_elm_lang$core$List$map,
+			_terezka$elm_plot$Internal_Draw$translateCommand(plot),
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				A2(_terezka$elm_plot$Internal_Draw$areaBegin, plot, points),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					A2(_elm_lang$core$List$map, _terezka$elm_plot$Internal_Draw$lineCommand, points),
+					A2(_terezka$elm_plot$Internal_Draw$areaEnd, plot, points))));
+	});
+var _terezka$elm_plot$Internal_Draw$monotoneX = F2(
+	function (plot, points) {
+		return A2(
+			_elm_lang$core$List$map,
+			_terezka$elm_plot$Internal_Draw$translateCommand(plot),
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				A2(_terezka$elm_plot$Internal_Draw$lineBegin, plot, points),
+				_terezka$elm_plot$Internal_Draw$monotoneXBegin(points)));
+	});
+var _terezka$elm_plot$Internal_Draw$monotoneXArea = F2(
+	function (plot, points) {
+		return A2(
+			_elm_lang$core$List$map,
+			_terezka$elm_plot$Internal_Draw$translateCommand(plot),
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				A2(_terezka$elm_plot$Internal_Draw$areaBegin, plot, points),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_terezka$elm_plot$Internal_Draw$monotoneXBegin(points),
+					A2(_terezka$elm_plot$Internal_Draw$areaEnd, plot, points))));
+	});
+
+var _terezka$elm_plot$Plot$point = function (_p0) {
+	var _p1 = _p0;
+	return A2(_terezka$elm_plot$Internal_Draw$Point, _p1.x, _p1.y);
+};
+var _terezka$elm_plot$Plot$points = _elm_lang$core$List$map(_terezka$elm_plot$Plot$point);
+var _terezka$elm_plot$Plot$niceInterval = F3(
+	function (min, max, total) {
+		var range = _elm_lang$core$Basics$abs(max - min);
+		var delta0 = range / _elm_lang$core$Basics$toFloat(total);
+		var mag = _elm_lang$core$Basics$floor(
+			A2(_elm_lang$core$Basics$logBase, 10, delta0));
+		var magPow = _elm_lang$core$Basics$toFloat(
+			Math.pow(10, mag));
+		var magMsd = _elm_lang$core$Basics$round(delta0 / magPow);
+		var magMsdFinal = (_elm_lang$core$Native_Utils.cmp(magMsd, 5) > 0) ? 10 : ((_elm_lang$core$Native_Utils.cmp(magMsd, 2) > 0) ? 5 : ((_elm_lang$core$Native_Utils.cmp(magMsd, 1) > 0) ? 1 : magMsd));
+		return _elm_lang$core$Basics$toFloat(magMsdFinal) * magPow;
+	});
+var _terezka$elm_plot$Plot$count = F4(
+	function (delta, lowest, range, firstValue) {
+		return _elm_lang$core$Basics$floor(
+			(range - (_elm_lang$core$Basics$abs(lowest) - _elm_lang$core$Basics$abs(firstValue))) / delta);
+	});
+var _terezka$elm_plot$Plot$ceilToNearest = F2(
+	function (precision, value) {
+		return _elm_lang$core$Basics$toFloat(
+			_elm_lang$core$Basics$ceiling(value / precision)) * precision;
+	});
+var _terezka$elm_plot$Plot$firstValue = F2(
+	function (delta, lowest) {
+		return A2(_terezka$elm_plot$Plot$ceilToNearest, delta, lowest);
+	});
+var _terezka$elm_plot$Plot$deltaPrecision = function (delta) {
+	return _elm_lang$core$Basics$abs(
+		A2(
+			_elm_lang$core$Basics$min,
+			0,
+			A2(
+				F2(
+					function (x, y) {
+						return x - y;
+					}),
+				1,
+				_elm_lang$core$String$length(
+					A2(
+						_elm_lang$core$Maybe$withDefault,
+						'',
+						_elm_lang$core$List$head(
+							A2(
+								_elm_lang$core$List$map,
+								function (_) {
+									return _.match;
+								},
+								A3(
+									_elm_lang$core$Regex$find,
+									_elm_lang$core$Regex$AtMost(1),
+									_elm_lang$core$Regex$regex('\\.[0-9]*'),
+									_elm_lang$core$Basics$toString(delta)))))))));
+};
+var _terezka$elm_plot$Plot$tickPosition = F3(
+	function (delta, firstValue, index) {
+		return A2(
+			_elm_lang$core$Result$withDefault,
+			0,
+			_elm_lang$core$String$toFloat(
+				A2(
+					_myrho$elm_round$Round$round,
+					_terezka$elm_plot$Plot$deltaPrecision(delta),
+					firstValue + (_elm_lang$core$Basics$toFloat(index) * delta))));
+	});
+var _terezka$elm_plot$Plot$remove = F2(
+	function (banned, values) {
+		return A2(
+			_elm_lang$core$List$filter,
+			function (v) {
+				return !_elm_lang$core$Native_Utils.eq(v, banned);
+			},
+			values);
+	});
+var _terezka$elm_plot$Plot$interval = F3(
+	function (offset, delta, _p2) {
+		var _p3 = _p2;
+		var _p4 = _p3.min;
+		var value = A2(_terezka$elm_plot$Plot$firstValue, delta, _p4) + offset;
+		var range = _elm_lang$core$Basics$abs(_p4 - _p3.max);
+		var indexes = A2(
+			_elm_lang$core$List$range,
+			0,
+			A4(_terezka$elm_plot$Plot$count, delta, _p4, range, value));
+		return A2(
+			_elm_lang$core$List$map,
+			A2(_terezka$elm_plot$Plot$tickPosition, delta, value),
+			indexes);
+	});
+var _terezka$elm_plot$Plot$decentPositions = function (summary) {
+	return (_elm_lang$core$Native_Utils.cmp(summary.length, 600) > 0) ? A3(
+		_terezka$elm_plot$Plot$interval,
+		0,
+		A3(_terezka$elm_plot$Plot$niceInterval, summary.min, summary.max, 10),
+		summary) : A3(
+		_terezka$elm_plot$Plot$interval,
+		0,
+		A3(_terezka$elm_plot$Plot$niceInterval, summary.min, summary.max, 5),
+		summary);
+};
+var _terezka$elm_plot$Plot$viewLabel = F2(
+	function (attributes, string) {
+		return A2(
+			_elm_lang$svg$Svg$text_,
+			attributes,
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$svg$Svg$tspan,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg$text(string),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			});
+	});
+var _terezka$elm_plot$Plot$viewTickInner = F3(
+	function (attributes, width, height) {
+		return A2(
+			_elm_lang$svg$Svg$line,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$x2(
+					_elm_lang$core$Basics$toString(width)),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$y2(
+						_elm_lang$core$Basics$toString(height)),
+					_1: attributes
+				}
+			},
+			{ctor: '[]'});
+	});
+var _terezka$elm_plot$Plot$viewAxisLine = F3(
+	function (summary, at, axisLine) {
+		var _p5 = axisLine;
+		if (_p5.ctor === 'Just') {
+			return A2(
+				_terezka$elm_plot$Internal_Draw$draw,
+				_p5._0.attributes,
+				A2(
+					_terezka$elm_plot$Internal_Draw$linear,
+					summary,
+					{
+						ctor: '::',
+						_0: at(_p5._0.start),
+						_1: {
+							ctor: '::',
+							_0: at(_p5._0.end),
+							_1: {ctor: '[]'}
+						}
+					}));
+		} else {
+			return _elm_lang$svg$Svg$text('');
+		}
+	});
+var _terezka$elm_plot$Plot$viewGlitterLines = F2(
+	function (summary, _p6) {
+		var _p7 = _p6;
+		return {
+			ctor: '::',
+			_0: A3(
+				_terezka$elm_plot$Plot$viewAxisLine,
+				summary,
+				function (y) {
+					return {x: _p7.x, y: y};
+				},
+				A2(
+					_elm_lang$core$Maybe$map,
+					function (toLine) {
+						return toLine(summary.y);
+					},
+					_p7.xLine)),
+			_1: {
+				ctor: '::',
+				_0: A3(
+					_terezka$elm_plot$Plot$viewAxisLine,
+					summary,
+					function (x) {
+						return {x: x, y: _p7.y};
+					},
+					A2(
+						_elm_lang$core$Maybe$map,
+						function (toLine) {
+							return toLine(summary.x);
+						},
+						_p7.yLine)),
+				_1: {ctor: '[]'}
+			}
+		};
+	});
+var _terezka$elm_plot$Plot$viewActualVerticalAxis = F3(
+	function (summary, _p8, glitterTicks) {
+		var _p9 = _p8;
+		var _p14 = _p9.flipAnchor;
+		var anchorOfLabel = _p14 ? 'text-anchor: start;' : 'text-anchor: end;';
+		var positionOfLabel = _p14 ? 10 : -10;
+		var lengthOfTick = function (length) {
+			return _p14 ? length : (0 - length);
+		};
+		var at = function (y) {
+			return {
+				x: A2(_p9.position, summary.x.min, summary.x.max),
+				y: y
+			};
+		};
+		var viewTickLine = function (_p10) {
+			var _p11 = _p10;
+			return A2(
+				_elm_lang$svg$Svg$g,
+				{
+					ctor: '::',
+					_0: A4(
+						_terezka$elm_plot$Internal_Draw$place,
+						summary,
+						at(_p11.position),
+						0,
+						0),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: A3(
+						_terezka$elm_plot$Plot$viewTickInner,
+						_p11.attributes,
+						lengthOfTick(_p11.length),
+						0),
+					_1: {ctor: '[]'}
+				});
+		};
+		var viewLabel = function (_p12) {
+			var _p13 = _p12;
+			return A2(
+				_elm_lang$svg$Svg$g,
+				{
+					ctor: '::',
+					_0: A4(
+						_terezka$elm_plot$Internal_Draw$place,
+						summary,
+						at(_p13.position),
+						positionOfLabel,
+						5),
 					_1: {
 						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$fill('transparent'),
+						_0: _elm_lang$svg$Svg_Attributes$style(anchorOfLabel),
+						_1: {ctor: '[]'}
+					}
+				},
+				{
+					ctor: '::',
+					_0: _p13.view,
+					_1: {ctor: '[]'}
+				});
+		};
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__vertical-axis'),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A3(_terezka$elm_plot$Plot$viewAxisLine, summary, at, _p9.axisLine),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$svg$Svg$g,
+						{
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__ticks'),
+							_1: {ctor: '[]'}
+						},
+						A2(
+							_elm_lang$core$List$map,
+							viewTickLine,
+							A2(_elm_lang$core$Basics_ops['++'], _p9.ticks, glitterTicks))),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$svg$Svg$g,
+							{
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__labels'),
+								_1: {ctor: '[]'}
+							},
+							A2(_elm_lang$core$List$map, viewLabel, _p9.labels)),
+						_1: {ctor: '[]'}
+					}
+				}
+			});
+	});
+var _terezka$elm_plot$Plot$viewVerticalAxis = F3(
+	function (summary, axis, moreTicks) {
+		var _p15 = axis;
+		if (_p15.ctor === 'Axis') {
+			return _elm_lang$core$Maybe$Just(
+				A2(
+					_elm_lang$svg$Svg$map,
+					_elm_lang$core$Basics$never,
+					A3(
+						_terezka$elm_plot$Plot$viewActualVerticalAxis,
+						summary,
+						_p15._0(summary.y),
+						moreTicks)));
+		} else {
+			return _elm_lang$core$Maybe$Nothing;
+		}
+	});
+var _terezka$elm_plot$Plot$viewActualHorizontalAxis = F4(
+	function (summary, _p16, glitterLabels, glitterTicks) {
+		var _p17 = _p16;
+		var _p22 = _p17.flipAnchor;
+		var positionOfLabel = _p22 ? -10 : 20;
+		var lengthOfTick = function (length) {
+			return _p22 ? (0 - length) : length;
+		};
+		var at = function (x) {
+			return {
+				x: x,
+				y: A2(_p17.position, summary.y.min, summary.y.max)
+			};
+		};
+		var viewTickLine = function (_p18) {
+			var _p19 = _p18;
+			return A2(
+				_elm_lang$svg$Svg$g,
+				{
+					ctor: '::',
+					_0: A4(
+						_terezka$elm_plot$Internal_Draw$place,
+						summary,
+						at(_p19.position),
+						0,
+						0),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: A3(
+						_terezka$elm_plot$Plot$viewTickInner,
+						_p19.attributes,
+						0,
+						lengthOfTick(_p19.length)),
+					_1: {ctor: '[]'}
+				});
+		};
+		var viewLabel = function (_p20) {
+			var _p21 = _p20;
+			return A2(
+				_elm_lang$svg$Svg$g,
+				{
+					ctor: '::',
+					_0: A4(
+						_terezka$elm_plot$Internal_Draw$place,
+						summary,
+						at(_p21.position),
+						0,
+						positionOfLabel),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$style('text-anchor: middle;'),
+						_1: {ctor: '[]'}
+					}
+				},
+				{
+					ctor: '::',
+					_0: _p21.view,
+					_1: {ctor: '[]'}
+				});
+		};
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__horizontal-axis'),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A3(_terezka$elm_plot$Plot$viewAxisLine, summary, at, _p17.axisLine),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$svg$Svg$g,
+						{
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__ticks'),
+							_1: {ctor: '[]'}
+						},
+						A2(
+							_elm_lang$core$List$map,
+							viewTickLine,
+							A2(_elm_lang$core$Basics_ops['++'], _p17.ticks, glitterTicks))),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$svg$Svg$g,
+							{
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__labels'),
+								_1: {ctor: '[]'}
+							},
+							A2(
+								_elm_lang$core$List$map,
+								viewLabel,
+								A2(_elm_lang$core$Basics_ops['++'], _p17.labels, glitterLabels))),
+						_1: {ctor: '[]'}
+					}
+				}
+			});
+	});
+var _terezka$elm_plot$Plot$viewHorizontalAxis = F4(
+	function (summary, axis, moreLabels, moreTicks) {
+		var _p23 = axis;
+		if (_p23.ctor === 'Axis') {
+			return _elm_lang$core$Maybe$Just(
+				A2(
+					_elm_lang$svg$Svg$map,
+					_elm_lang$core$Basics$never,
+					A4(
+						_terezka$elm_plot$Plot$viewActualHorizontalAxis,
+						summary,
+						_p23._0(summary.x),
+						moreLabels,
+						moreTicks)));
+		} else {
+			return _elm_lang$core$Maybe$Nothing;
+		}
+	});
+var _terezka$elm_plot$Plot$viewTriangle = function (color) {
+	return A2(
+		_elm_lang$svg$Svg$polygon,
+		{
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$points('0,-5 5,5 -5,5'),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$transform('translate(0, -2.5)'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$fill(color),
+					_1: {ctor: '[]'}
+				}
+			}
+		},
+		{ctor: '[]'});
+};
+var _terezka$elm_plot$Plot$viewDiamond = F3(
+	function (width, height, color) {
+		return A2(
+			_elm_lang$svg$Svg$rect,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$width(
+					_elm_lang$core$Basics$toString(width)),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$height(
+						_elm_lang$core$Basics$toString(height)),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$transform('rotate(45)'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$x(
+								_elm_lang$core$Basics$toString((0 - width) / 2)),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$y(
+									_elm_lang$core$Basics$toString((0 - height) / 2)),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$stroke('transparent'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$fill(color),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{ctor: '[]'});
+	});
+var _terezka$elm_plot$Plot$viewSquare = F2(
+	function (width, color) {
+		return A2(
+			_elm_lang$svg$Svg$rect,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$width(
+					_elm_lang$core$Basics$toString(width)),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$height(
+						_elm_lang$core$Basics$toString(width)),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$x(
+							_elm_lang$core$Basics$toString((0 - width) / 2)),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$y(
+								_elm_lang$core$Basics$toString((0 - width) / 2)),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$stroke('transparent'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$fill(color),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			},
+			{ctor: '[]'});
+	});
+var _terezka$elm_plot$Plot$viewCircle = F2(
+	function (radius, color) {
+		return A2(
+			_elm_lang$svg$Svg$circle,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$r(
+					_elm_lang$core$Basics$toString(radius)),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$stroke('transparent'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$fill(color),
 						_1: {ctor: '[]'}
 					}
 				}
 			},
 			{ctor: '[]'});
 	});
-var _juanedi$charty$Charty_LineChart$initTransform = F2(
-	function (_p9, _p8) {
-		var _p10 = _p9;
-		var _p11 = _p8;
-		var _p15 = _p11.top;
-		var _p14 = _p11.left;
-		var scaleFactor = F3(
-			function (vm, vM, v) {
-				return _elm_lang$core$Native_Utils.eq(vm, vM) ? 0.5 : ((v - vm) / (vM - vm));
-			});
-		var drawingHeight = (1000 - _p15) - _p11.bottom;
-		var drawingWidth = (1000 - _p11.right) - _p14;
-		return function (_p12) {
-			var _p13 = _p12;
-			return {
-				ctor: '_Tuple2',
-				_0: _p14 + (drawingWidth * A3(scaleFactor, _p10.xMin, _p10.xMax, _p13._0)),
-				_1: (1000 - _p15) - (drawingHeight * A3(scaleFactor, _p10.yMin, _p10.yMax, _p13._1))
-			};
-		};
-	});
-var _juanedi$charty$Charty_LineChart$gsub = F2(
-	function (regex, replacement) {
-		return A3(
-			_elm_lang$core$Regex$replace,
-			_elm_lang$core$Regex$All,
-			_elm_lang$core$Regex$regex(regex),
-			_elm_lang$core$Basics$always(replacement));
-	});
-var _juanedi$charty$Charty_LineChart$label = function (precision) {
-	return function (_p16) {
-		return A3(
-			_juanedi$charty$Charty_LineChart$gsub,
-			'\\.0+$',
-			'',
-			A2(_myrho$elm_round$Round$ceiling, precision, _p16));
-	};
-};
-var _juanedi$charty$Charty_LineChart$axis = F2(
-	function (cfg, drawingSettings) {
-		var axisLine = F2(
-			function (_p18, _p17) {
-				var _p19 = _p18;
-				var _p20 = _p17;
-				return A2(
-					_elm_lang$svg$Svg$line,
+var _terezka$elm_plot$Plot$viewDataPoint = F2(
+	function (plotSummary, _p24) {
+		var _p25 = _p24;
+		var _p26 = _p25.view;
+		if (_p26.ctor === 'Nothing') {
+			return _elm_lang$core$Maybe$Nothing;
+		} else {
+			return _elm_lang$core$Maybe$Just(
+				A2(
+					_elm_lang$svg$Svg$g,
 					{
 						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$x1(
-							_elm_lang$core$Basics$toString(_p19._0)),
+						_0: A4(
+							_terezka$elm_plot$Internal_Draw$place,
+							plotSummary,
+							{x: _p25.x, y: _p25.y},
+							0,
+							0),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _p26._0,
+						_1: {ctor: '[]'}
+					}));
+		}
+	});
+var _terezka$elm_plot$Plot$viewDataPoints = F2(
+	function (plotSummary, dataPoints) {
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__series__points'),
+				_1: {ctor: '[]'}
+			},
+			A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				A2(
+					_elm_lang$core$List$map,
+					_terezka$elm_plot$Plot$viewDataPoint(plotSummary),
+					dataPoints)));
+	});
+var _terezka$elm_plot$Plot$viewActualHorizontalGrid = F2(
+	function (summary, gridLines) {
+		var viewGridLine = function (_p27) {
+			var _p28 = _p27;
+			var _p29 = _p28.position;
+			return A2(
+				_terezka$elm_plot$Internal_Draw$draw,
+				_p28.attributes,
+				A2(
+					_terezka$elm_plot$Internal_Draw$linear,
+					summary,
+					{
+						ctor: '::',
+						_0: {x: summary.x.min, y: _p29},
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$y1(
-								_elm_lang$core$Basics$toString(_p19._1)),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$x2(
-									_elm_lang$core$Basics$toString(_p20._0)),
-								_1: {
+							_0: {x: summary.x.max, y: _p29},
+							_1: {ctor: '[]'}
+						}
+					}));
+		};
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__vertical-grid'),
+				_1: {ctor: '[]'}
+			},
+			A2(_elm_lang$core$List$map, viewGridLine, gridLines));
+	});
+var _terezka$elm_plot$Plot$viewHorizontalGrid = F2(
+	function (summary, grid) {
+		var _p30 = grid;
+		if (_p30.ctor === 'Grid') {
+			return _elm_lang$core$Maybe$Just(
+				A2(
+					_elm_lang$svg$Svg$map,
+					_elm_lang$core$Basics$never,
+					A2(
+						_terezka$elm_plot$Plot$viewActualHorizontalGrid,
+						summary,
+						_p30._0(summary.y))));
+		} else {
+			return _elm_lang$core$Maybe$Nothing;
+		}
+	});
+var _terezka$elm_plot$Plot$viewActualVerticalGrid = F2(
+	function (summary, gridLines) {
+		var viewGridLine = function (_p31) {
+			var _p32 = _p31;
+			var _p33 = _p32.position;
+			return A2(
+				_terezka$elm_plot$Internal_Draw$draw,
+				_p32.attributes,
+				A2(
+					_terezka$elm_plot$Internal_Draw$linear,
+					summary,
+					{
+						ctor: '::',
+						_0: {x: _p33, y: summary.y.min},
+						_1: {
+							ctor: '::',
+							_0: {x: _p33, y: summary.y.max},
+							_1: {ctor: '[]'}
+						}
+					}));
+		};
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__horizontal-grid'),
+				_1: {ctor: '[]'}
+			},
+			A2(_elm_lang$core$List$map, viewGridLine, gridLines));
+	});
+var _terezka$elm_plot$Plot$viewVerticalGrid = F2(
+	function (summary, grid) {
+		var _p34 = grid;
+		if (_p34.ctor === 'Grid') {
+			return _elm_lang$core$Maybe$Just(
+				A2(
+					_elm_lang$svg$Svg$map,
+					_elm_lang$core$Basics$never,
+					A2(
+						_terezka$elm_plot$Plot$viewActualVerticalGrid,
+						summary,
+						_p34._0(summary.x))));
+		} else {
+			return _elm_lang$core$Maybe$Nothing;
+		}
+	});
+var _terezka$elm_plot$Plot$defaultPlotSummary = {
+	x: {
+		min: 0.0,
+		max: 1.0,
+		all: {ctor: '[]'}
+	},
+	y: {
+		min: 0.0,
+		max: 1.0,
+		all: {ctor: '[]'}
+	}
+};
+var _terezka$elm_plot$Plot$toPlotSummary = F3(
+	function (customizations, toNiceReach, points) {
+		var foldAxis = F2(
+			function (summary, v) {
+				return {
+					min: A2(_elm_lang$core$Basics$min, summary.min, v),
+					max: A2(_elm_lang$core$Basics$max, summary.max, v),
+					all: {ctor: '::', _0: v, _1: summary.all}
+				};
+			});
+		var foldPlot = F2(
+			function (_p35, result) {
+				var _p36 = _p35;
+				var _p40 = _p36.y;
+				var _p39 = _p36.x;
+				var _p37 = result;
+				if (_p37.ctor === 'Nothing') {
+					return _elm_lang$core$Maybe$Just(
+						{
+							x: {
+								min: _p39,
+								max: _p39,
+								all: {
 									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$y2(
-										_elm_lang$core$Basics$toString(_p20._1)),
+									_0: _p39,
+									_1: {ctor: '[]'}
+								}
+							},
+							y: {
+								min: _p40,
+								max: _p40,
+								all: {
+									ctor: '::',
+									_0: _p40,
+									_1: {ctor: '[]'}
+								}
+							}
+						});
+				} else {
+					var _p38 = _p37._0;
+					return _elm_lang$core$Maybe$Just(
+						{
+							x: A2(foldAxis, _p38.x, _p39),
+							y: A2(foldAxis, _p38.y, _p40)
+						});
+				}
+			});
+		var plotSummary = toNiceReach(
+			A2(
+				_elm_lang$core$Maybe$withDefault,
+				_terezka$elm_plot$Plot$defaultPlotSummary,
+				A3(_elm_lang$core$List$foldl, foldPlot, _elm_lang$core$Maybe$Nothing, points)));
+		return {
+			x: {
+				min: customizations.toRangeLowest(plotSummary.x.min),
+				max: customizations.toRangeHighest(plotSummary.x.max),
+				dataMin: plotSummary.x.min,
+				dataMax: plotSummary.x.max,
+				length: _elm_lang$core$Basics$toFloat(customizations.width),
+				marginLower: _elm_lang$core$Basics$toFloat(customizations.margin.left),
+				marginUpper: _elm_lang$core$Basics$toFloat(customizations.margin.right),
+				all: _elm_lang$core$List$sort(plotSummary.x.all)
+			},
+			y: {
+				min: customizations.toDomainLowest(plotSummary.y.min),
+				max: customizations.toDomainHighest(plotSummary.y.max),
+				dataMin: plotSummary.y.min,
+				dataMax: plotSummary.y.max,
+				length: _elm_lang$core$Basics$toFloat(customizations.height),
+				marginLower: _elm_lang$core$Basics$toFloat(customizations.margin.top),
+				marginUpper: _elm_lang$core$Basics$toFloat(customizations.margin.bottom),
+				all: plotSummary.y.all
+			}
+		};
+	});
+var _terezka$elm_plot$Plot$diff = F2(
+	function (a, b) {
+		return _elm_lang$core$Basics$abs(a - b);
+	});
+var _terezka$elm_plot$Plot$toNearestX = F2(
+	function (summary, exactX) {
+		var updateIfCloser = F2(
+			function (closest, x) {
+				return (_elm_lang$core$Native_Utils.cmp(
+					A2(_terezka$elm_plot$Plot$diff, x, exactX),
+					A2(_terezka$elm_plot$Plot$diff, closest, exactX)) > 0) ? closest : x;
+			});
+		var $default = A2(
+			_elm_lang$core$Maybe$withDefault,
+			0,
+			_elm_lang$core$List$head(summary.x.all));
+		return A3(_elm_lang$core$List$foldl, updateIfCloser, $default, summary.x.all);
+	});
+var _terezka$elm_plot$Plot$unScalePoint = F4(
+	function (summary, mouseX, mouseY, _p41) {
+		var _p42 = _p41;
+		return _elm_lang$core$Maybe$Just(
+			{
+				x: A2(
+					_terezka$elm_plot$Plot$toNearestX,
+					summary,
+					A2(_terezka$elm_plot$Internal_Draw$toUnSVGX, summary, (summary.x.length * (mouseX - _p42.left)) / _p42.width)),
+				y: A3(
+					_elm_lang$core$Basics$clamp,
+					summary.y.min,
+					summary.y.max,
+					A2(_terezka$elm_plot$Internal_Draw$toUnSVGY, summary, (summary.y.length * (mouseY - _p42.top)) / _p42.height))
+			});
+	});
+var _terezka$elm_plot$Plot$plotPosition = _elm_lang$core$Json_Decode$oneOf(
+	{
+		ctor: '::',
+		_0: _debois$elm_dom$DOM$boundingClientRect,
+		_1: {
+			ctor: '::',
+			_0: _elm_lang$core$Json_Decode$lazy(
+				function (_p43) {
+					return _debois$elm_dom$DOM$parentElement(_terezka$elm_plot$Plot$plotPosition);
+				}),
+			_1: {ctor: '[]'}
+		}
+	});
+var _terezka$elm_plot$Plot$handleHint = F2(
+	function (summary, toMsg) {
+		return A4(
+			_elm_lang$core$Json_Decode$map3,
+			F3(
+				function (x, y, r) {
+					return toMsg(
+						A4(_terezka$elm_plot$Plot$unScalePoint, summary, x, y, r));
+				}),
+			A2(_elm_lang$core$Json_Decode$field, 'clientX', _elm_lang$core$Json_Decode$float),
+			A2(_elm_lang$core$Json_Decode$field, 'clientY', _elm_lang$core$Json_Decode$float),
+			_debois$elm_dom$DOM$target(_terezka$elm_plot$Plot$plotPosition));
+	});
+var _terezka$elm_plot$Plot$viewActualJunk = F2(
+	function (summary, _p44) {
+		var _p45 = _p44;
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: A4(
+					_terezka$elm_plot$Internal_Draw$place,
+					summary,
+					{x: _p45.x, y: _p45.y},
+					0,
+					0),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: _p45.view,
+				_1: {ctor: '[]'}
+			});
+	});
+var _terezka$elm_plot$Plot$innerAttributes = function (customizations) {
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		customizations.attributes,
+		{
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$viewBox(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'0 0 ',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_elm_lang$core$Basics$toString(customizations.width),
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							' ',
+							_elm_lang$core$Basics$toString(customizations.height))))),
+			_1: {ctor: '[]'}
+		});
+};
+var _terezka$elm_plot$Plot$containerAttributes = F2(
+	function (customizations, summary) {
+		var _p46 = customizations.onHover;
+		if (_p46.ctor === 'Just') {
+			var _p47 = _p46._0;
+			return {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html_Events$on,
+					'mousemove',
+					A2(_terezka$elm_plot$Plot$handleHint, summary, _p47)),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Events$onMouseLeave(
+						_p47(_elm_lang$core$Maybe$Nothing)),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$id(customizations.id),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$style(
+								{
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'position', _1: 'relative'},
 									_1: {
 										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$stroke('#CFCFCF'),
+										_0: {ctor: '_Tuple2', _0: 'margin', _1: '0 auto'},
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			};
+		} else {
+			return {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$id(customizations.id),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'position', _1: 'relative'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'margin', _1: '0 auto'},
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {ctor: '[]'}
+				}
+			};
+		}
+	});
+var _terezka$elm_plot$Plot$toClipPathId = function (_p48) {
+	var _p49 = _p48;
+	return A2(_elm_lang$core$Basics_ops['++'], 'elm-plot__clip-path__', _p49.id);
+};
+var _terezka$elm_plot$Plot$viewInterpolation = F7(
+	function (customizations, summary, toLine, toArea, area, attributes, dataPoints) {
+		var _p50 = area;
+		if (_p50.ctor === 'Nothing') {
+			return A2(
+				_terezka$elm_plot$Internal_Draw$draw,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$fill(_terezka$elm_plot$Internal_Colors$transparent),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$stroke(_terezka$elm_plot$Internal_Colors$pinkStroke),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__series__interpolation'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$clipPath(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										'url(#',
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											_terezka$elm_plot$Plot$toClipPathId(customizations),
+											')'))),
+								_1: attributes
+							}
+						}
+					}
+				},
+				A2(
+					toLine,
+					summary,
+					_terezka$elm_plot$Plot$points(dataPoints)));
+		} else {
+			return A2(
+				_terezka$elm_plot$Internal_Draw$draw,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$fill(_p50._0),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$stroke(_terezka$elm_plot$Internal_Colors$pinkStroke),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__series__interpolation'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$clipPath(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										'url(#',
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											_terezka$elm_plot$Plot$toClipPathId(customizations),
+											')'))),
+								_1: attributes
+							}
+						}
+					}
+				},
+				A2(
+					toArea,
+					summary,
+					_terezka$elm_plot$Plot$points(dataPoints)));
+		}
+	});
+var _terezka$elm_plot$Plot$viewPath = F4(
+	function (customizations, plotSummary, interpolation, dataPoints) {
+		var _p51 = interpolation;
+		switch (_p51.ctor) {
+			case 'None':
+				return A2(
+					_elm_lang$svg$Svg$path,
+					{ctor: '[]'},
+					{ctor: '[]'});
+			case 'Linear':
+				return A7(_terezka$elm_plot$Plot$viewInterpolation, customizations, plotSummary, _terezka$elm_plot$Internal_Draw$linear, _terezka$elm_plot$Internal_Draw$linearArea, _p51._0, _p51._1, dataPoints);
+			default:
+				return A7(_terezka$elm_plot$Plot$viewInterpolation, customizations, plotSummary, _terezka$elm_plot$Internal_Draw$monotoneX, _terezka$elm_plot$Internal_Draw$monotoneXArea, _p51._0, _p51._1, dataPoints);
+		}
+	});
+var _terezka$elm_plot$Plot$viewASeries = F4(
+	function (customizations, plotSummary, _p52, dataPoints) {
+		var _p53 = _p52;
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__series'),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$svg$Svg$map,
+					_elm_lang$core$Basics$never,
+					A4(_terezka$elm_plot$Plot$viewPath, customizations, plotSummary, _p53.interpolation, dataPoints)),
+				_1: {
+					ctor: '::',
+					_0: A2(_terezka$elm_plot$Plot$viewDataPoints, plotSummary, dataPoints),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _terezka$elm_plot$Plot$defineClipPath = F2(
+	function (customizations, summary) {
+		return A2(
+			_elm_lang$svg$Svg$defs,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$svg$Svg$clipPath,
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$id(
+							_terezka$elm_plot$Plot$toClipPathId(customizations)),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$svg$Svg$rect,
+							{
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$x(
+									_elm_lang$core$Basics$toString(summary.x.marginLower)),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$y(
+										_elm_lang$core$Basics$toString(summary.y.marginLower)),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$width(
+											_elm_lang$core$Basics$toString(
+												_terezka$elm_plot$Internal_Draw$length(summary.x))),
 										_1: {
 											ctor: '::',
-											_0: _elm_lang$svg$Svg_Attributes$strokeDasharray('5 5'),
+											_0: _elm_lang$svg$Svg_Attributes$height(
+												_elm_lang$core$Basics$toString(
+													_terezka$elm_plot$Internal_Draw$length(summary.y))),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							},
+							{ctor: '[]'}),
+						_1: {ctor: '[]'}
+					}),
+				_1: customizations.defs
+			});
+	});
+var _terezka$elm_plot$Plot$addNiceReachForBars = function (_p54) {
+	var _p55 = _p54;
+	var _p57 = _p55.y;
+	var _p56 = _p55.x;
+	return _elm_lang$core$Native_Utils.update(
+		_p55,
+		{
+			x: _elm_lang$core$Native_Utils.update(
+				_p56,
+				{min: _p56.min - 0.5, max: _p56.max + 0.5}),
+			y: _elm_lang$core$Native_Utils.update(
+				_p57,
+				{
+					min: A2(_elm_lang$core$Basics$min, _p57.min, 0),
+					max: _p57.max
+				})
+		});
+};
+var _terezka$elm_plot$Plot$addNiceReachForArea = F2(
+	function (area, _p58) {
+		var _p59 = _p58;
+		var _p62 = _p59.y;
+		var _p61 = _p59;
+		var _p60 = area;
+		if (_p60.ctor === 'Nothing') {
+			return _p61;
+		} else {
+			return _elm_lang$core$Native_Utils.update(
+				_p61,
+				{
+					x: _p59.x,
+					y: _elm_lang$core$Native_Utils.update(
+						_p62,
+						{
+							min: A2(_elm_lang$core$Basics$min, _p62.min, 0),
+							max: _p62.max
+						})
+				});
+		}
+	});
+var _terezka$elm_plot$Plot$addNiceReachForSeries = function (series) {
+	var _p63 = series.interpolation;
+	switch (_p63.ctor) {
+		case 'None':
+			return _elm_lang$core$Basics$identity;
+		case 'Linear':
+			return _terezka$elm_plot$Plot$addNiceReachForArea(_p63._0);
+		default:
+			return _terezka$elm_plot$Plot$addNiceReachForArea(_p63._0);
+	}
+};
+var _terezka$elm_plot$Plot$viewSeriesCustom = F3(
+	function (customizations, series, data) {
+		var addNiceReach = function (summary) {
+			return A3(_elm_lang$core$List$foldl, _terezka$elm_plot$Plot$addNiceReachForSeries, summary, series);
+		};
+		var dataPoints = A2(
+			_elm_lang$core$List$map,
+			function (_p64) {
+				var _p65 = _p64;
+				return _p65.toDataPoints(data);
+			},
+			series);
+		var allDataPoints = _elm_lang$core$List$concat(dataPoints);
+		var summary = A3(_terezka$elm_plot$Plot$toPlotSummary, customizations, addNiceReach, allDataPoints);
+		var viewJunks = _elm_lang$core$Maybe$Just(
+			A2(
+				_elm_lang$svg$Svg$g,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__junk'),
+					_1: {ctor: '[]'}
+				},
+				A2(
+					_elm_lang$core$List$map,
+					_terezka$elm_plot$Plot$viewActualJunk(summary),
+					customizations.junk(summary))));
+		var viewHorizontalAxes = A4(
+			_terezka$elm_plot$Plot$viewHorizontalAxis,
+			summary,
+			customizations.horizontalAxis,
+			{ctor: '[]'},
+			A2(
+				_elm_lang$core$List$filterMap,
+				function (_) {
+					return _.xTick;
+				},
+				allDataPoints));
+		var viewGlitter = _elm_lang$core$Maybe$Just(
+			A2(
+				_elm_lang$svg$Svg$map,
+				_elm_lang$core$Basics$never,
+				A2(
+					_elm_lang$svg$Svg$g,
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__glitter'),
+						_1: {ctor: '[]'}
+					},
+					A2(
+						_elm_lang$core$List$concatMap,
+						_terezka$elm_plot$Plot$viewGlitterLines(summary),
+						allDataPoints))));
+		var viewHint = function () {
+			var _p66 = A2(
+				_elm_lang$core$List$filterMap,
+				function (_) {
+					return _.hint;
+				},
+				allDataPoints);
+			if (_p66.ctor === '[]') {
+				return _elm_lang$svg$Svg$text('');
+			} else {
+				return A2(
+					_elm_lang$html$Html$map,
+					_elm_lang$core$Basics$never,
+					A2(customizations.hintContainer, summary, _p66));
+			}
+		}();
+		var viewVerticalAxes = _elm_lang$core$Maybe$Just(
+			A2(
+				_elm_lang$svg$Svg$g,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__vertical-axes'),
+					_1: {ctor: '[]'}
+				},
+				A2(
+					_elm_lang$core$List$filterMap,
+					_elm_lang$core$Basics$identity,
+					A3(
+						_elm_lang$core$List$map2,
+						function (_p67) {
+							return A2(
+								_terezka$elm_plot$Plot$viewVerticalAxis,
+								summary,
+								function (_) {
+									return _.axis;
+								}(_p67));
+						},
+						series,
+						A2(
+							_elm_lang$core$List$map,
+							_elm_lang$core$List$filterMap(
+								function (_) {
+									return _.yTick;
+								}),
+							dataPoints)))));
+		var viewActualSeries = _elm_lang$core$Maybe$Just(
+			A2(
+				_elm_lang$svg$Svg$g,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__all-series'),
+					_1: {ctor: '[]'}
+				},
+				A3(
+					_elm_lang$core$List$map2,
+					A2(_terezka$elm_plot$Plot$viewASeries, customizations, summary),
+					series,
+					dataPoints)));
+		var children = A2(
+			_elm_lang$core$List$filterMap,
+			_elm_lang$core$Basics$identity,
+			{
+				ctor: '::',
+				_0: _elm_lang$core$Maybe$Just(
+					A2(_terezka$elm_plot$Plot$defineClipPath, customizations, summary)),
+				_1: {
+					ctor: '::',
+					_0: A2(_terezka$elm_plot$Plot$viewHorizontalGrid, summary, customizations.grid.horizontal),
+					_1: {
+						ctor: '::',
+						_0: A2(_terezka$elm_plot$Plot$viewVerticalGrid, summary, customizations.grid.vertical),
+						_1: {
+							ctor: '::',
+							_0: viewActualSeries,
+							_1: {
+								ctor: '::',
+								_0: viewHorizontalAxes,
+								_1: {
+									ctor: '::',
+									_0: viewVerticalAxes,
+									_1: {
+										ctor: '::',
+										_0: viewGlitter,
+										_1: {
+											ctor: '::',
+											_0: viewJunks,
 											_1: {ctor: '[]'}
 										}
 									}
 								}
 							}
 						}
-					},
-					{ctor: '[]'});
-			});
-		var _p21 = drawingSettings.padding;
-		var top = _p21.top;
-		var right = _p21.right;
-		var bottom = _p21.bottom;
-		var left = _p21.left;
-		var referenceLine = function (yVal) {
-			var yT = _elm_lang$core$Tuple$second(
-				drawingSettings.transform(
-					{ctor: '_Tuple2', _0: 0, _1: yVal}));
-			return A2(
-				_elm_lang$svg$Svg$g,
-				{ctor: '[]'},
-				{
-					ctor: '::',
-					_0: A2(
-						axisLine,
-						{ctor: '_Tuple2', _0: left, _1: yT},
-						{ctor: '_Tuple2', _0: 1000 - right, _1: yT}),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_elm_lang$svg$Svg$text_,
-							{
-								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$x(
-									_elm_lang$core$Basics$toString(left - 15)),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$svg$Svg_Attributes$y(
-										_elm_lang$core$Basics$toString(yT + 8)),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$svg$Svg_Attributes$textAnchor('end'),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$svg$Svg_Attributes$fontFamily('Oxygen,Helvetica,Arial,sans-serif'),
-											_1: {
-												ctor: '::',
-												_0: _elm_lang$svg$Svg_Attributes$fontSize('24px'),
-												_1: {
-													ctor: '::',
-													_0: _elm_lang$svg$Svg_Attributes$fill('#CFCFCF'),
-													_1: {ctor: '[]'}
-												}
-											}
-										}
-									}
-								}
-							},
-							{
-								ctor: '::',
-								_0: _elm_lang$svg$Svg$text(
-									A2(_juanedi$charty$Charty_LineChart$label, cfg.labelPrecision, yVal)),
-								_1: {ctor: '[]'}
-							}),
-						_1: {ctor: '[]'}
-					}
-				});
-		};
-		var yLabels = A3(
-			_elm_lang$core$Array$foldr,
-			F2(
-				function (l, r) {
-					return {
-						ctor: '::',
-						_0: referenceLine(l),
-						_1: r
-					};
-				}),
-			{ctor: '[]'},
-			drawingSettings.yLabels);
-		var yAxis = A2(
-			axisLine,
-			{ctor: '_Tuple2', _0: left, _1: bottom},
-			{ctor: '_Tuple2', _0: left, _1: 1000 - top});
-		return A2(
-			_elm_lang$svg$Svg$g,
-			{ctor: '[]'},
-			{ctor: '::', _0: yAxis, _1: yLabels});
-	});
-var _juanedi$charty$Charty_LineChart$initPadding = F2(
-	function (cfg, yLabels) {
-		var labelOffset = function (_p22) {
-			return function (n) {
-				return _elm_lang$core$Basics$toFloat(n) * 20;
-			}(
-				_elm_lang$core$String$length(
-					A3(
-						_juanedi$charty$Charty_LineChart$gsub,
-						'\\.',
-						'',
-						A2(_juanedi$charty$Charty_LineChart$label, cfg.labelPrecision, _p22))));
-		};
-		var leftOffset = _juanedi$charty$Charty_ArrayUtil$unsafeMaximum(
-			A2(_elm_lang$core$Array$map, labelOffset, yLabels));
-		return {top: 50, right: 50, bottom: 50, left: leftOffset};
-	});
-var _juanedi$charty$Charty_LineChart$initYLabels = F2(
-	function (yMin, yMax) {
-		if (_elm_lang$core$Native_Utils.eq(yMin, yMax)) {
-			return _elm_lang$core$Array$fromList(
-				_elm_lang$core$List$sort(
-					{
-						ctor: '::',
-						_0: 0,
-						_1: {
-							ctor: '::',
-							_0: yMin,
-							_1: {
-								ctor: '::',
-								_0: 2 * yMin,
-								_1: {ctor: '[]'}
-							}
-						}
-					}));
-		} else {
-			var splitRange = F3(
-				function (min, max, pieces) {
-					if (_elm_lang$core$Native_Utils.eq(pieces, 0)) {
-						return {
-							ctor: '::',
-							_0: min,
-							_1: {ctor: '[]'}
-						};
-					} else {
-						var step = (max - min) / _elm_lang$core$Basics$toFloat(pieces);
-						return {
-							ctor: '::',
-							_0: min,
-							_1: A3(splitRange, min + step, max, pieces - 1)
-						};
-					}
-				});
-			return _elm_lang$core$Array$fromList(
-				A3(splitRange, yMin, yMax, 6));
-		}
-	});
-var _juanedi$charty$Charty_LineChart$initDrawingSettings = F2(
-	function (cfg, dataset) {
-		var points = A2(
-			_elm_lang$core$List$concatMap,
-			function (_) {
-				return _.data;
-			},
-			dataset);
-		var xs = A2(
-			_elm_lang$core$List$map,
-			function (_p23) {
-				var _p24 = _p23;
-				return _p24._0;
-			},
-			points);
-		var ys = A2(
-			_elm_lang$core$List$map,
-			function (_p25) {
-				var _p26 = _p25;
-				return _p26._1;
-			},
-			points);
-		var _p27 = {
-			ctor: '_Tuple4',
-			_0: _elm_lang$core$List$minimum(xs),
-			_1: _elm_lang$core$List$maximum(xs),
-			_2: _elm_lang$core$List$minimum(ys),
-			_3: _elm_lang$core$List$maximum(ys)
-		};
-		if (((((_p27.ctor === '_Tuple4') && (_p27._0.ctor === 'Just')) && (_p27._1.ctor === 'Just')) && (_p27._2.ctor === 'Just')) && (_p27._3.ctor === 'Just')) {
-			var yLabels = A2(_juanedi$charty$Charty_LineChart$initYLabels, _p27._2._0, _p27._3._0);
-			var bounds = {
-				xMin: _p27._0._0,
-				xMax: _p27._1._0,
-				yMin: _juanedi$charty$Charty_ArrayUtil$unsafeFirst(yLabels),
-				yMax: _juanedi$charty$Charty_ArrayUtil$unsafeLast(yLabels)
-			};
-			var padding = A2(_juanedi$charty$Charty_LineChart$initPadding, cfg, yLabels);
-			return {
-				padding: padding,
-				transform: A2(_juanedi$charty$Charty_LineChart$initTransform, bounds, padding),
-				yLabels: yLabels
-			};
-		} else {
-			var padding = {top: 50, right: 50, bottom: 50, left: 50};
-			return {
-				padding: padding,
-				transform: A2(
-					_juanedi$charty$Charty_LineChart$initTransform,
-					{xMin: 0, xMax: 0, yMin: 0, yMax: 0},
-					padding),
-				yLabels: _elm_lang$core$Array$fromList(
-					{
-						ctor: '::',
-						_0: 0,
-						_1: {ctor: '[]'}
-					})
-			};
-		}
-	});
-var _juanedi$charty$Charty_LineChart$addLabels = F3(
-	function (cfg, chart, labels) {
-		return A3(
-			_juanedi$charty$Charty_Labels$withLabels,
-			{background: cfg.background, labelsColor: '#333333'},
-			labels,
-			chart);
-	});
-var _juanedi$charty$Charty_LineChart$view = F2(
-	function (cfg, dataset) {
-		var seriesWithColors = cfg.colorAssignment(dataset);
-		var drawingSettings = A2(_juanedi$charty$Charty_LineChart$initDrawingSettings, cfg, dataset);
-		var lines = A2(
-			_elm_lang$core$List$map,
-			_juanedi$charty$Charty_LineChart$drawLine(drawingSettings.transform),
-			seriesWithColors);
-		var points = cfg.drawPoints ? A2(
-			_elm_lang$core$List$map,
-			_juanedi$charty$Charty_LineChart$drawPoints(drawingSettings.transform),
-			seriesWithColors) : {ctor: '[]'};
-		var background = A2(
-			_elm_lang$svg$Svg$rect,
-			{
-				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$width('1000'),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$height('1000'),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$fill(cfg.background),
-						_1: {ctor: '[]'}
 					}
 				}
-			},
-			{ctor: '[]'});
-		var chart = function (attrs) {
+			});
+		return A2(
+			_elm_lang$html$Html$div,
+			A2(_terezka$elm_plot$Plot$containerAttributes, customizations, summary),
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$svg$Svg$svg,
+					_terezka$elm_plot$Plot$innerAttributes(customizations),
+					children),
+				_1: {
+					ctor: '::',
+					_0: viewHint,
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _terezka$elm_plot$Plot$closestToZero = F2(
+	function (min, max) {
+		return A3(_elm_lang$core$Basics$clamp, min, max, 0);
+	});
+var _terezka$elm_plot$Plot$viewActualBars = F3(
+	function (summary, _p68, groups) {
+		var _p69 = _p68;
+		var _p75 = _p69.styles;
+		var indexedHeights = function (group) {
 			return A2(
-				_elm_lang$svg$Svg$svg,
+				_elm_lang$core$List$indexedMap,
+				F2(
+					function (v0, v1) {
+						return {ctor: '_Tuple2', _0: v0, _1: v1};
+					}),
+				group.bars);
+		};
+		var barsPerGroup = _elm_lang$core$Basics$toFloat(
+			_elm_lang$core$List$length(_p75));
+		var defaultWidth = 1 / barsPerGroup;
+		var width = function () {
+			var _p70 = _p69.maxWidth;
+			if (_p70.ctor === 'Percentage') {
+				return (defaultWidth * _elm_lang$core$Basics$toFloat(_p70._0)) / 100;
+			} else {
+				var _p71 = _p70._0;
+				return (_elm_lang$core$Native_Utils.cmp(
+					defaultWidth,
+					A2(_terezka$elm_plot$Internal_Draw$unScaleValue, summary.x, _p71)) > 0) ? A2(_terezka$elm_plot$Internal_Draw$unScaleValue, summary.x, _p71) : defaultWidth;
+			}
+		}();
+		var viewLabel = function (label) {
+			return A2(
+				_elm_lang$svg$Svg$g,
 				{
 					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$viewBox('0 0 1000 1000'),
-					_1: attrs
+					_0: _elm_lang$svg$Svg_Attributes$transform(
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'translate(',
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								_elm_lang$core$Basics$toString(
+									A2(_terezka$elm_plot$Internal_Draw$scaleValue, summary.x, width / 2)),
+								', -5)'))),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$style('text-anchor: middle;'),
+						_1: {ctor: '[]'}
+					}
 				},
 				{
 					ctor: '::',
-					_0: background,
-					_1: {
+					_0: label,
+					_1: {ctor: '[]'}
+				});
+		};
+		var offset = F2(
+			function (x, i) {
+				return x + (width * (_elm_lang$core$Basics$toFloat(i) - (barsPerGroup / 2)));
+			});
+		var viewBar = F3(
+			function (x, attributes, _p72) {
+				var _p73 = _p72;
+				var _p74 = _p73._1.height;
+				return A2(
+					_elm_lang$svg$Svg$g,
+					{
 						ctor: '::',
-						_0: A2(_juanedi$charty$Charty_LineChart$axis, cfg, drawingSettings),
+						_0: A4(
+							_terezka$elm_plot$Internal_Draw$place,
+							summary,
+							{
+								x: A2(offset, x, _p73._0),
+								y: A2(
+									_elm_lang$core$Basics$max,
+									A2(_terezka$elm_plot$Plot$closestToZero, summary.y.min, summary.y.max),
+									_p74)
+							},
+							0,
+							0),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$svg$Svg$map,
+							_elm_lang$core$Basics$never,
+							A2(
+								_elm_lang$core$Maybe$withDefault,
+								_elm_lang$svg$Svg$text(''),
+								A2(_elm_lang$core$Maybe$map, viewLabel, _p73._1.label))),
 						_1: {
 							ctor: '::',
 							_0: A2(
-								_elm_lang$svg$Svg$g,
-								{ctor: '[]'},
-								lines),
+								_elm_lang$svg$Svg$rect,
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									attributes,
+									{
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$width(
+											_elm_lang$core$Basics$toString(
+												A2(_terezka$elm_plot$Internal_Draw$scaleValue, summary.x, width))),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$height(
+												_elm_lang$core$Basics$toString(
+													A2(
+														_terezka$elm_plot$Internal_Draw$scaleValue,
+														summary.y,
+														_elm_lang$core$Basics$abs(_p74)))),
+											_1: {ctor: '[]'}
+										}
+									}),
+								{ctor: '[]'}),
+							_1: {ctor: '[]'}
+						}
+					});
+			});
+		var viewGroup = F2(
+			function (index, group) {
+				return A2(
+					_elm_lang$svg$Svg$g,
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__bars__group'),
+						_1: {ctor: '[]'}
+					},
+					A3(
+						_elm_lang$core$List$map2,
+						viewBar(
+							_elm_lang$core$Basics$toFloat(index + 1)),
+						_p75,
+						indexedHeights(group)));
+			});
+		return _elm_lang$core$Maybe$Just(
+			A2(
+				_elm_lang$svg$Svg$g,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__bars'),
+					_1: {ctor: '[]'}
+				},
+				A2(_elm_lang$core$List$indexedMap, viewGroup, groups)));
+	});
+var _terezka$elm_plot$Plot$viewBarsCustom = F3(
+	function (customizations, bars, data) {
+		var toDataPoint = F3(
+			function (index, group, _p76) {
+				var _p77 = _p76;
+				return {
+					x: _elm_lang$core$Basics$toFloat(index) + 1,
+					y: _p77.height,
+					xLine: group.verticalLine(
+						_elm_lang$core$Basics$toFloat(index) + 1),
+					yLine: _elm_lang$core$Maybe$Nothing
+				};
+			});
+		var toDataPoints = F2(
+			function (index, group) {
+				return A2(
+					_elm_lang$core$List$map,
+					A2(toDataPoint, index, group),
+					group.bars);
+			});
+		var groups = bars.toGroups(data);
+		var dataPoints = _elm_lang$core$List$concat(
+			A2(_elm_lang$core$List$indexedMap, toDataPoints, groups));
+		var summary = A3(_terezka$elm_plot$Plot$toPlotSummary, customizations, _terezka$elm_plot$Plot$addNiceReachForBars, dataPoints);
+		var viewGlitter = _elm_lang$core$Maybe$Just(
+			A2(
+				_elm_lang$svg$Svg$map,
+				_elm_lang$core$Basics$never,
+				A2(
+					_elm_lang$svg$Svg$g,
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__glitter'),
+						_1: {ctor: '[]'}
+					},
+					A2(
+						_elm_lang$core$List$concatMap,
+						_terezka$elm_plot$Plot$viewGlitterLines(summary),
+						dataPoints))));
+		var xLabels = A2(
+			_elm_lang$core$List$indexedMap,
+			F2(
+				function (index, group) {
+					return group.label(
+						_elm_lang$core$Basics$toFloat(index) + 1);
+				}),
+			groups);
+		var hints = A2(
+			_elm_lang$core$List$filterMap,
+			_elm_lang$core$Basics$identity,
+			A2(
+				_elm_lang$core$List$indexedMap,
+				F2(
+					function (index, group) {
+						return group.hint(
+							_elm_lang$core$Basics$toFloat(index) + 1);
+					}),
+				groups));
+		var viewHint = function () {
+			var _p78 = hints;
+			if (_p78.ctor === '[]') {
+				return _elm_lang$svg$Svg$text('');
+			} else {
+				return A2(
+					_elm_lang$html$Html$map,
+					_elm_lang$core$Basics$never,
+					A2(customizations.hintContainer, summary, _p78));
+			}
+		}();
+		var children = A2(
+			_elm_lang$core$List$filterMap,
+			_elm_lang$core$Basics$identity,
+			{
+				ctor: '::',
+				_0: _elm_lang$core$Maybe$Just(
+					A2(_terezka$elm_plot$Plot$defineClipPath, customizations, summary)),
+				_1: {
+					ctor: '::',
+					_0: A2(_terezka$elm_plot$Plot$viewHorizontalGrid, summary, customizations.grid.horizontal),
+					_1: {
+						ctor: '::',
+						_0: A2(_terezka$elm_plot$Plot$viewVerticalGrid, summary, customizations.grid.vertical),
+						_1: {
+							ctor: '::',
+							_0: A3(_terezka$elm_plot$Plot$viewActualBars, summary, bars, groups),
 							_1: {
 								ctor: '::',
-								_0: A2(
-									_elm_lang$svg$Svg$g,
-									{ctor: '[]'},
-									points),
-								_1: {ctor: '[]'}
+								_0: A4(
+									_terezka$elm_plot$Plot$viewHorizontalAxis,
+									summary,
+									customizations.horizontalAxis,
+									xLabels,
+									{ctor: '[]'}),
+								_1: {
+									ctor: '::',
+									_0: A3(
+										_terezka$elm_plot$Plot$viewVerticalAxis,
+										summary,
+										bars.axis,
+										{ctor: '[]'}),
+									_1: {
+										ctor: '::',
+										_0: viewGlitter,
+										_1: {ctor: '[]'}
+									}
+								}
 							}
 						}
 					}
-				});
-		};
-		return cfg.drawLabels ? A3(
-			_juanedi$charty$Charty_LineChart$addLabels,
-			cfg,
-			chart(
-				{
-					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$width('1000'),
-					_1: {ctor: '[]'}
-				}),
-			A2(
-				_elm_lang$core$List$map,
-				function (_p28) {
-					var _p29 = _p28;
-					return {ctor: '_Tuple2', _0: _p29._0, _1: _p29._1.label};
-				},
-				seriesWithColors)) : chart(
+				}
+			});
+		return A2(
+			_elm_lang$html$Html$div,
+			A2(_terezka$elm_plot$Plot$containerAttributes, customizations, summary),
 			{
 				ctor: '::',
-				_0: _elm_lang$svg$Svg_Attributes$width('100%'),
+				_0: A2(
+					_elm_lang$svg$Svg$svg,
+					_terezka$elm_plot$Plot$innerAttributes(customizations),
+					children),
 				_1: {
 					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$height('100%'),
+					_0: viewHint,
 					_1: {ctor: '[]'}
 				}
 			});
 	});
-var _juanedi$charty$Charty_LineChart$defaults = {drawPoints: true, background: 'transparent', colorAssignment: _juanedi$charty$Charty_Color$assignDefaults, labelPrecision: 2, drawLabels: true};
-var _juanedi$charty$Charty_LineChart$Series = F2(
+var _terezka$elm_plot$Plot$displace = F2(
+	function (x, y) {
+		return _elm_lang$svg$Svg_Attributes$transform(
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'translate(',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString(x),
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						', ',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							_elm_lang$core$Basics$toString(y),
+							')')))));
+	});
+var _terezka$elm_plot$Plot$fullLine = F2(
+	function (attributes, summary) {
+		return {
+			attributes: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$style('pointer-events: none;'),
+				_1: attributes
+			},
+			start: summary.min,
+			end: summary.max
+		};
+	});
+var _terezka$elm_plot$Plot$simpleLabel = function (position) {
+	return {
+		position: position,
+		view: A2(
+			_terezka$elm_plot$Plot$viewLabel,
+			{ctor: '[]'},
+			_elm_lang$core$Basics$toString(position))
+	};
+};
+var _terezka$elm_plot$Plot$simpleTick = function (position) {
+	return {
+		position: position,
+		length: 5,
+		attributes: {
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$stroke(_terezka$elm_plot$Internal_Colors$darkGrey),
+			_1: {ctor: '[]'}
+		}
+	};
+};
+var _terezka$elm_plot$Plot$simpleLine = function (summary) {
+	return A2(
+		_terezka$elm_plot$Plot$fullLine,
+		{
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$stroke(_terezka$elm_plot$Internal_Colors$darkGrey),
+			_1: {ctor: '[]'}
+		},
+		summary);
+};
+var _terezka$elm_plot$Plot$normalHintContainerInner = F2(
+	function (isLeft, hints) {
+		var margin = isLeft ? 10 : 10;
+		return A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 'margin',
+							_1: A2(
+								_elm_lang$core$Basics_ops['++'],
+								'0 ',
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_elm_lang$core$Basics$toString(margin),
+									'px'))
+						},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'padding', _1: '5px 10px'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'background', _1: _terezka$elm_plot$Internal_Colors$grey},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'border-radius', _1: '2px'},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'color', _1: 'black'},
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__hint'),
+					_1: {ctor: '[]'}
+				}
+			},
+			hints);
+	});
+var _terezka$elm_plot$Plot$viewFlyingHintContainer = F4(
+	function (inner, _p79, summary, hints) {
+		var _p80 = _p79;
+		var _p81 = _p80.x;
+		var isLeft = _elm_lang$core$Native_Utils.cmp(
+			_p81 - summary.x.min,
+			_terezka$elm_plot$Internal_Draw$range(summary.x) / 2) > 0;
+		var direction = isLeft ? 'translateX(-100%)' : 'translateX(0)';
+		var xOffset = (A2(_terezka$elm_plot$Internal_Draw$toSVGX, summary, _p81) * 100) / summary.x.length;
+		var style = {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'position', _1: 'absolute'},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'top', _1: '25%'},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 'left',
+						_1: A2(
+							_elm_lang$core$Basics_ops['++'],
+							_elm_lang$core$Basics$toString(xOffset),
+							'%')
+					},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'transform', _1: direction},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'pointer-events', _1: 'none'},
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		};
+		return A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(style),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$class('elm-plot__hint'),
+					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: A2(inner, isLeft, hints),
+				_1: {ctor: '[]'}
+			});
+	});
+var _terezka$elm_plot$Plot$flyingHintContainer = F4(
+	function (inner, hovering, summary, hints) {
+		var _p82 = hovering;
+		if (_p82.ctor === 'Nothing') {
+			return _elm_lang$svg$Svg$text('');
+		} else {
+			return A4(_terezka$elm_plot$Plot$viewFlyingHintContainer, inner, _p82._0, summary, hints);
+		}
+	});
+var _terezka$elm_plot$Plot$normalHintContainer = function (summary) {
+	return _elm_lang$html$Html$div(
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 'margin-left',
+						_1: A2(
+							_elm_lang$core$Basics_ops['++'],
+							_elm_lang$core$Basics$toString(summary.x.marginLower),
+							'px')
+					},
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		});
+};
+var _terezka$elm_plot$Plot$junk = F3(
+	function (title, x, y) {
+		return {x: x, y: y, view: title};
+	});
+var _terezka$elm_plot$Plot$normalBarLabel = F2(
+	function (label, position) {
+		return {
+			position: position,
+			view: A2(
+				_terezka$elm_plot$Plot$viewLabel,
+				{ctor: '[]'},
+				label)
+		};
+	});
+var _terezka$elm_plot$Plot$normalHint = function (y) {
+	return A2(
+		_elm_lang$html$Html$span,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'padding', _1: '5px'},
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'y: ',
+					_elm_lang$core$Basics$toString(y))),
+			_1: {ctor: '[]'}
+		});
+};
+var _terezka$elm_plot$Plot$rangeFrameDot = F3(
+	function (view, x, y) {
+		return {
+			view: _elm_lang$core$Maybe$Just(view),
+			xLine: _elm_lang$core$Maybe$Nothing,
+			yLine: _elm_lang$core$Maybe$Nothing,
+			xTick: _elm_lang$core$Maybe$Just(
+				_terezka$elm_plot$Plot$simpleTick(x)),
+			yTick: _elm_lang$core$Maybe$Just(
+				_terezka$elm_plot$Plot$simpleTick(y)),
+			hint: _elm_lang$core$Maybe$Nothing,
+			x: x,
+			y: y
+		};
+	});
+var _terezka$elm_plot$Plot$emphasizedDot = F3(
+	function (view, x, y) {
+		return {
+			view: _elm_lang$core$Maybe$Just(view),
+			xLine: _elm_lang$core$Maybe$Just(
+				_terezka$elm_plot$Plot$fullLine(
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$stroke(_terezka$elm_plot$Internal_Colors$darkGrey),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$strokeDasharray('5, 5'),
+							_1: {ctor: '[]'}
+						}
+					})),
+			yLine: _elm_lang$core$Maybe$Just(
+				_terezka$elm_plot$Plot$fullLine(
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$stroke(_terezka$elm_plot$Internal_Colors$darkGrey),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$strokeDasharray('5, 5'),
+							_1: {ctor: '[]'}
+						}
+					})),
+			xTick: _elm_lang$core$Maybe$Nothing,
+			yTick: _elm_lang$core$Maybe$Nothing,
+			hint: _elm_lang$core$Maybe$Nothing,
+			x: x,
+			y: y
+		};
+	});
+var _terezka$elm_plot$Plot$onHovering = F3(
+	function (stuff, hovering, x) {
+		return A2(
+			_elm_lang$core$Maybe$andThen,
+			function (p) {
+				return _elm_lang$core$Native_Utils.eq(p.x, x) ? _elm_lang$core$Maybe$Just(stuff) : _elm_lang$core$Maybe$Nothing;
+			},
+			hovering);
+	});
+var _terezka$elm_plot$Plot$hintDot = F4(
+	function (view, hovering, x, y) {
+		return {
+			view: _elm_lang$core$Maybe$Just(view),
+			xLine: A3(
+				_terezka$elm_plot$Plot$onHovering,
+				_terezka$elm_plot$Plot$fullLine(
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$stroke(_terezka$elm_plot$Internal_Colors$darkGrey),
+						_1: {ctor: '[]'}
+					}),
+				hovering,
+				x),
+			yLine: _elm_lang$core$Maybe$Nothing,
+			xTick: _elm_lang$core$Maybe$Nothing,
+			yTick: _elm_lang$core$Maybe$Nothing,
+			hint: A3(
+				_terezka$elm_plot$Plot$onHovering,
+				_terezka$elm_plot$Plot$normalHint(y),
+				hovering,
+				x),
+			x: x,
+			y: y
+		};
+	});
+var _terezka$elm_plot$Plot$dot = F3(
+	function (view, x, y) {
+		return {
+			view: _elm_lang$core$Maybe$Just(view),
+			xLine: _elm_lang$core$Maybe$Nothing,
+			yLine: _elm_lang$core$Maybe$Nothing,
+			xTick: _elm_lang$core$Maybe$Nothing,
+			yTick: _elm_lang$core$Maybe$Nothing,
+			hint: _elm_lang$core$Maybe$Nothing,
+			x: x,
+			y: y
+		};
+	});
+var _terezka$elm_plot$Plot$clear = _terezka$elm_plot$Plot$dot(
+	_elm_lang$svg$Svg$text(''));
+var _terezka$elm_plot$Plot$triangle = _terezka$elm_plot$Plot$dot(
+	_terezka$elm_plot$Plot$viewTriangle(_terezka$elm_plot$Internal_Colors$pinkStroke));
+var _terezka$elm_plot$Plot$diamond = _terezka$elm_plot$Plot$dot(
+	A3(_terezka$elm_plot$Plot$viewDiamond, 10, 10, _terezka$elm_plot$Internal_Colors$pinkStroke));
+var _terezka$elm_plot$Plot$square = _terezka$elm_plot$Plot$dot(
+	A2(_terezka$elm_plot$Plot$viewSquare, 10, _terezka$elm_plot$Internal_Colors$pinkStroke));
+var _terezka$elm_plot$Plot$circle = _terezka$elm_plot$Plot$dot(
+	A2(_terezka$elm_plot$Plot$viewCircle, 5, _terezka$elm_plot$Internal_Colors$pinkStroke));
+var _terezka$elm_plot$Plot$PlotSummary = F2(
 	function (a, b) {
-		return {label: a, data: b};
+		return {x: a, y: b};
 	});
-var _juanedi$charty$Charty_LineChart$Config = F5(
-	function (a, b, c, d, e) {
-		return {drawPoints: a, background: b, colorAssignment: c, labelPrecision: d, drawLabels: e};
+var _terezka$elm_plot$Plot$AxisSummary = F8(
+	function (a, b, c, d, e, f, g, h) {
+		return {min: a, max: b, dataMin: c, dataMax: d, marginLower: e, marginUpper: f, length: g, all: h};
 	});
-var _juanedi$charty$Charty_LineChart$DrawingSettings = F3(
+var _terezka$elm_plot$Plot$DataPoint = F8(
+	function (a, b, c, d, e, f, g, h) {
+		return {view: a, xLine: b, yLine: c, xTick: d, yTick: e, hint: f, x: g, y: h};
+	});
+var _terezka$elm_plot$Plot$customDot = _terezka$elm_plot$Plot$DataPoint;
+var _terezka$elm_plot$Plot$Series = F3(
 	function (a, b, c) {
-		return {padding: a, transform: b, yLabels: c};
+		return {axis: a, interpolation: b, toDataPoints: c};
 	});
-var _juanedi$charty$Charty_LineChart$Padding = F4(
+var _terezka$elm_plot$Plot$customSeries = _terezka$elm_plot$Plot$Series;
+var _terezka$elm_plot$Plot$Bars = F4(
 	function (a, b, c, d) {
-		return {top: a, right: b, bottom: c, left: d};
+		return {axis: a, toGroups: b, styles: c, maxWidth: d};
 	});
-var _juanedi$charty$Charty_LineChart$DatasetBounds = F4(
+var _terezka$elm_plot$Plot$customGroups = _terezka$elm_plot$Plot$Bars;
+var _terezka$elm_plot$Plot$BarGroup = F4(
 	function (a, b, c, d) {
-		return {xMin: a, xMax: b, yMin: c, yMax: d};
+		return {label: a, hint: b, verticalLine: c, bars: d};
+	});
+var _terezka$elm_plot$Plot$customGroup = _terezka$elm_plot$Plot$BarGroup;
+var _terezka$elm_plot$Plot$Bar = F2(
+	function (a, b) {
+		return {label: a, height: b};
+	});
+var _terezka$elm_plot$Plot$group = F2(
+	function (label, heights) {
+		return {
+			label: _terezka$elm_plot$Plot$normalBarLabel(label),
+			verticalLine: _elm_lang$core$Basics$always(_elm_lang$core$Maybe$Nothing),
+			hint: _elm_lang$core$Basics$always(_elm_lang$core$Maybe$Nothing),
+			bars: A2(
+				_elm_lang$core$List$map,
+				_terezka$elm_plot$Plot$Bar(_elm_lang$core$Maybe$Nothing),
+				heights)
+		};
+	});
+var _terezka$elm_plot$Plot$hintGroup = F3(
+	function (hovering, label, heights) {
+		return {
+			label: _terezka$elm_plot$Plot$normalBarLabel(label),
+			verticalLine: A2(
+				_terezka$elm_plot$Plot$onHovering,
+				_terezka$elm_plot$Plot$fullLine(
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$stroke(_terezka$elm_plot$Internal_Colors$darkGrey),
+						_1: {ctor: '[]'}
+					}),
+				hovering),
+			hint: function (g) {
+				return A3(
+					_terezka$elm_plot$Plot$onHovering,
+					A2(
+						_elm_lang$html$Html$div,
+						{ctor: '[]'},
+						A2(_elm_lang$core$List$map, _terezka$elm_plot$Plot$normalHint, heights)),
+					hovering,
+					g);
+			},
+			bars: A2(
+				_elm_lang$core$List$map,
+				_terezka$elm_plot$Plot$Bar(_elm_lang$core$Maybe$Nothing),
+				heights)
+		};
+	});
+var _terezka$elm_plot$Plot$histogramBar = function (height) {
+	return {
+		label: _terezka$elm_plot$Plot$simpleLabel,
+		verticalLine: _elm_lang$core$Basics$always(_elm_lang$core$Maybe$Nothing),
+		hint: _elm_lang$core$Basics$always(_elm_lang$core$Maybe$Nothing),
+		bars: {
+			ctor: '::',
+			_0: A2(_terezka$elm_plot$Plot$Bar, _elm_lang$core$Maybe$Nothing, height),
+			_1: {ctor: '[]'}
+		}
+	};
+};
+var _terezka$elm_plot$Plot$PlotCustomizations = function (a) {
+	return function (b) {
+		return function (c) {
+			return function (d) {
+				return function (e) {
+					return function (f) {
+						return function (g) {
+							return function (h) {
+								return function (i) {
+									return function (j) {
+										return function (k) {
+											return function (l) {
+												return function (m) {
+													return function (n) {
+														return function (o) {
+															return {attributes: a, id: b, width: c, height: d, defs: e, margin: f, onHover: g, hintContainer: h, horizontalAxis: i, grid: j, junk: k, toDomainLowest: l, toDomainHighest: m, toRangeLowest: n, toRangeHighest: o};
+														};
+													};
+												};
+											};
+										};
+									};
+								};
+							};
+						};
+					};
+				};
+			};
+		};
+	};
+};
+var _terezka$elm_plot$Plot$JunkCustomizations = F3(
+	function (a, b, c) {
+		return {x: a, y: b, view: c};
+	});
+var _terezka$elm_plot$Plot$GridLineCustomizations = F2(
+	function (a, b) {
+		return {attributes: a, position: b};
+	});
+var _terezka$elm_plot$Plot$AxisCustomizations = F5(
+	function (a, b, c, d, e) {
+		return {position: a, axisLine: b, ticks: c, labels: d, flipAnchor: e};
+	});
+var _terezka$elm_plot$Plot$LineCustomizations = F3(
+	function (a, b, c) {
+		return {attributes: a, start: b, end: c};
+	});
+var _terezka$elm_plot$Plot$TickCustomizations = F3(
+	function (a, b, c) {
+		return {attributes: a, length: b, position: c};
+	});
+var _terezka$elm_plot$Plot$LabelCustomizations = F2(
+	function (a, b) {
+		return {view: a, position: b};
+	});
+var _terezka$elm_plot$Plot$TempPlotSummary = F2(
+	function (a, b) {
+		return {x: a, y: b};
+	});
+var _terezka$elm_plot$Plot$Monotone = F2(
+	function (a, b) {
+		return {ctor: 'Monotone', _0: a, _1: b};
+	});
+var _terezka$elm_plot$Plot$Linear = F2(
+	function (a, b) {
+		return {ctor: 'Linear', _0: a, _1: b};
+	});
+var _terezka$elm_plot$Plot$None = {ctor: 'None'};
+var _terezka$elm_plot$Plot$Fixed = function (a) {
+	return {ctor: 'Fixed', _0: a};
+};
+var _terezka$elm_plot$Plot$Percentage = function (a) {
+	return {ctor: 'Percentage', _0: a};
+};
+var _terezka$elm_plot$Plot$YeahGridsAreTotallyLame = {ctor: 'YeahGridsAreTotallyLame'};
+var _terezka$elm_plot$Plot$clearGrid = _terezka$elm_plot$Plot$YeahGridsAreTotallyLame;
+var _terezka$elm_plot$Plot$Grid = function (a) {
+	return {ctor: 'Grid', _0: a};
+};
+var _terezka$elm_plot$Plot$customGrid = _terezka$elm_plot$Plot$Grid;
+var _terezka$elm_plot$Plot$decentGrid = _terezka$elm_plot$Plot$customGrid(
+	function (summary) {
+		return A2(
+			_elm_lang$core$List$map,
+			_terezka$elm_plot$Plot$GridLineCustomizations(
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$stroke(_terezka$elm_plot$Internal_Colors$grey),
+					_1: {ctor: '[]'}
+				}),
+			_terezka$elm_plot$Plot$decentPositions(summary));
+	});
+var _terezka$elm_plot$Plot$SometimesYouDoNotHaveAnAxis = {ctor: 'SometimesYouDoNotHaveAnAxis'};
+var _terezka$elm_plot$Plot$sometimesYouDoNotHaveAnAxis = _terezka$elm_plot$Plot$SometimesYouDoNotHaveAnAxis;
+var _terezka$elm_plot$Plot$Axis = function (a) {
+	return {ctor: 'Axis', _0: a};
+};
+var _terezka$elm_plot$Plot$customAxis = _terezka$elm_plot$Plot$Axis;
+var _terezka$elm_plot$Plot$normalBarsAxis = _terezka$elm_plot$Plot$customAxis(
+	function (summary) {
+		return {
+			position: _terezka$elm_plot$Plot$closestToZero,
+			axisLine: _elm_lang$core$Maybe$Just(
+				_terezka$elm_plot$Plot$simpleLine(summary)),
+			ticks: A2(
+				_elm_lang$core$List$map,
+				_terezka$elm_plot$Plot$simpleTick,
+				A3(_terezka$elm_plot$Plot$interval, 0, 1, summary)),
+			labels: {ctor: '[]'},
+			flipAnchor: false
+		};
+	});
+var _terezka$elm_plot$Plot$normalAxis = _terezka$elm_plot$Plot$customAxis(
+	function (summary) {
+		return {
+			position: _terezka$elm_plot$Plot$closestToZero,
+			axisLine: _elm_lang$core$Maybe$Just(
+				_terezka$elm_plot$Plot$simpleLine(summary)),
+			ticks: A2(
+				_elm_lang$core$List$map,
+				_terezka$elm_plot$Plot$simpleTick,
+				A2(
+					_terezka$elm_plot$Plot$remove,
+					0,
+					_terezka$elm_plot$Plot$decentPositions(summary))),
+			labels: A2(
+				_elm_lang$core$List$map,
+				_terezka$elm_plot$Plot$simpleLabel,
+				A2(
+					_terezka$elm_plot$Plot$remove,
+					0,
+					_terezka$elm_plot$Plot$decentPositions(summary))),
+			flipAnchor: false
+		};
+	});
+var _terezka$elm_plot$Plot$dots = function (toDataPoints) {
+	return {axis: _terezka$elm_plot$Plot$normalAxis, interpolation: _terezka$elm_plot$Plot$None, toDataPoints: toDataPoints};
+};
+var _terezka$elm_plot$Plot$line = function (toDataPoints) {
+	return {
+		axis: _terezka$elm_plot$Plot$normalAxis,
+		interpolation: A2(
+			_terezka$elm_plot$Plot$Linear,
+			_elm_lang$core$Maybe$Nothing,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$stroke(_terezka$elm_plot$Internal_Colors$pinkStroke),
+				_1: {ctor: '[]'}
+			}),
+		toDataPoints: toDataPoints
+	};
+};
+var _terezka$elm_plot$Plot$area = function (toDataPoints) {
+	return {
+		axis: _terezka$elm_plot$Plot$normalAxis,
+		interpolation: A2(
+			_terezka$elm_plot$Plot$Linear,
+			_elm_lang$core$Maybe$Just(_terezka$elm_plot$Internal_Colors$pinkFill),
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$stroke(_terezka$elm_plot$Internal_Colors$pinkStroke),
+				_1: {ctor: '[]'}
+			}),
+		toDataPoints: toDataPoints
+	};
+};
+var _terezka$elm_plot$Plot$groups = function (toGroups) {
+	return {
+		axis: _terezka$elm_plot$Plot$normalAxis,
+		toGroups: toGroups,
+		styles: {
+			ctor: '::',
+			_0: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$fill(_terezka$elm_plot$Internal_Colors$pinkFill),
+				_1: {ctor: '[]'}
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$fill(_terezka$elm_plot$Internal_Colors$blueFill),
+					_1: {ctor: '[]'}
+				},
+				_1: {ctor: '[]'}
+			}
+		},
+		maxWidth: _terezka$elm_plot$Plot$Percentage(75)
+	};
+};
+var _terezka$elm_plot$Plot$histogram = function (toGroups) {
+	return {
+		axis: _terezka$elm_plot$Plot$normalAxis,
+		toGroups: toGroups,
+		styles: {
+			ctor: '::',
+			_0: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$fill(_terezka$elm_plot$Internal_Colors$pinkFill),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$stroke(_terezka$elm_plot$Internal_Colors$pinkStroke),
+					_1: {ctor: '[]'}
+				}
+			},
+			_1: {ctor: '[]'}
+		},
+		maxWidth: _terezka$elm_plot$Plot$Percentage(100)
+	};
+};
+var _terezka$elm_plot$Plot$defaultSeriesPlotCustomizations = {
+	attributes: {ctor: '[]'},
+	defs: {ctor: '[]'},
+	id: 'elm-plot',
+	width: 647,
+	height: 440,
+	margin: {top: 20, right: 40, bottom: 20, left: 40},
+	onHover: _elm_lang$core$Maybe$Nothing,
+	hintContainer: _terezka$elm_plot$Plot$normalHintContainer,
+	horizontalAxis: _terezka$elm_plot$Plot$normalAxis,
+	grid: {horizontal: _terezka$elm_plot$Plot$clearGrid, vertical: _terezka$elm_plot$Plot$clearGrid},
+	junk: _elm_lang$core$Basics$always(
+		{ctor: '[]'}),
+	toDomainLowest: _elm_lang$core$Basics$identity,
+	toDomainHighest: _elm_lang$core$Basics$identity,
+	toRangeLowest: _elm_lang$core$Basics$identity,
+	toRangeHighest: _elm_lang$core$Basics$identity
+};
+var _terezka$elm_plot$Plot$defaultBarsPlotCustomizations = _elm_lang$core$Native_Utils.update(
+	_terezka$elm_plot$Plot$defaultSeriesPlotCustomizations,
+	{
+		horizontalAxis: _terezka$elm_plot$Plot$normalBarsAxis,
+		margin: {top: 20, right: 40, bottom: 40, left: 40}
+	});
+var _terezka$elm_plot$Plot$viewBars = _terezka$elm_plot$Plot$viewBarsCustom(_terezka$elm_plot$Plot$defaultBarsPlotCustomizations);
+var _terezka$elm_plot$Plot$viewSeries = _terezka$elm_plot$Plot$viewSeriesCustom(_terezka$elm_plot$Plot$defaultSeriesPlotCustomizations);
+var _terezka$elm_plot$Plot$clearAxis = _terezka$elm_plot$Plot$customAxis(
+	function (summary) {
+		return {
+			position: _terezka$elm_plot$Plot$closestToZero,
+			axisLine: _elm_lang$core$Maybe$Nothing,
+			ticks: {ctor: '[]'},
+			labels: {ctor: '[]'},
+			flipAnchor: false
+		};
+	});
+var _terezka$elm_plot$Plot$axisAtMin = _terezka$elm_plot$Plot$customAxis(
+	function (summary) {
+		return {
+			position: _elm_lang$core$Basics$min,
+			axisLine: _elm_lang$core$Maybe$Just(
+				_terezka$elm_plot$Plot$simpleLine(summary)),
+			ticks: A2(
+				_elm_lang$core$List$map,
+				_terezka$elm_plot$Plot$simpleTick,
+				_terezka$elm_plot$Plot$decentPositions(summary)),
+			labels: A2(
+				_elm_lang$core$List$map,
+				_terezka$elm_plot$Plot$simpleLabel,
+				_terezka$elm_plot$Plot$decentPositions(summary)),
+			flipAnchor: false
+		};
+	});
+var _terezka$elm_plot$Plot$axisAtMax = _terezka$elm_plot$Plot$customAxis(
+	function (summary) {
+		return {
+			position: _elm_lang$core$Basics$max,
+			axisLine: _elm_lang$core$Maybe$Just(
+				_terezka$elm_plot$Plot$simpleLine(summary)),
+			ticks: A2(
+				_elm_lang$core$List$map,
+				_terezka$elm_plot$Plot$simpleTick,
+				_terezka$elm_plot$Plot$decentPositions(summary)),
+			labels: A2(
+				_elm_lang$core$List$map,
+				_terezka$elm_plot$Plot$simpleLabel,
+				_terezka$elm_plot$Plot$decentPositions(summary)),
+			flipAnchor: true
+		};
 	});
 
 var _user$project$Types$Lang = F5(
 	function (a, b, c, d, e) {
 		return {id: a, name: b, stars: c, year: d, month: e};
 	});
+var _user$project$Types$HoverBars = function (a) {
+	return {ctor: 'HoverBars', _0: a};
+};
+var _user$project$Types$HoverRangeFrame = function (a) {
+	return {ctor: 'HoverRangeFrame', _0: a};
+};
 var _user$project$Types$DataLoaded = function (a) {
 	return {ctor: 'DataLoaded', _0: a};
 };
 
-var _user$project$Views$mapLang = function (_p0) {
-	var _p1 = _p0;
-	return {
-		label: _p1._0,
-		data: A2(
-			_elm_lang$core$List$map,
-			function (lang) {
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Basics$toFloat(lang.year + lang.month),
-					_1: _elm_lang$core$Basics$toFloat(lang.stars)
-				};
+var _user$project$Chart$data = {
+	ctor: '::',
+	_0: {ctor: '_Tuple2', _0: 2017, _1: 35692},
+	_1: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 2016, _1: 35192},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 2015, _1: 37692},
+			_1: {ctor: '[]'}
+		}
+	}
+};
+var _user$project$Chart$pinkStroke = '#ff00ff';
+var _user$project$Chart$circle = F2(
+	function (x, y) {
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$height('100'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$width('100'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$viewBox('0 0 100 100'),
+						_1: {ctor: '[]'}
+					}
+				}
 			},
-			_p1._1)
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$svg$Svg$text_,
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$fill('#2e3192'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$strokeWidth('1px'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$textAnchor('middle'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$x('25'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$y('10'),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg$text(
+							_elm_lang$core$Basics$toString(y)),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$svg$Svg$text_,
+						{
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$fill(_user$project$Chart$pinkStroke),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$strokeWidth('1px'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$textAnchor('middle'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$x('25'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$y('25'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$svg$Svg_Attributes$fontSize('0.7em'),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$svg$Svg$text(
+								_elm_lang$core$Basics$toString(x)),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$svg$Svg$circle,
+							{
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$r('8'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$cx('25'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$cy('37.5'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$svg$Svg_Attributes$stroke('transparent'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$svg$Svg_Attributes$strokeWidth('3px'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$svg$Svg_Attributes$fill(_user$project$Chart$pinkStroke),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$svg$Svg_Events$onMouseOver(
+															_user$project$Types$HoverRangeFrame(
+																_elm_lang$core$Maybe$Just(
+																	{x: x, y: y}))),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$svg$Svg_Events$onMouseOut(
+																_user$project$Types$HoverRangeFrame(_elm_lang$core$Maybe$Nothing)),
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							},
+							{ctor: '[]'}),
+						_1: {ctor: '[]'}
+					}
+				}
+			});
+	});
+var _user$project$Chart$rangeFrameHintDot = function (_p0) {
+	var _p1 = _p0;
+	var _p3 = _p1._1;
+	var _p2 = _p1._0;
+	return {
+		view: _elm_lang$core$Maybe$Just(
+			A2(_user$project$Chart$circle, _p2, _p3)),
+		xLine: _elm_lang$core$Maybe$Nothing,
+		yLine: _elm_lang$core$Maybe$Nothing,
+		xTick: _elm_lang$core$Maybe$Nothing,
+		yTick: _elm_lang$core$Maybe$Nothing,
+		hint: _elm_lang$core$Maybe$Nothing,
+		x: _p2,
+		y: _p3
 	};
 };
-var _user$project$Views$sampleDataset = function (model) {
-	return A2(_elm_lang$core$List$map, _user$project$Views$mapLang, model);
+var _user$project$Chart$scatter = {
+	axis: _terezka$elm_plot$Plot$sometimesYouDoNotHaveAnAxis,
+	interpolation: A2(
+		_terezka$elm_plot$Plot$Monotone,
+		_elm_lang$core$Maybe$Nothing,
+		{
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$stroke(_user$project$Chart$pinkStroke),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$transform('translate(25,37.5)'),
+				_1: {ctor: '[]'}
+			}
+		}),
+	toDataPoints: _elm_lang$core$List$map(_user$project$Chart$rangeFrameHintDot)
 };
-var _user$project$Views$getFirstStars = function (stats) {
+var _user$project$Chart$graph = A3(
+	_terezka$elm_plot$Plot$viewSeriesCustom,
+	_elm_lang$core$Native_Utils.update(
+		_terezka$elm_plot$Plot$defaultSeriesPlotCustomizations,
+		{
+			horizontalAxis: _terezka$elm_plot$Plot$sometimesYouDoNotHaveAnAxis,
+			margin: {top: 20, bottom: 60, left: 10, right: 60},
+			toRangeLowest: function (y) {
+				return y - 1.0e-2;
+			},
+			toDomainLowest: function (y) {
+				return y - 1;
+			}
+		}),
+	{
+		ctor: '::',
+		_0: _user$project$Chart$scatter,
+		_1: {ctor: '[]'}
+	},
+	_user$project$Chart$data);
+
+var _user$project$Views$viewCharts = function (langs) {
+	return {
+		ctor: '::',
+		_0: A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$style(
+					{
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'background-color', _1: '#ffdef6'},
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: _user$project$Chart$graph,
+				_1: {
+					ctor: '::',
+					_0: _user$project$Chart$graph,
+					_1: {ctor: '[]'}
+				}
+			}),
+		_1: {ctor: '[]'}
+	};
+};
+
+var _user$project$Main$getFirstStars = function (stats) {
 	return A2(
 		_elm_lang$core$Maybe$withDefault,
 		0,
@@ -11655,13 +14524,32 @@ var _user$project$Views$getFirstStars = function (stats) {
 			},
 			_elm_lang$core$List$head(stats)));
 };
-var _user$project$Views$mapModelToLangGrouped = function (model) {
+var _user$project$Main$makeListItem = function (_p0) {
+	var _p1 = _p0;
+	var stars = _user$project$Main$getFirstStars(_p1._1);
+	return A2(
+		_elm_lang$html$Html$li,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_p1._0,
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						' - ',
+						_elm_lang$core$Basics$toString(stars)))),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$Main$mapModelToLangGrouped = function (model) {
 	return _elm_lang$core$List$reverse(
 		A2(
 			_elm_lang$core$List$sortBy,
 			function (_p2) {
 				var _p3 = _p2;
-				return _user$project$Views$getFirstStars(_p3._1);
+				return _user$project$Main$getFirstStars(_p3._1);
 			},
 			_elm_lang$core$Dict$toList(
 				A2(
@@ -11671,38 +14559,6 @@ var _user$project$Views$mapModelToLangGrouped = function (model) {
 					},
 					model))));
 };
-var _user$project$Views$makeListItem = function (_p4) {
-	var _p5 = _p4;
-	var stars = _user$project$Views$getFirstStars(_p5._1);
-	return A2(
-		_elm_lang$html$Html$li,
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html$text(
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_p5._0,
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						' - ',
-						_elm_lang$core$Basics$toString(stars)))),
-			_1: {ctor: '[]'}
-		});
-};
-var _user$project$Views$viewCharts = function (langs) {
-	var renderChart = function (langList) {
-		return A2(
-			_juanedi$charty$Charty_LineChart$view,
-			_juanedi$charty$Charty_LineChart$defaults,
-			_user$project$Views$sampleDataset(langList));
-	};
-	return A2(
-		_elm_lang$core$List$map,
-		renderChart,
-		A2(_elm_community$list_extra$List_Extra$groupsOf, 5, langs));
-};
-
 var _user$project$Main$langDecoder = A3(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 	'stats_month',
@@ -11734,15 +14590,15 @@ var _user$project$Main$getData = function () {
 }();
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p0 = msg;
-		if (_p0._0.ctor === 'Ok') {
-			return {ctor: '_Tuple2', _0: _p0._0._0, _1: _elm_lang$core$Platform_Cmd$none};
+		var _p4 = msg;
+		if ((_p4.ctor === 'DataLoaded') && (_p4._0.ctor === 'Ok')) {
+			return {ctor: '_Tuple2', _0: _p4._0._0, _1: _elm_lang$core$Platform_Cmd$none};
 		} else {
 			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		}
 	});
 var _user$project$Main$view = function (model) {
-	var langs = _user$project$Views$mapModelToLangGrouped(model);
+	var langs = _user$project$Main$mapModelToLangGrouped(model);
 	var topGrouped = A2(_elm_lang$core$List$take, 5, langs);
 	return A2(
 		_elm_lang$html$Html$div,
@@ -11764,7 +14620,7 @@ var _user$project$Main$view = function (model) {
 					_0: A2(
 						_elm_lang$html$Html$ul,
 						{ctor: '[]'},
-						A2(_elm_lang$core$List$map, _user$project$Views$makeListItem, topGrouped)),
+						A2(_elm_lang$core$List$map, _user$project$Main$makeListItem, topGrouped)),
 					_1: {ctor: '[]'}
 				}
 			},
@@ -11780,7 +14636,7 @@ var _user$project$Main$main = _elm_lang$html$Html$program(
 		init: _user$project$Main$init,
 		view: _user$project$Main$view,
 		update: _user$project$Main$update,
-		subscriptions: function (_p1) {
+		subscriptions: function (_p5) {
 			return _elm_lang$core$Platform_Sub$none;
 		}
 	})();
