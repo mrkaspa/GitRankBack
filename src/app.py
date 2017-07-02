@@ -5,10 +5,11 @@ from sanic import Sanic
 from sanic.response import text, json, file
 from sanic.exceptions import NotFound, RequestTimeout
 from sanic_jinja2 import SanicJinja2
+from jinja2 import FileSystemLoader
 import db
 
 app = Sanic()
-jinja = SanicJinja2(app)
+jinja = SanicJinja2(app, loader=FileSystemLoader('./templates'))
 port = int(os.environ.get('PORT', '5000'))
 app.static('/static', './static')
 
