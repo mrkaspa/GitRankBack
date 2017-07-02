@@ -19660,103 +19660,6 @@ var _terezka$elm_plot$Plot$axisAtMax = _terezka$elm_plot$Plot$customAxis(
 		};
 	});
 
-var _user$project$PageCss$css = _rtfeldman$elm_css$Css$stylesheet(
-	{
-		ctor: '::',
-		_0: _rtfeldman$elm_css$Css_Elements$body(
-			{
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$maxWidth(
-					_rtfeldman$elm_css$Css$px(1280)),
-				_1: {ctor: '[]'}
-			}),
-		_1: {
-			ctor: '::',
-			_0: A2(
-				_rtfeldman$elm_css$Css$id,
-				'page',
-				{
-					ctor: '::',
-					_0: _rtfeldman$elm_css$Css$fontFamilies(
-						{
-							ctor: '::',
-							_0: 'Hind',
-							_1: {
-								ctor: '::',
-								_0: 'sans-serif',
-								_1: {ctor: '[]'}
-							}
-						}),
-					_1: {ctor: '[]'}
-				}),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_rtfeldman$elm_css$Css$id,
-					'stats',
-					{
-						ctor: '::',
-						_0: _rtfeldman$elm_css$Css$backgroundColor(
-							_rtfeldman$elm_css$Css$hex('faf7f5')),
-						_1: {
-							ctor: '::',
-							_0: A2(
-								_rtfeldman$elm_css$Css$padding2,
-								_rtfeldman$elm_css$Css$px(50),
-								_rtfeldman$elm_css$Css$px(0)),
-							_1: {
-								ctor: '::',
-								_0: _rtfeldman$elm_css$Css$displayFlex,
-								_1: {
-									ctor: '::',
-									_0: _rtfeldman$elm_css$Css$flexWrap(_rtfeldman$elm_css$Css$wrap),
-									_1: {
-										ctor: '::',
-										_0: _rtfeldman$elm_css$Css$children(
-											{
-												ctor: '::',
-												_0: A2(
-													_rtfeldman$elm_css$Css$class,
-													'chart',
-													{
-														ctor: '::',
-														_0: A3(
-															_rtfeldman$elm_css$Css$flex3,
-															_rtfeldman$elm_css$Css$num(0),
-															_rtfeldman$elm_css$Css$num(0),
-															_rtfeldman$elm_css$Css$pct(50)),
-														_1: {
-															ctor: '::',
-															_0: _rtfeldman$elm_css$Css$children(
-																{
-																	ctor: '::',
-																	_0: _rtfeldman$elm_css$Css_Elements$h2(
-																		{
-																			ctor: '::',
-																			_0: _rtfeldman$elm_css$Css$textTransform(_rtfeldman$elm_css$Css$capitalize),
-																			_1: {
-																				ctor: '::',
-																				_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$center),
-																				_1: {ctor: '[]'}
-																			}
-																		}),
-																	_1: {ctor: '[]'}
-																}),
-															_1: {ctor: '[]'}
-														}
-													}),
-												_1: {ctor: '[]'}
-											}),
-										_1: {ctor: '[]'}
-									}
-								}
-							}
-						}
-					}),
-				_1: {ctor: '[]'}
-			}
-		}
-	});
 var _user$project$PageCss$colorWheel = {
 	ctor: '::',
 	_0: {ctor: '_Tuple2', _0: '#ffdef6', _1: '#ff00ff'},
@@ -19783,6 +19686,474 @@ var _user$project$PageCss$colorWheel = {
 	}
 };
 var _user$project$PageCss$blueFontColor = '#2e3192';
+var _user$project$PageCss$css = _rtfeldman$elm_css$Css$stylesheet(
+	{
+		ctor: '::',
+		_0: _rtfeldman$elm_css$Css_Elements$body(
+			{
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css$maxWidth(
+					_rtfeldman$elm_css$Css$px(1280)),
+				_1: {ctor: '[]'}
+			}),
+		_1: {
+			ctor: '::',
+			_0: _rtfeldman$elm_css$Css_Elements$p(
+				{
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$margin(
+						_rtfeldman$elm_css$Css$px(0)),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: _rtfeldman$elm_css$Css_Elements$a(
+					{
+						ctor: '::',
+						_0: _rtfeldman$elm_css$Css$color(
+							_rtfeldman$elm_css$Css$hex(_user$project$PageCss$blueFontColor)),
+						_1: {
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$textDecoration(_rtfeldman$elm_css$Css$none),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_rtfeldman$elm_css$Css$id,
+						'page',
+						{
+							ctor: '::',
+							_0: _rtfeldman$elm_css$Css$fontFamilies(
+								{
+									ctor: '::',
+									_0: 'Hind',
+									_1: {
+										ctor: '::',
+										_0: 'sans-serif',
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_rtfeldman$elm_css$Css$id,
+							'header',
+							{
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Css$backgroundColor(
+									_rtfeldman$elm_css$Css$hex('f3e9e9')),
+								_1: {
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Css$fontWeight(_rtfeldman$elm_css$Css$bold),
+									_1: {
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Css$fontSize(
+											_rtfeldman$elm_css$Css$em(2.0)),
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Css$children(
+												{
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Css_Elements$h1(
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Css$margin(
+																_rtfeldman$elm_css$Css$px(0)),
+															_1: {
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Css$padding(
+																	_rtfeldman$elm_css$Css$px(50)),
+																_1: {
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Css$color(
+																		_rtfeldman$elm_css$Css$hex(_user$project$PageCss$blueFontColor)),
+																	_1: {ctor: '[]'}
+																}
+															}
+														}),
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_rtfeldman$elm_css$Css$id,
+								'content',
+								{
+									ctor: '::',
+									_0: _rtfeldman$elm_css$Css$backgroundColor(
+										_rtfeldman$elm_css$Css$hex('ffe9f2')),
+									_1: {
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Css$children(
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css_Elements$img(
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Css$height(
+															_rtfeldman$elm_css$Css$px(300)),
+														_1: {
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Css$width(
+																_rtfeldman$elm_css$Css$px(300)),
+															_1: {
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$block),
+																_1: {
+																	ctor: '::',
+																	_0: A2(
+																		_rtfeldman$elm_css$Css$margin2,
+																		_rtfeldman$elm_css$Css$px(20),
+																		_rtfeldman$elm_css$Css$auto),
+																	_1: {ctor: '[]'}
+																}
+															}
+														}
+													}),
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Css_Elements$p(
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$center),
+															_1: {
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Css$color(
+																	_rtfeldman$elm_css$Css$hex(_user$project$PageCss$blueFontColor)),
+																_1: {
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Css$fontSize(
+																		_rtfeldman$elm_css$Css$em(1.5)),
+																	_1: {ctor: '[]'}
+																}
+															}
+														}),
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_rtfeldman$elm_css$Css$id,
+									'top',
+									{
+										ctor: '::',
+										_0: _rtfeldman$elm_css$Css$displayFlex,
+										_1: {
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Css$flexWrap(_rtfeldman$elm_css$Css$wrap),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_rtfeldman$elm_css$Css$padding2,
+													_rtfeldman$elm_css$Css$px(20),
+													_rtfeldman$elm_css$Css$px(0)),
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Css$children(
+														{
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Css_Elements$ul(
+																{
+																	ctor: '::',
+																	_0: A3(
+																		_rtfeldman$elm_css$Css$flex3,
+																		_rtfeldman$elm_css$Css$num(0),
+																		_rtfeldman$elm_css$Css$num(0),
+																		_rtfeldman$elm_css$Css$pct(40)),
+																	_1: {
+																		ctor: '::',
+																		_0: A4(
+																			_rtfeldman$elm_css$Css$padding4,
+																			_rtfeldman$elm_css$Css$px(0),
+																			_rtfeldman$elm_css$Css$px(0),
+																			_rtfeldman$elm_css$Css$px(0),
+																			_rtfeldman$elm_css$Css$px(40)),
+																		_1: {
+																			ctor: '::',
+																			_0: _rtfeldman$elm_css$Css$margin(
+																				_rtfeldman$elm_css$Css$px(0)),
+																			_1: {
+																				ctor: '::',
+																				_0: _rtfeldman$elm_css$Css$listStyle(_rtfeldman$elm_css$Css$none),
+																				_1: {
+																					ctor: '::',
+																					_0: _rtfeldman$elm_css$Css$children(
+																						{
+																							ctor: '::',
+																							_0: _rtfeldman$elm_css$Css_Elements$li(
+																								{
+																									ctor: '::',
+																									_0: _rtfeldman$elm_css$Css$displayFlex,
+																									_1: {
+																										ctor: '::',
+																										_0: _rtfeldman$elm_css$Css$flexWrap(_rtfeldman$elm_css$Css$wrap),
+																										_1: {
+																											ctor: '::',
+																											_0: _rtfeldman$elm_css$Css$fontSize(
+																												_rtfeldman$elm_css$Css$em(1.5)),
+																											_1: {
+																												ctor: '::',
+																												_0: A2(
+																													_rtfeldman$elm_css$Css$padding2,
+																													_rtfeldman$elm_css$Css$px(10),
+																													_rtfeldman$elm_css$Css$px(5)),
+																												_1: {
+																													ctor: '::',
+																													_0: _rtfeldman$elm_css$Css$color(
+																														_rtfeldman$elm_css$Css$hex(_user$project$PageCss$blueFontColor)),
+																													_1: {
+																														ctor: '::',
+																														_0: _rtfeldman$elm_css$Css$textTransform(_rtfeldman$elm_css$Css$capitalize),
+																														_1: {
+																															ctor: '::',
+																															_0: _rtfeldman$elm_css$Css$children(
+																																{
+																																	ctor: '::',
+																																	_0: _rtfeldman$elm_css$Css_Elements$div(
+																																		{
+																																			ctor: '::',
+																																			_0: A2(
+																																				_rtfeldman$elm_css$Css$nthOfType,
+																																				'1',
+																																				{
+																																					ctor: '::',
+																																					_0: A3(
+																																						_rtfeldman$elm_css$Css$flex3,
+																																						_rtfeldman$elm_css$Css$num(0),
+																																						_rtfeldman$elm_css$Css$num(0),
+																																						_rtfeldman$elm_css$Css$pct(40)),
+																																					_1: {
+																																						ctor: '::',
+																																						_0: _rtfeldman$elm_css$Css$children(
+																																							{
+																																								ctor: '::',
+																																								_0: _rtfeldman$elm_css$Css_Elements$svg(
+																																									{
+																																										ctor: '::',
+																																										_0: _rtfeldman$elm_css$Css$display(_rtfeldman$elm_css$Css$block),
+																																										_1: {
+																																											ctor: '::',
+																																											_0: _rtfeldman$elm_css$Css$margin(_rtfeldman$elm_css$Css$auto),
+																																											_1: {ctor: '[]'}
+																																										}
+																																									}),
+																																								_1: {ctor: '[]'}
+																																							}),
+																																						_1: {ctor: '[]'}
+																																					}
+																																				}),
+																																			_1: {
+																																				ctor: '::',
+																																				_0: A2(
+																																					_rtfeldman$elm_css$Css$nthOfType,
+																																					'2',
+																																					{
+																																						ctor: '::',
+																																						_0: A3(
+																																							_rtfeldman$elm_css$Css$flex3,
+																																							_rtfeldman$elm_css$Css$num(0),
+																																							_rtfeldman$elm_css$Css$num(0),
+																																							_rtfeldman$elm_css$Css$pct(55)),
+																																						_1: {
+																																							ctor: '::',
+																																							_0: _rtfeldman$elm_css$Css$children(
+																																								{
+																																									ctor: '::',
+																																									_0: _rtfeldman$elm_css$Css_Elements$p(
+																																										{
+																																											ctor: '::',
+																																											_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$center),
+																																											_1: {
+																																												ctor: '::',
+																																												_0: A2(
+																																													_rtfeldman$elm_css$Css$nthOfType,
+																																													'2',
+																																													{
+																																														ctor: '::',
+																																														_0: _rtfeldman$elm_css$Css$fontSize(
+																																															_rtfeldman$elm_css$Css$em(0.8)),
+																																														_1: {ctor: '[]'}
+																																													}),
+																																												_1: {ctor: '[]'}
+																																											}
+																																										}),
+																																									_1: {ctor: '[]'}
+																																								}),
+																																							_1: {ctor: '[]'}
+																																						}
+																																					}),
+																																				_1: {ctor: '[]'}
+																																			}
+																																		}),
+																																	_1: {ctor: '[]'}
+																																}),
+																															_1: {ctor: '[]'}
+																														}
+																													}
+																												}
+																											}
+																										}
+																									}
+																								}),
+																							_1: {ctor: '[]'}
+																						}),
+																					_1: {ctor: '[]'}
+																				}
+																			}
+																		}
+																	}
+																}),
+															_1: {
+																ctor: '::',
+																_0: _rtfeldman$elm_css$Css_Elements$div(
+																	{
+																		ctor: '::',
+																		_0: A3(
+																			_rtfeldman$elm_css$Css$flex3,
+																			_rtfeldman$elm_css$Css$num(0),
+																			_rtfeldman$elm_css$Css$num(0),
+																			_rtfeldman$elm_css$Css$pct(55)),
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {ctor: '[]'}
+															}
+														}),
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_rtfeldman$elm_css$Css$id,
+										'stats',
+										{
+											ctor: '::',
+											_0: _rtfeldman$elm_css$Css$backgroundColor(
+												_rtfeldman$elm_css$Css$hex('faf7f5')),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_rtfeldman$elm_css$Css$padding2,
+													_rtfeldman$elm_css$Css$px(50),
+													_rtfeldman$elm_css$Css$px(0)),
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Css$displayFlex,
+													_1: {
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Css$flexWrap(_rtfeldman$elm_css$Css$wrap),
+														_1: {
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Css$children(
+																{
+																	ctor: '::',
+																	_0: A2(
+																		_rtfeldman$elm_css$Css$class,
+																		'chart',
+																		{
+																			ctor: '::',
+																			_0: A3(
+																				_rtfeldman$elm_css$Css$flex3,
+																				_rtfeldman$elm_css$Css$num(0),
+																				_rtfeldman$elm_css$Css$num(0),
+																				_rtfeldman$elm_css$Css$pct(50)),
+																			_1: {
+																				ctor: '::',
+																				_0: _rtfeldman$elm_css$Css$children(
+																					{
+																						ctor: '::',
+																						_0: _rtfeldman$elm_css$Css_Elements$h2(
+																							{
+																								ctor: '::',
+																								_0: _rtfeldman$elm_css$Css$textTransform(_rtfeldman$elm_css$Css$capitalize),
+																								_1: {
+																									ctor: '::',
+																									_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$center),
+																									_1: {ctor: '[]'}
+																								}
+																							}),
+																						_1: {ctor: '[]'}
+																					}),
+																				_1: {ctor: '[]'}
+																			}
+																		}),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_rtfeldman$elm_css$Css$id,
+											'footer',
+											{
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$color(
+													_rtfeldman$elm_css$Css$hex(_user$project$PageCss$blueFontColor)),
+												_1: {
+													ctor: '::',
+													_0: _rtfeldman$elm_css$Css$textAlign(_rtfeldman$elm_css$Css$center),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_rtfeldman$elm_css$Css$padding2,
+															_rtfeldman$elm_css$Css$px(10),
+															_rtfeldman$elm_css$Css$px(0)),
+														_1: {
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Css$children(
+																{
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Css_Elements$p(
+																		{
+																			ctor: '::',
+																			_0: A2(
+																				_rtfeldman$elm_css$Css$nthOfType,
+																				'1',
+																				{
+																					ctor: '::',
+																					_0: _rtfeldman$elm_css$Css$fontSize(
+																						_rtfeldman$elm_css$Css$em(1.8)),
+																					_1: {ctor: '[]'}
+																				}),
+																			_1: {ctor: '[]'}
+																		}),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											}),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
 
 var _user$project$Types$Lang = F5(
 	function (a, b, c, d, e) {
@@ -19798,7 +20169,7 @@ var _user$project$Types$DataLoaded = function (a) {
 	return {ctor: 'DataLoaded', _0: a};
 };
 
-var _user$project$Chart$circle = F3(
+var _user$project$Chart$circlePoint = F3(
 	function (color, x, y) {
 		return A2(
 			_elm_lang$svg$Svg$g,
@@ -19934,7 +20305,7 @@ var _user$project$Chart$rangeFrameHintDot = F2(
 		var _p2 = _p1._0;
 		return {
 			view: _elm_lang$core$Maybe$Just(
-				A3(_user$project$Chart$circle, color, _p2, _p3)),
+				A3(_user$project$Chart$circlePoint, color, _p2, _p3)),
 			xLine: _elm_lang$core$Maybe$Nothing,
 			yLine: _elm_lang$core$Maybe$Nothing,
 			xTick: _elm_lang$core$Maybe$Nothing,
@@ -19986,6 +20357,55 @@ var _user$project$Chart$graph = F2(
 			},
 			data);
 	});
+var _user$project$Chart$drawCircle = function (color) {
+	return A2(
+		_elm_lang$svg$Svg$svg,
+		{
+			ctor: '::',
+			_0: _elm_lang$svg$Svg_Attributes$height('70'),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$width('70'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$viewBox('0 0 70 70'),
+					_1: {ctor: '[]'}
+				}
+			}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$svg$Svg$circle,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$r('15'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$cx('35'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$cy('35'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$stroke('transparent'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$strokeWidth('3px'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$svg$Svg_Attributes$fill(color),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				},
+				{ctor: '[]'}),
+			_1: {ctor: '[]'}
+		});
+};
 
 var _user$project$ListHelper$cycle = F2(
 	function (len, xs) {
@@ -20015,6 +20435,9 @@ var _user$project$ListHelper$zipWithCycle = F2(
 				ys));
 	});
 
+var _user$project$Views$mixWithColors = function (langs) {
+	return A2(_user$project$ListHelper$zipWithCycle, langs, _user$project$PageCss$colorWheel);
+};
 var _user$project$Views$getFirstStars = function (stats) {
 	return A2(
 		_elm_lang$core$Maybe$withDefault,
@@ -20026,32 +20449,13 @@ var _user$project$Views$getFirstStars = function (stats) {
 			},
 			_elm_lang$core$List$head(stats)));
 };
-var _user$project$Views$makeListItem = function (_p0) {
-	var _p1 = _p0;
-	var stars = _user$project$Views$getFirstStars(_p1._1);
-	return A2(
-		_elm_lang$html$Html$li,
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html$text(
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_p1._0,
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						' - ',
-						_elm_lang$core$Basics$toString(stars)))),
-			_1: {ctor: '[]'}
-		});
-};
 var _user$project$Views$mapModelToLangGrouped = function (model) {
 	return _elm_lang$core$List$reverse(
 		A2(
 			_elm_lang$core$List$sortBy,
-			function (_p2) {
-				var _p3 = _p2;
-				return _user$project$Views$getFirstStars(_p3._1);
+			function (_p0) {
+				var _p1 = _p0;
+				return _user$project$Views$getFirstStars(_p1._1);
 			},
 			_elm_lang$core$Dict$toList(
 				A2(
@@ -20065,21 +20469,79 @@ var _user$project$Views$parseAsPairs = function (dataLang) {
 	return _elm_lang$core$List$reverse(
 		A2(
 			_elm_lang$core$List$sortBy,
-			function (_p4) {
-				var _p5 = _p4;
-				return _p5._0;
+			function (_p2) {
+				var _p3 = _p2;
+				return _p3._0;
 			},
 			A2(
 				_elm_lang$core$List$map,
-				function (_p6) {
-					var _p7 = _p6;
+				function (_p4) {
+					var _p5 = _p4;
 					return {
 						ctor: '_Tuple2',
-						_0: _elm_lang$core$Basics$toFloat((_p7.year * 100) + _p7.month),
-						_1: _elm_lang$core$Basics$toFloat(_p7.stars)
+						_0: _elm_lang$core$Basics$toFloat((_p5.year * 100) + _p5.month),
+						_1: _elm_lang$core$Basics$toFloat(_p5.stars)
 					};
 				},
 				dataLang)));
+};
+var _user$project$Views$makeListItem = function (_p6) {
+	var _p7 = _p6;
+	var stars = _user$project$Views$getFirstStars(_p7._0._1);
+	return A2(
+		_elm_lang$html$Html$li,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'backgroundColor', _1: _p7._1._0},
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _user$project$Chart$drawCircle(_p7._1._1),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$p,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text(_p7._0._0),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$p,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(
+										_elm_lang$core$Basics$toString(stars)),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {ctor: '[]'}
+			}
+		});
 };
 var _user$project$Views$langChart = function (_p8) {
 	var _p9 = _p8;
@@ -20130,15 +20592,160 @@ var _user$project$Views$langChart = function (_p8) {
 			}
 		});
 };
-var _user$project$Views$mixWithColors = function (langs) {
-	return A2(_user$project$ListHelper$zipWithCycle, langs, _user$project$PageCss$colorWheel);
-};
+var _user$project$Views$viewFooter = A2(
+	_elm_lang$html$Html$div,
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$id('footer'),
+		_1: {ctor: '[]'}
+	},
+	{
+		ctor: '::',
+		_0: A2(
+			_elm_lang$html$Html$p,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html$text('GitRank'),
+				_1: {ctor: '[]'}
+			}),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$p,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('Designed by '),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$a,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$href('https://www.behance.net/juanvega90d39a'),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('Juan Vega'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(' - Developed by '),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$a,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$href('https://www.github.com/mrkaspa'),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('Michel Perez'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$br,
+										{ctor: '[]'},
+										{ctor: '[]'}),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('© Copyright 2017 by Juan Vega'),
+										_1: {ctor: '[]'}
+									}
+								}
+							}
+						}
+					}
+				}),
+			_1: {ctor: '[]'}
+		}
+	});
 var _user$project$Views$viewCharts = function (langs) {
 	return A2(
 		_elm_lang$core$List$map,
 		_user$project$Views$langChart,
 		_user$project$Views$mixWithColors(langs));
 };
+var _user$project$Views$viewTop = function (top) {
+	var topWithColors = A2(
+		_elm_lang$core$List$map,
+		_user$project$Views$makeListItem,
+		_user$project$Views$mixWithColors(top));
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$id('top'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$id('content'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$img,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$src('/static/git.png'),
+							_1: {ctor: '[]'}
+						},
+						{ctor: '[]'}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$p,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('The perfect place to check the growing of your favorites programming languages '),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$ul,
+					{ctor: '[]'},
+					topWithColors),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _user$project$Views$viewHeader = A2(
+	_elm_lang$html$Html$div,
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$id('header'),
+		_1: {ctor: '[]'}
+	},
+	{
+		ctor: '::',
+		_0: A2(
+			_elm_lang$html$Html$h1,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html$text('GitRank'),
+				_1: {ctor: '[]'}
+			}),
+		_1: {ctor: '[]'}
+	});
 var _user$project$Views$view = function (model) {
 	var langs = _user$project$Views$mapModelToLangGrouped(model);
 	var top = A2(_elm_lang$core$List$take, 5, langs);
@@ -20151,20 +20758,10 @@ var _user$project$Views$view = function (model) {
 		},
 		{
 			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$h1,
-				{ctor: '[]'},
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text('Welcome to gitrank1'),
-					_1: {ctor: '[]'}
-				}),
+			_0: _user$project$Views$viewHeader,
 			_1: {
 				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$ul,
-					{ctor: '[]'},
-					A2(_elm_lang$core$List$map, _user$project$Views$makeListItem, top)),
+				_0: _user$project$Views$viewTop(top),
 				_1: {
 					ctor: '::',
 					_0: A2(
@@ -20175,7 +20772,11 @@ var _user$project$Views$view = function (model) {
 							_1: {ctor: '[]'}
 						},
 						_user$project$Views$viewCharts(langs)),
-					_1: {ctor: '[]'}
+					_1: {
+						ctor: '::',
+						_0: _user$project$Views$viewFooter,
+						_1: {ctor: '[]'}
+					}
 				}
 			}
 		});

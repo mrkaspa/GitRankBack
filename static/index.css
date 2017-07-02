@@ -2,8 +2,93 @@ body {
     max-width: 1280px;
 }
 
+p {
+    margin: 0px;
+}
+
+a {
+    color: #2e3192;
+    text-decoration: none;
+}
+
 #page {
     font-family: Hind, sans-serif;
+}
+
+#header {
+    background-color: #f3e9e9;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+#header > h1 {
+    margin: 0px;
+    padding: 50px;
+    color: #2e3192;
+}
+
+#content {
+    background-color: #ffe9f2;
+}
+
+#content > img {
+    height: 300px;
+    width: 300px;
+    display: block;
+    margin: 20px auto;
+}
+
+#content > p {
+    text-align: center;
+    color: #2e3192;
+    font-size: 1.5em;
+}
+
+#top {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 0px;
+}
+
+#top > ul {
+    flex: 0 0 40%;
+    padding: 0px 0px 0px 40px;
+    margin: 0px;
+    list-style: none;
+}
+
+#top > ul > li {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.5em;
+    padding: 10px 5px;
+    color: #2e3192;
+    text-transform: capitalize;
+}
+
+#top > ul > li > div:nth-of-type(1) {
+    flex: 0 0 40%;
+}
+
+#top > ul > li > div:nth-of-type(1) > svg {
+    display: block;
+    margin: auto;
+}
+
+#top > ul > li > div:nth-of-type(2) {
+    flex: 0 0 55%;
+}
+
+#top > ul > li > div:nth-of-type(2) > p {
+    text-align: center;
+}
+
+#top > ul > li > div:nth-of-type(2) > p:nth-of-type(2) {
+    font-size: 0.8em;
+}
+
+#top > div {
+    flex: 0 0 55%;
 }
 
 #stats {
@@ -20,4 +105,14 @@ body {
 #stats > .chart > h2 {
     text-transform: capitalize;
     text-align: center;
+}
+
+#footer {
+    color: #2e3192;
+    text-align: center;
+    padding: 10px 0px;
+}
+
+#footer > p:nth-of-type(1) {
+    font-size: 1.8em;
 }
