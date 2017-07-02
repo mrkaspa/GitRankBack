@@ -19675,7 +19675,20 @@ var _user$project$PageCss$css = _rtfeldman$elm_css$Css$stylesheet(
 			_0: A2(
 				_rtfeldman$elm_css$Css$id,
 				'page',
-				{ctor: '[]'}),
+				{
+					ctor: '::',
+					_0: _rtfeldman$elm_css$Css$fontFamilies(
+						{
+							ctor: '::',
+							_0: 'Hind',
+							_1: {
+								ctor: '::',
+								_0: 'sans-serif',
+								_1: {ctor: '[]'}
+							}
+						}),
+					_1: {ctor: '[]'}
+				}),
 			_1: {
 				ctor: '::',
 				_0: A2(
@@ -20002,33 +20015,79 @@ var _user$project$ListHelper$zipWithCycle = F2(
 				ys));
 	});
 
+var _user$project$Views$getFirstStars = function (stats) {
+	return A2(
+		_elm_lang$core$Maybe$withDefault,
+		0,
+		A2(
+			_elm_lang$core$Maybe$map,
+			function (_) {
+				return _.stars;
+			},
+			_elm_lang$core$List$head(stats)));
+};
+var _user$project$Views$makeListItem = function (_p0) {
+	var _p1 = _p0;
+	var stars = _user$project$Views$getFirstStars(_p1._1);
+	return A2(
+		_elm_lang$html$Html$li,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_p1._0,
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						' - ',
+						_elm_lang$core$Basics$toString(stars)))),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$Views$mapModelToLangGrouped = function (model) {
+	return _elm_lang$core$List$reverse(
+		A2(
+			_elm_lang$core$List$sortBy,
+			function (_p2) {
+				var _p3 = _p2;
+				return _user$project$Views$getFirstStars(_p3._1);
+			},
+			_elm_lang$core$Dict$toList(
+				A2(
+					_elm_community$dict_extra$Dict_Extra$groupBy,
+					function (_) {
+						return _.name;
+					},
+					model))));
+};
 var _user$project$Views$parseAsPairs = function (dataLang) {
 	return _elm_lang$core$List$reverse(
 		A2(
 			_elm_lang$core$List$sortBy,
-			function (_p0) {
-				var _p1 = _p0;
-				return _p1._0;
+			function (_p4) {
+				var _p5 = _p4;
+				return _p5._0;
 			},
 			A2(
 				_elm_lang$core$List$map,
-				function (_p2) {
-					var _p3 = _p2;
+				function (_p6) {
+					var _p7 = _p6;
 					return {
 						ctor: '_Tuple2',
-						_0: _elm_lang$core$Basics$toFloat((_p3.year * 100) + _p3.month),
-						_1: _elm_lang$core$Basics$toFloat(_p3.stars)
+						_0: _elm_lang$core$Basics$toFloat((_p7.year * 100) + _p7.month),
+						_1: _elm_lang$core$Basics$toFloat(_p7.stars)
 					};
 				},
 				dataLang)));
 };
-var _user$project$Views$langChart = function (_p4) {
-	var _p5 = _p4;
-	var _p6 = _p5._1._1;
+var _user$project$Views$langChart = function (_p8) {
+	var _p9 = _p8;
+	var _p10 = _p9._1._1;
 	var chart = A2(
 		_user$project$Chart$graph,
-		_p6,
-		_user$project$Views$parseAsPairs(_p5._0._1));
+		_p10,
+		_user$project$Views$parseAsPairs(_p9._0._1));
 	return A2(
 		_elm_lang$html$Html$div,
 		{
@@ -20039,7 +20098,7 @@ var _user$project$Views$langChart = function (_p4) {
 				_0: _elm_lang$html$Html_Attributes$style(
 					{
 						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'background-color', _1: _p5._1._0},
+						_0: {ctor: '_Tuple2', _0: 'background-color', _1: _p9._1._0},
 						_1: {ctor: '[]'}
 					}),
 				_1: {ctor: '[]'}
@@ -20054,14 +20113,14 @@ var _user$project$Views$langChart = function (_p4) {
 					_0: _elm_lang$html$Html_Attributes$style(
 						{
 							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'color', _1: _p6},
+							_0: {ctor: '_Tuple2', _0: 'color', _1: _p10},
 							_1: {ctor: '[]'}
 						}),
 					_1: {ctor: '[]'}
 				},
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html$text(_p5._0._0),
+					_0: _elm_lang$html$Html$text(_p9._0._0),
 					_1: {ctor: '[]'}
 				}),
 			_1: {
@@ -20080,53 +20139,48 @@ var _user$project$Views$viewCharts = function (langs) {
 		_user$project$Views$langChart,
 		_user$project$Views$mixWithColors(langs));
 };
-
-var _user$project$Main$getFirstStars = function (stats) {
+var _user$project$Views$view = function (model) {
+	var langs = _user$project$Views$mapModelToLangGrouped(model);
+	var top = A2(_elm_lang$core$List$take, 5, langs);
 	return A2(
-		_elm_lang$core$Maybe$withDefault,
-		0,
-		A2(
-			_elm_lang$core$Maybe$map,
-			function (_) {
-				return _.stars;
-			},
-			_elm_lang$core$List$head(stats)));
-};
-var _user$project$Main$makeListItem = function (_p0) {
-	var _p1 = _p0;
-	var stars = _user$project$Main$getFirstStars(_p1._1);
-	return A2(
-		_elm_lang$html$Html$li,
-		{ctor: '[]'},
+		_elm_lang$html$Html$div,
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html$text(
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_p1._0,
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						' - ',
-						_elm_lang$core$Basics$toString(stars)))),
+			_0: _elm_lang$html$Html_Attributes$id('page'),
 			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$h1,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('Welcome to gitrank1'),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$ul,
+					{ctor: '[]'},
+					A2(_elm_lang$core$List$map, _user$project$Views$makeListItem, top)),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$id('stats'),
+							_1: {ctor: '[]'}
+						},
+						_user$project$Views$viewCharts(langs)),
+					_1: {ctor: '[]'}
+				}
+			}
 		});
 };
-var _user$project$Main$mapModelToLangGrouped = function (model) {
-	return _elm_lang$core$List$reverse(
-		A2(
-			_elm_lang$core$List$sortBy,
-			function (_p2) {
-				var _p3 = _p2;
-				return _user$project$Main$getFirstStars(_p3._1);
-			},
-			_elm_lang$core$Dict$toList(
-				A2(
-					_elm_community$dict_extra$Dict_Extra$groupBy,
-					function (_) {
-						return _.name;
-					},
-					model))));
-};
+
 var _user$project$Main$langDecoder = A3(
 	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
 	'stats_month',
@@ -20158,54 +20212,13 @@ var _user$project$Main$getData = function () {
 }();
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p4 = msg;
-		if ((_p4.ctor === 'DataLoaded') && (_p4._0.ctor === 'Ok')) {
-			return {ctor: '_Tuple2', _0: _p4._0._0, _1: _elm_lang$core$Platform_Cmd$none};
+		var _p0 = msg;
+		if ((_p0.ctor === 'DataLoaded') && (_p0._0.ctor === 'Ok')) {
+			return {ctor: '_Tuple2', _0: _p0._0._0, _1: _elm_lang$core$Platform_Cmd$none};
 		} else {
 			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		}
 	});
-var _user$project$Main$view = function (model) {
-	var langs = _user$project$Main$mapModelToLangGrouped(model);
-	var topGrouped = A2(_elm_lang$core$List$take, 5, langs);
-	return A2(
-		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$id('page'),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$h1,
-				{ctor: '[]'},
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text('Welcome to gitrank1'),
-					_1: {ctor: '[]'}
-				}),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$ul,
-					{ctor: '[]'},
-					A2(_elm_lang$core$List$map, _user$project$Main$makeListItem, topGrouped)),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$id('stats'),
-							_1: {ctor: '[]'}
-						},
-						_user$project$Views$viewCharts(langs)),
-					_1: {ctor: '[]'}
-				}
-			}
-		});
-};
 var _user$project$Main$init = {
 	ctor: '_Tuple2',
 	_0: {ctor: '[]'},
@@ -20214,9 +20227,9 @@ var _user$project$Main$init = {
 var _user$project$Main$main = _elm_lang$html$Html$program(
 	{
 		init: _user$project$Main$init,
-		view: _user$project$Main$view,
+		view: _user$project$Views$view,
 		update: _user$project$Main$update,
-		subscriptions: function (_p5) {
+		subscriptions: function (_p1) {
 			return _elm_lang$core$Platform_Sub$none;
 		}
 	})();

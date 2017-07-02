@@ -2,6 +2,10 @@ body {
     max-width: 1280px;
 }
 
+#page {
+    font-family: Hind, sans-serif;
+}
+
 #stats {
     background-color: #faf7f5;
     padding: 50px 0px;
