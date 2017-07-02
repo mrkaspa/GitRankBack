@@ -1,0 +1,19 @@
+body {
+    max-width: 1280px;
+}
+
+#stats {
+    background-color: #faf7f5;
+    padding: 50px 0px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#stats > .chart {
+    flex: 0 0 50%;
+}
+
+#stats > .chart > h2 {
+    text-transform: capitalize;
+    text-align: center;
+}

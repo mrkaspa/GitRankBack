@@ -10,16 +10,12 @@ import db
 app = Sanic()
 jinja = SanicJinja2(app)
 port = int(os.environ.get('PORT', '5000'))
+app.static('/static', './static')
 
 
 @app.route("/")
 async def root(request):
     return jinja.render('index.html', request)
-
-
-@app.route("/main.js")
-async def root(request):
-    return await file('./templates/main.js', request)
 
 
 @app.route("/load_info")
