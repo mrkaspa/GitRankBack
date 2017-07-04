@@ -19690,12 +19690,7 @@ var _user$project$PageCss$css = _rtfeldman$elm_css$Css$stylesheet(
 	{
 		ctor: '::',
 		_0: _rtfeldman$elm_css$Css_Elements$body(
-			{
-				ctor: '::',
-				_0: _rtfeldman$elm_css$Css$maxWidth(
-					_rtfeldman$elm_css$Css$px(1280)),
-				_1: {ctor: '[]'}
-			}),
+			{ctor: '[]'}),
 		_1: {
 			ctor: '::',
 			_0: _rtfeldman$elm_css$Css_Elements$p(
@@ -19725,17 +19720,26 @@ var _user$project$PageCss$css = _rtfeldman$elm_css$Css$stylesheet(
 						'page',
 						{
 							ctor: '::',
-							_0: _rtfeldman$elm_css$Css$fontFamilies(
-								{
+							_0: _rtfeldman$elm_css$Css$margin(_rtfeldman$elm_css$Css$auto),
+							_1: {
+								ctor: '::',
+								_0: _rtfeldman$elm_css$Css$maxWidth(
+									_rtfeldman$elm_css$Css$px(1280)),
+								_1: {
 									ctor: '::',
-									_0: 'Hind',
-									_1: {
-										ctor: '::',
-										_0: 'sans-serif',
-										_1: {ctor: '[]'}
-									}
-								}),
-							_1: {ctor: '[]'}
+									_0: _rtfeldman$elm_css$Css$fontFamilies(
+										{
+											ctor: '::',
+											_0: 'Hind',
+											_1: {
+												ctor: '::',
+												_0: 'sans-serif',
+												_1: {ctor: '[]'}
+											}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}
 						}),
 					_1: {
 						ctor: '::',
@@ -19872,7 +19876,7 @@ var _user$project$PageCss$css = _rtfeldman$elm_css$Css$stylesheet(
 																		_rtfeldman$elm_css$Css$flex3,
 																		_rtfeldman$elm_css$Css$num(0),
 																		_rtfeldman$elm_css$Css$num(0),
-																		_rtfeldman$elm_css$Css$pct(40)),
+																		_rtfeldman$elm_css$Css$pct(41.5)),
 																	_1: {
 																		ctor: '::',
 																		_0: A4(
@@ -20049,7 +20053,7 @@ var _user$project$PageCss$css = _rtfeldman$elm_css$Css$stylesheet(
 												ctor: '::',
 												_0: A2(
 													_rtfeldman$elm_css$Css$padding2,
-													_rtfeldman$elm_css$Css$px(50),
+													_rtfeldman$elm_css$Css$px(55),
 													_rtfeldman$elm_css$Css$px(0)),
 												_1: {
 													ctor: '::',
