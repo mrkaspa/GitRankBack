@@ -19759,29 +19759,67 @@ var _user$project$PageCss$css = _rtfeldman$elm_css$Css$stylesheet(
 											_rtfeldman$elm_css$Css$em(2.0)),
 										_1: {
 											ctor: '::',
-											_0: _rtfeldman$elm_css$Css$children(
-												{
-													ctor: '::',
-													_0: _rtfeldman$elm_css$Css_Elements$h1(
-														{
-															ctor: '::',
-															_0: _rtfeldman$elm_css$Css$margin(
-																_rtfeldman$elm_css$Css$px(0)),
-															_1: {
+											_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$relative),
+											_1: {
+												ctor: '::',
+												_0: _rtfeldman$elm_css$Css$children(
+													{
+														ctor: '::',
+														_0: _rtfeldman$elm_css$Css_Elements$h1(
+															{
 																ctor: '::',
-																_0: _rtfeldman$elm_css$Css$padding(
-																	_rtfeldman$elm_css$Css$px(50)),
+																_0: _rtfeldman$elm_css$Css$margin(
+																	_rtfeldman$elm_css$Css$px(0)),
 																_1: {
 																	ctor: '::',
-																	_0: _rtfeldman$elm_css$Css$color(
-																		_rtfeldman$elm_css$Css$hex(_user$project$PageCss$blueFontColor)),
-																	_1: {ctor: '[]'}
+																	_0: _rtfeldman$elm_css$Css$padding(
+																		_rtfeldman$elm_css$Css$px(50)),
+																	_1: {
+																		ctor: '::',
+																		_0: _rtfeldman$elm_css$Css$color(
+																			_rtfeldman$elm_css$Css$hex(_user$project$PageCss$blueFontColor)),
+																		_1: {ctor: '[]'}
+																	}
 																}
-															}
-														}),
-													_1: {ctor: '[]'}
-												}),
-											_1: {ctor: '[]'}
+															}),
+														_1: {
+															ctor: '::',
+															_0: _rtfeldman$elm_css$Css_Elements$div(
+																{
+																	ctor: '::',
+																	_0: _rtfeldman$elm_css$Css$position(_rtfeldman$elm_css$Css$absolute),
+																	_1: {
+																		ctor: '::',
+																		_0: _rtfeldman$elm_css$Css$top(
+																			_rtfeldman$elm_css$Css$px(0)),
+																		_1: {
+																			ctor: '::',
+																			_0: _rtfeldman$elm_css$Css$right(
+																				_rtfeldman$elm_css$Css$px(3)),
+																			_1: {
+																				ctor: '::',
+																				_0: _rtfeldman$elm_css$Css$children(
+																					{
+																						ctor: '::',
+																						_0: _rtfeldman$elm_css$Css_Elements$a(
+																							{
+																								ctor: '::',
+																								_0: _rtfeldman$elm_css$Css$margin(
+																									_rtfeldman$elm_css$Css$px(5)),
+																								_1: {ctor: '[]'}
+																							}),
+																						_1: {ctor: '[]'}
+																					}),
+																				_1: {ctor: '[]'}
+																			}
+																		}
+																	}
+																}),
+															_1: {ctor: '[]'}
+														}
+													}),
+												_1: {ctor: '[]'}
+											}
 										}
 									}
 								}
@@ -20748,7 +20786,66 @@ var _user$project$Views$viewHeader = A2(
 				_0: _elm_lang$html$Html$text('GitRank'),
 				_1: {ctor: '[]'}
 			}),
-		_1: {ctor: '[]'}
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$a,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$href('https://www.behance.net/juanvega90d39a'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$i,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('fa fa-behance-square'),
+									_1: {
+										ctor: '::',
+										_0: A2(_elm_lang$html$Html_Attributes$attribute, 'aria-hidden', 'true'),
+										_1: {ctor: '[]'}
+									}
+								},
+								{ctor: '[]'}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$a,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$href('https://www.github.com/mrkaspa'),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$i,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$class('fa fa-github-square'),
+										_1: {
+											ctor: '::',
+											_0: A2(_elm_lang$html$Html_Attributes$attribute, 'aria-hidden', 'true'),
+											_1: {ctor: '[]'}
+										}
+									},
+									{ctor: '[]'}),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {ctor: '[]'}
+		}
 	});
 var _user$project$Views$view = function (model) {
 	var langs = _user$project$Views$mapModelToLangGrouped(model);

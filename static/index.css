@@ -17,12 +17,23 @@ a {
     background-color: #f3e9e9;
     font-weight: bold;
     font-size: 2em;
+    position: relative;
 }
 
 #header > h1 {
     margin: 0px;
     padding: 50px;
     color: #2e3192;
+}
+
+#header > div {
+    position: absolute;
+    top: 0px;
+    right: 3px;
+}
+
+#header > div > a {
+    margin: 5px;
 }
 
 #content {
