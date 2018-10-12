@@ -31,7 +31,7 @@ def not_found(request, exception):
 
 
 @app.exception(RequestTimeout)
-def not_found(request, exception):
+def timeout(request, exception):
     return text("")
 
 
